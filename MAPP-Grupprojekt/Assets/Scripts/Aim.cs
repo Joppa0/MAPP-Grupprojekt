@@ -34,11 +34,10 @@ public class Aim : MonoBehaviour
             Shoot(Camera.main.ScreenToWorldPoint(touch.position));
         }
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Vector2 pos = Input.mousePosition;
-        //    AimAt(Camera.main.ScreenToWorldPoint(pos));
-        //}
+        else if (Input.GetMouseButtonDown(0))
+        {
+            Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
     }
 
     private void Shoot(Vector2 touchPos)
