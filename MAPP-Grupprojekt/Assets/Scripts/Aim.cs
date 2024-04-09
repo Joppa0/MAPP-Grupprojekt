@@ -38,7 +38,7 @@ public class Aim : MonoBehaviour
     {
         Vector2 aimPos = touchPos - new Vector2(transform.position.x, transform.position.y);
 
-        float rotation = Mathf.Atan2(aimPos.x, aimPos.y) * Mathf.Rad2Deg;
+        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
 
         Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, rotation));
     }
