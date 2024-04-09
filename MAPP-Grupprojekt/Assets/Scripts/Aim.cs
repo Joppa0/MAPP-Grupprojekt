@@ -5,6 +5,8 @@ using UnityEngine;
 public class Aim : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
+    private bool canShoot = true;
+    [SerializeField] private float shootCooldown = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,26 +22,41 @@ public class Aim : MonoBehaviour
 
     private void GetTouch()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && canShoot)
         {
+            // Gets touch.
             Touch touch = Input.GetTouch(0);
-            Vector2 touchPos = touch.position;
-            AimAt(Camera.main.ScreenToWorldPoint(touchPos));
+
+            // Starts shooting cooldown.
+            StartCoroutine(ShootCooldown());
+
+            // Calls the method to shoot with the world position of the touch.
+            Shoot(Camera.main.ScreenToWorldPoint(touch.position));
         }
 
-        if (Input.GetMouseButtonDown(0))
-        { 
-            Vector2 pos = Input.mousePosition;
-            AimAt(Camera.main.ScreenToWorldPoint(pos));
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Vector2 pos = Input.mousePosition;
+        //    AimAt(Camera.main.ScreenToWorldPoint(pos));
+        //}
     }
 
-    private void AimAt(Vector2 touchPos)
+    private void Shoot(Vector2 touchPos)
     {
+        // Gets the direction to aim in.
         Vector2 aimPos = touchPos - new Vector2(transform.position.x, transform.position.y);
 
+        // Calculates the rotation in degrees.
         float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
 
+        // Spawns a new bullet with the desired rotation.
         Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, rotation));
+    }
+
+    private IEnumerator ShootCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shootCooldown);
+        canShoot = true;
     }
 }
