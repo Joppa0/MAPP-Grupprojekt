@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
-    [SerializeField] private float speed = 1;
+
+    [SerializeField] private float thrust = 20;
 
     private Rigidbody2D rgbd;
-    private float gravity = 200;
     private float timer;
 
     // Start is called before the first frame update
@@ -16,14 +16,14 @@ public class MoveForward : MonoBehaviour
 
         rgbd = GetComponent<Rigidbody2D>();
 
-        rgbd.AddForce(-Vector2.up * gravity * Time.deltaTime);
+        rgbd.AddRelativeForce(Vector3.up * thrust);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         timer += Time.deltaTime;
 
