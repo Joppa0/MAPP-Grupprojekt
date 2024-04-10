@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
                 case BattleState.Player1Move:
 
                     
-                    StartCoroutine(player1.SetMoveTarget());
+                    StartCoroutine(player1.StartMove());
 
                     Debug.Log("Player 1's turn to move.");
                     yield return new WaitUntil(() => player1.IsMovementComplete);
@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
 
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
-                    StartCoroutine(player2.SetMoveTarget());
+                    StartCoroutine(player2.StartMove());
 
                     Debug.Log("Player 2's turn to move.");
                     yield return new WaitUntil(() => player2.IsMovementComplete);
