@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    public BattleState currentState;
+    public static BattleState currentState;
 
 
     public enum BattleState
@@ -19,7 +19,9 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // sätter start state
+        currentState = BattleState.Player1Move;
+
     }
 
     // Update is called once per frame
