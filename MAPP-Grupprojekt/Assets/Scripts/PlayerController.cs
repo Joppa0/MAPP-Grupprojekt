@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         {
             // Makes player able to move.
             canMove = true;
+
             // Gets touch position.
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = touch.position;
