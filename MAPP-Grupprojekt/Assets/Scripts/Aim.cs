@@ -16,6 +16,7 @@ public class Aim : MonoBehaviour
 
     private void GetTouch()
     {
+        // Checks if player has touched the screen.
         if (Input.touchCount > 0 && canShoot)
         {
             // Gets touch.
@@ -28,8 +29,11 @@ public class Aim : MonoBehaviour
             Shoot(Camera.main.ScreenToWorldPoint(touch.position));
         }
 
-        else if (Input.GetMouseButtonDown(0))
+        // Works the same way as touch, but with the mouse instead. Used for debugging.
+        else if (Input.GetMouseButtonDown(0) && canShoot)
         {
+            StartCoroutine(ShootCooldown());
+
             Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
@@ -46,6 +50,7 @@ public class Aim : MonoBehaviour
         Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, rotation));
     }
 
+    // Makes the player unable to shoot again for a short time.
     private IEnumerator ShootCooldown()
     {
         canShoot = false;

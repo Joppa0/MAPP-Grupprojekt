@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         bool done = false;
         while (!done)
         {
+            // Checks if player has touched the screen.
             if (Input.touchCount > 0)
             {
                 // Makes player able to move.
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
                 done = true;
             }
 
+            // Works the same way as touch, but with the mouse. Used for debugging.
             else if (Input.GetMouseButton(0))
             {
                 canMove = true;
