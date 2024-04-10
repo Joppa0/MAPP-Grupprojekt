@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
+{   
+    public bool IsMovementComplete { get; private set; }
+
     private float target;
     [SerializeField] private float speed = 1.0f;
+    [SerializeField] private float distanceToStop = 0.1f;
 
     private bool canMove;
-    public bool IsMovementComplete { get; set; }
+    
 
     // Update is called once per frame
     void Update()
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
             // Works the same way as touch, but with the mouse. Used for debugging.
             else if (Input.GetMouseButton(0))
             {
-                canMove = true;
+                //canMove = true;
 
                 Vector2 pos = Input.mousePosition;
 
@@ -61,15 +64,15 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (canMove)
+        if (!IsMovementComplete)
         {
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target, transform.position.y), Time.deltaTime * speed);
 
             // Stops moving if the target has been reached.
-            if (transform.position.x == target)
+            if (Mathf.Abs(transform.position.x - target) <= distanceToStop)
             {
-                canMove = false;
+                // canMove = false;
 
                 IsMovementComplete = true;
 
