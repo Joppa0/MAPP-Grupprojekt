@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {   
-    public bool IsMovementComplete { get; private set; }
+    public bool IsMovementComplete { get; private set; } = true;
 
     private float target;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float distanceToStop = 0.1f;
 
-    private bool canMove;
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        //StartCoroutine(SetMoveTarget());
-    }
+    private bool hasTarget;
 
     private void FixedUpdate()
     {
@@ -34,9 +27,6 @@ public class PlayerController : MonoBehaviour
             // Checks if player has touched the screen.
             if (Input.touchCount > 0)
             {
-                // Makes player able to move.
-                canMove = true;
-
                 // Gets touch position.
                 Touch touch = Input.GetTouch(0);
                 Vector2 touchPos = touch.position;
@@ -44,17 +34,19 @@ public class PlayerController : MonoBehaviour
                 // Finds target position to move to.
                 target = Camera.main.ScreenToWorldPoint(touchPos).x;
 
+                hasTarget = true;
+
                 done = true;
             }
 
             // Works the same way as touch, but with the mouse. Used for debugging.
             else if (Input.GetMouseButton(0))
             {
-                //canMove = true;
-
                 Vector2 pos = Input.mousePosition;
 
                 target = Camera.main.ScreenToWorldPoint(pos).x;
+
+                hasTarget = true;
 
                 done = true;
             }
@@ -64,23 +56,19 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (!IsMovementComplete)
+        if (hasTarget)
         {
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target, transform.position.y), Time.deltaTime * speed);
 
-            // Stops moving if the target has been reached.
+            // Stops moving if the target has been reached or is close enough.
             if (Mathf.Abs(transform.position.x - target) <= distanceToStop)
             {
-                // canMove = false;
+                // Sets hasTarget to false, since it would otherwise make the player move indefinitely.
+                hasTarget = false;
 
+                // Tells GameController that movement is complete, meaning the state machine can change states.
                 IsMovementComplete = true;
-
-                //if (GameController.currentState == GameController.BattleState.Player1Move)
-                //    GameController.currentState = GameController.BattleState.Player1Throw;
-
-                //else if (GameController.currentState == GameController.BattleState.Player2Move)
-                //    GameController.currentState = GameController.BattleState.Player2Throw;
             }
         }
     }
