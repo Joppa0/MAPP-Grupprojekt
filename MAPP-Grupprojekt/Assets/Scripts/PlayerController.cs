@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetTarget();
+        StartCoroutine(SetTarget());
     }
 
     private void FixedUpdate()
@@ -20,19 +20,37 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    private void SetTarget()
+    public IEnumerator SetTarget()
     {
-        if (Input.touchCount > 0)
+        bool done = false;
+        while (!done)
         {
-            // Makes player able to move.
-            canMove = true;
+            if (Input.touchCount > 0)
+            {
+                // Makes player able to move.
+                canMove = true;
 
-            // Gets touch position.
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchPos = touch.position;
+                // Gets touch position.
+                Touch touch = Input.GetTouch(0);
+                Vector2 touchPos = touch.position;
 
-            // Finds target position to move to.
-            target = Camera.main.ScreenToWorldPoint(touchPos).x;
+                // Finds target position to move to.
+                target = Camera.main.ScreenToWorldPoint(touchPos).x;
+
+                done = true;
+            }
+
+            else if (Input.GetMouseButton(0))
+            {
+                canMove = true;
+
+                Vector2 pos = Input.mousePosition;
+
+                target = Camera.main.ScreenToWorldPoint(pos).x;
+
+                done = true;
+            }
+            yield return null;
         }
     }
 
