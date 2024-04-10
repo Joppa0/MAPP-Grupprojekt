@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {   
-    public bool IsMovementComplete { get; private set; } = true;
+    public bool IsMovementComplete { get; private set; }
+    public bool IsShootingComplete { get; private set; }
 
-    private float target;
+    private Vector2 target;
+    [SerializeField] private GameObject bullet;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float distanceToStop = 0.1f;
 
@@ -17,10 +19,27 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    public IEnumerator SetMoveTarget()
+    private void Move()
     {
-        IsMovementComplete = false;
+        if (!IsMovementComplete && hasTarget)
+        {
+            // Moves toward target.
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
 
+            // Stops moving if the target has been reached or is close enough.
+            if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop)
+            {
+                // Sets hasTarget to false, since it would otherwise make the player move indefinitely.
+                hasTarget = false;
+
+                // Tells GameController that movement is complete, meaning the state machine can change states.
+                IsMovementComplete = true;
+            }
+        }
+    }
+
+    private IEnumerator SetTarget()
+    {
         bool done = false;
         while (!done)
         {
@@ -32,7 +51,7 @@ public class PlayerController : MonoBehaviour
                 Vector2 touchPos = touch.position;
 
                 // Finds target position to move to.
-                target = Camera.main.ScreenToWorldPoint(touchPos).x;
+                target = Camera.main.ScreenToWorldPoint(touchPos);
 
                 hasTarget = true;
 
@@ -44,7 +63,7 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 pos = Input.mousePosition;
 
-                target = Camera.main.ScreenToWorldPoint(pos).x;
+                target = Camera.main.ScreenToWorldPoint(pos);
 
                 hasTarget = true;
 
@@ -54,22 +73,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move()
+    // Initiates movement.
+    public IEnumerator StartMove()
     {
-        if (hasTarget)
-        {
-            // Moves toward target.
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target, transform.position.y), Time.deltaTime * speed);
+        IsMovementComplete = false;
 
-            // Stops moving if the target has been reached or is close enough.
-            if (Mathf.Abs(transform.position.x - target) <= distanceToStop)
-            {
-                // Sets hasTarget to false, since it would otherwise make the player move indefinitely.
-                hasTarget = false;
+        StartCoroutine(SetTarget());
 
-                // Tells GameController that movement is complete, meaning the state machine can change states.
-                IsMovementComplete = true;
-            }
-        }
+        yield return new WaitUntil(() => hasTarget);
+    }
+
+    // Initiates shooting.
+    public IEnumerator StartShoot()
+    {
+        IsShootingComplete = false;
+
+        StartCoroutine(SetTarget());
+
+        yield return new WaitUntil(() => hasTarget);
+
+        Shoot();
+    }
+
+
+    // Fires a bullet in toward the target.
+    private void Shoot()
+    {
+        // Gets the direction to aim in.
+        Vector2 aimPos = target - new Vector2(transform.position.x, transform.position.y);
+
+        // Calculates the rotation in degrees.
+        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
+
+        // Spawns a new bullet with the desired rotation.
+        Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, rotation));
+
+        hasTarget = false;
+        IsShootingComplete = true;
     }
 }
