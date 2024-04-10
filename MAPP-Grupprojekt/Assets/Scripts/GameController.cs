@@ -63,6 +63,8 @@ public class GameController : MonoBehaviour
 
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
+                    StartCoroutine(player2.SetMoveTarget());
+
                     Debug.Log("Player 2's turn to move.");
                     yield return new WaitUntil(() => player2.IsMovementComplete);
                     currentState = BattleState.Player2Throw; 
