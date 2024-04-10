@@ -638,7 +638,6 @@ GameObject:
   - component: {fileID: 1605210888}
   - component: {fileID: 1605210887}
   - component: {fileID: 1605210886}
-  - component: {fileID: 1605210885}
   - component: {fileID: 1605210882}
   - component: {fileID: 1605210884}
   - component: {fileID: 1605210883}
@@ -669,7 +668,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605210881}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
   m_Name: 
@@ -691,20 +690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 3
   jumpPrecision: 1
---- !u!114 &1605210885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605210881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c84c42696b19f45b81654a410a24b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  shootCooldown: 0.5
 --- !u!70 &1605210886
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -846,7 +831,6 @@ GameObject:
   - component: {fileID: 1993292868}
   - component: {fileID: 1993292867}
   - component: {fileID: 1993292866}
-  - component: {fileID: 1993292870}
   - component: {fileID: 1993292871}
   - component: {fileID: 1993292872}
   - component: {fileID: 1993292873}
@@ -986,20 +970,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1993292870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993292865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c84c42696b19f45b81654a410a24b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  shootCooldown: 0.5
 --- !u!114 &1993292871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1004,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993292865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
   m_Name: 

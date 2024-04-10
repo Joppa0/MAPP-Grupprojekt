@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
                     StartCoroutine(player1.SetMoveTarget());
 
                     Debug.Log("Player 1's turn to move.");
-                    yield return new WaitForSeconds(2f); //Exempel på delay
+                    yield return new WaitUntil(() => player1.IsMovementComplete);
                     currentState = BattleState.Player1Throw; //Gå till nästa state
                     break;
                 
@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
                     Debug.Log("Player 2's turn to move.");
-                    yield return new WaitForSeconds(2f); 
+                    yield return new WaitUntil(() => player2.IsMovementComplete);
                     currentState = BattleState.Player2Throw; 
                     break;
 
