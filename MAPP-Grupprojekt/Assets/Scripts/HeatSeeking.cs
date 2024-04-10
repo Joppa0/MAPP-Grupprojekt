@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class HeatSeeking : MonoBehaviour
+public class HeatSeeking : MoveForward
 {
-    [SerializeField] private float moveSpeed = 20;
-    [SerializeField] private float rotateSpeed = 20;
+    private float thrust = 900;
+    [SerializeField] private float speed = 20;
 
+    private Rigidbody2D rgbd;
     private float timer;
 
     private bool canHeatSeek;
 
-    private Transform target;
+    private Transform playerTransform;
 
     // Start is called before the first frame update
     void Start()
     {
+        rgbd = GetComponent<Rigidbody2D>();
+
+        rgbd.AddRelativeForce(Vector3.up * thrust);
+
         StartCoroutine(StartHeatSeeking());
     }
 
@@ -30,30 +34,32 @@ public class HeatSeeking : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Move();
     }
 
-    private void Move()
+    private void FixedUpdate()
     {
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-
+        Move();
         if (canHeatSeek)
         {
             HeatSeek();
         }
     }
 
+    private void Move()
+    {
+        //transform.position = transform.Translate(transform.position);
+    }
+
     private void HeatSeek()
     {
-        // Gets the direction to aim in.
-        Vector3 aimPos = target.position - transform.position;
+        //transform.position = Vector3.Lerp(transform.position, playerTransform.position, speed * Time.deltaTime);
 
-        // Calculates the rotation in degrees.
-        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
+        //Vector2 newVelocity = (playerTransform.position - transform.position).normalized * speed;
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotation), rotateSpeed * Time.deltaTime);
+        //rgbd.velocity = Vector3.Cross(newVelocity, rgbd.velocity);
 
+        //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z + 0.01f);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -63,7 +69,7 @@ public class HeatSeeking : MonoBehaviour
 
     private IEnumerator StartHeatSeeking()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1);
         canHeatSeek = true;
         FindNearestPlayer();
     }
@@ -71,13 +77,13 @@ public class HeatSeeking : MonoBehaviour
     private void FindNearestPlayer()
     {
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-            if (target == null)
+            if (playerTransform == null)
             {
-                target = player.transform;
+                playerTransform = player.transform;
             }
-            else if (Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(target.position, transform.position))
+            else if (Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(playerTransform.position, transform.position))
             {
-                target = player.transform;
+                playerTransform = player.transform;
             }
         }
     }
