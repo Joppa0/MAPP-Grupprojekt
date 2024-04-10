@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 1.0f;
 
     private bool canMove;
+    public bool IsMovementComplete { get; set; }
 
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(SetTarget());
+        //StartCoroutine(SetMoveTarget());
     }
 
     private void FixedUpdate()
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator SetMoveTarget()
     {
+        IsMovementComplete = false;
+
         bool done = false;
         while (!done)
         {
@@ -67,6 +70,8 @@ public class PlayerController : MonoBehaviour
             if (transform.position.x == target)
             {
                 canMove = false;
+
+                IsMovementComplete = true;
 
                 //if (GameController.currentState == GameController.BattleState.Player1Move)
                 //    GameController.currentState = GameController.BattleState.Player1Throw;
