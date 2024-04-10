@@ -15,6 +15,11 @@ public class GameController : MonoBehaviour
     public PlayerController player2;
 
 
+
+
+
+
+
     public enum BattleState
     {
         Player1Move, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
@@ -37,7 +42,8 @@ public class GameController : MonoBehaviour
             {
                 case BattleState.Player1Move:
 
-                    // Här lägger vi in logik för att röra på player 1 och lyssnar på när player 2 har rört på sig.
+                    
+                    StartCoroutine(player1.SetMoveTarget());
 
                     Debug.Log("Player 1's turn to move.");
                     yield return new WaitForSeconds(2f); //Exempel på delay
