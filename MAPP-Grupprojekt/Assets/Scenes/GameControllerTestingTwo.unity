@@ -660,7 +660,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1.5
+  distanceToStop: 0.1
 --- !u!114 &1605210883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1.5
+  distanceToStop: 0.1
 --- !u!114 &1993292872
 MonoBehaviour:
   m_ObjectHideFlags: 0
