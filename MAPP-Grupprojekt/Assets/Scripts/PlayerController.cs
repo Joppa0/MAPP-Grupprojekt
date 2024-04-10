@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(SetTarget());
+        //StartCoroutine(SetTarget());
     }
 
     private void FixedUpdate()
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    public IEnumerator SetTarget()
+    public IEnumerator SetMoveTarget()
     {
         bool done = false;
         while (!done)
@@ -67,6 +67,12 @@ public class PlayerController : MonoBehaviour
             if (transform.position.x == target)
             {
                 canMove = false;
+
+                //if (GameController.currentState == GameController.BattleState.Player1Move)
+                //    GameController.currentState = GameController.BattleState.Player1Throw;
+
+                //else if (GameController.currentState == GameController.BattleState.Player2Move)
+                //    GameController.currentState = GameController.BattleState.Player2Throw;
             }
         }
     }
