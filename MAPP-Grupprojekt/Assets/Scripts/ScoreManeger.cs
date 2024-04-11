@@ -20,7 +20,7 @@ public class ScoreManeger : MonoBehaviour
     {
         if (other.CompareTag("Snowball"))
         {
-            Destroy(other.gameObject);
+            
             snowballStrikes++;
             scoreText.text = "" + snowballStrikes;
         }
