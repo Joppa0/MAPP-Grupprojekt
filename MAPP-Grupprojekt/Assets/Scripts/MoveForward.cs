@@ -9,12 +9,15 @@ public class MoveForward : MonoBehaviour
 
     private Rigidbody2D rgbd;
     private float timer;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
 
         rgbd = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        
 
         rgbd.AddRelativeForce(Vector3.up * thrust);
 
@@ -23,7 +26,7 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //transform.Translate(Vector3.forward * speed * Time.deltaTime);        
 
         timer += Time.deltaTime;
 
@@ -32,6 +35,14 @@ public class MoveForward : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
