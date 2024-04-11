@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreManeger : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
     private int snowballStrikes = 0;
 
