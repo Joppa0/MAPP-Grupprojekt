@@ -123,13 +123,13 @@ public class GameController : MonoBehaviour
 
     void CheckScore()
     {
-        if (player1.GetComponent<ScoreManager>().GetScore() > 1)
+        if (player1.GetComponent<ScoreManager>().GetScore() > 1) 
         {
-            currentState = BattleState.Player2Win;
+            currentState = BattleState.Player2Win; //Eftersom komponenten som räknar spelare 1's score ligger på spelare 2 och vice versa, så är den enklaste lösningen att titta på motståndarens score-komponent för att bestämma win-case.
         }
         else if (player2.GetComponent<ScoreManager>().GetScore() > 1)
         {
-            currentState = BattleState.Player1Win;
+            currentState = BattleState.Player1Win; //Samma här, spelare 1 winner när score-komponenten på spelare 2 är högre än x. (spelare 2 räknar hur många gånger den blivit träffad, och ger poäng till spelare 1).
         }
     }
     
