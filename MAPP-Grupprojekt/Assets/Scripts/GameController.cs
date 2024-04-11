@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
 
                     Debug.Log("Player 1 wins!");
                     yield return new WaitForSeconds(2f);
-                    SceneManager.LoadScene("MainMenu");
+                    SceneManager.LoadSceneAsync(0);
                     yield break; //avslutar courotine
 
                 case BattleState.Player2Win:
@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
                     Debug.Log("Player 2 wins!");
 
                     yield return new WaitForSeconds(2f);
-                    SceneManager.LoadScene("MainMenu");
+                    SceneManager.LoadSceneAsync(0);
                     yield break; //avslutar couotine
                 
                 case BattleState.MainMenu:

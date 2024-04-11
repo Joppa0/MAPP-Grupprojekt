@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        // SceneManager.LoadSceneAsync("Level 1");  --- Här kan vi skriva in vad leveln heter. När man klickar på Play, ska leveln som står köras.
+         SceneManager.LoadSceneAsync(1); // Här kan vi skriva in vad leveln heter, "Level 1", ELLER siffran på SceneBuildIndex. När man klickar på Play, ska leveln som står köras.
     }
 
     public void QuitGame()
