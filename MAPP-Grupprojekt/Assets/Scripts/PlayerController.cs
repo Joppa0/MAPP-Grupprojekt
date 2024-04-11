@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {   
@@ -48,18 +49,22 @@ public class PlayerController : MonoBehaviour
             {
                 // Gets touch position.
                 Touch touch = Input.GetTouch(0);
-                Vector2 touchPos = touch.position;
+                
+                if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    Vector2 touchPos = touch.position;
 
-                // Finds target position to move to.
-                target = Camera.main.ScreenToWorldPoint(touchPos);
+                    // Finds target position to move to.
+                    target = Camera.main.ScreenToWorldPoint(touchPos);
 
-                hasTarget = true;
+                    hasTarget = true;
 
-                done = true;
+                    done = true;
+                }
             }
 
             // Works the same way as touch, but with the mouse. Used for debugging.
-            else if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Vector2 pos = Input.mousePosition;
 
