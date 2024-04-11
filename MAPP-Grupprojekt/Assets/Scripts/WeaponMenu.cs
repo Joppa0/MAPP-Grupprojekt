@@ -34,5 +34,7 @@ public class WeaponMenu : MonoBehaviour
         {
             snowShovelScript.enabled = !snowShovelScript.enabled; // Toogla aktiviteten för SnowShovel-skriptet
         }
+
+
     }
 }
