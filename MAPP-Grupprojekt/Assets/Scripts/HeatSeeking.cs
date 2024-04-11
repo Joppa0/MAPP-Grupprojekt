@@ -5,23 +5,18 @@ using UnityEngine;
 
 public class HeatSeeking : MoveForward
 {
-    private float thrust = 900;
-    [SerializeField] private float speed = 20;
+    [SerializeField] private float moveSpeed = 20;
+    [SerializeField] private float rotateSpeed = 20;
 
-    private Rigidbody2D rgbd;
     private float timer;
 
     private bool canHeatSeek;
 
-    private Transform playerTransform;
+    private Transform target;
 
     // Start is called before the first frame update
     void Start()
     {
-        rgbd = GetComponent<Rigidbody2D>();
-
-        rgbd.AddRelativeForce(Vector3.up * thrust);
-
         StartCoroutine(StartHeatSeeking());
     }
 
@@ -34,10 +29,7 @@ public class HeatSeeking : MoveForward
         {
             Destroy(gameObject);
         }
-    }
 
-    private void FixedUpdate()
-    {
         Move();
         if (canHeatSeek)
         {
@@ -47,19 +39,16 @@ public class HeatSeeking : MoveForward
 
     private void Move()
     {
-        //transform.position = transform.Translate(transform.position);
+        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
     }
 
     private void HeatSeek()
     {
-        //transform.position = Vector3.Lerp(transform.position, playerTransform.position, speed * Time.deltaTime);
+        Vector3 aimPos = target.position - transform.position;
 
-        //Vector2 newVelocity = (playerTransform.position - transform.position).normalized * speed;
+        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
 
-        //rgbd.velocity = Vector3.Cross(newVelocity, rgbd.velocity);
-
-        //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z + 0.01f);
-        
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotation), rotateSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -77,13 +66,13 @@ public class HeatSeeking : MoveForward
     private void FindNearestPlayer()
     {
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-            if (playerTransform == null)
+            if (target == null)
             {
-                playerTransform = player.transform;
+                target = player.transform;
             }
-            else if (Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(playerTransform.position, transform.position))
+            else if (Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(target.position, transform.position))
             {
-                playerTransform = player.transform;
+                target = player.transform;
             }
         }
     }
