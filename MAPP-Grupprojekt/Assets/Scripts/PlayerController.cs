@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
 
         // Spawns a new bullet with the desired rotation.
-        Instantiate(bullet, transform.position + Vector3.Normalize(aimPos), Quaternion.Euler(0, 0, rotation));
+        Instantiate(bullet, transform.position + Vector3.ClampMagnitude(aimPos, 1.5f), Quaternion.Euler(0, 0, rotation));
 
         hasTarget = false;
         IsShootingComplete = true;
