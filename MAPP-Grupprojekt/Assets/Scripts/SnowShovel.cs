@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SnowShovel : MonoBehaviour
@@ -17,18 +16,7 @@ public class SnowShovel : MonoBehaviour
 
     private void GetTouch()
     {
-        if (Input.touchCount > 0 && canShoot)
-        {
-            Touch touch = Input.GetTouch(0);
-            StartCoroutine(ShootCooldown());
-            Shoot(Camera.main.ScreenToWorldPoint(touch.position));
-        }
-        else if (Input.GetMouseButtonDown(0) && canShoot) // Vänsterklick
-        {
-            StartCoroutine(ShootCooldown());
-            Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-        else if (Input.GetMouseButtonDown(2) && canShoot) // Mittenklick
+        if (Input.GetMouseButtonDown(2) && canShoot) // Mittenklick
         {
             StartCoroutine(ShootCooldown());
             ShootWithSpread(Camera.main.ScreenToWorldPoint(Input.mousePosition));
