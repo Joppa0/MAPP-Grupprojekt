@@ -22,4 +22,9 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "" + snowballStrikes;
         }
     }
+
+    public int GetScore()
+    {
+        return snowballStrikes;
+    }
 }

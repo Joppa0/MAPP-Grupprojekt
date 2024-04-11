@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
  
@@ -10,10 +11,9 @@ public class GameController : MonoBehaviour
 
     public static BattleState currentState;
 
-
     public PlayerController player1;
     public PlayerController player2;
-
+    public ScoreManager scoreManager;
 
 
 
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
     public enum BattleState
     {
-        Player1Move, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
+        Player1Move, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
     }
 
     // Start is called before the first frame update
@@ -96,6 +96,8 @@ public class GameController : MonoBehaviour
                     // logik för när spelare 1 vinner.
 
                     Debug.Log("Player 1 wins!");
+                    yield return new WaitForSeconds(2f);
+                    SceneManager.LoadScene("MainMenu");
                     yield break; //avslutar courotine
 
                 case BattleState.Player2Win:
@@ -103,14 +105,33 @@ public class GameController : MonoBehaviour
                     // logik för när spelare 2 vinner.
 
                     Debug.Log("Player 2 wins!");
+
+                    yield return new WaitForSeconds(2f);
+                    SceneManager.LoadScene("MainMenu");
                     yield break; //avslutar couotine
-
-
+                
+                case BattleState.MainMenu:
+                    //gå till huvudmenyn
+                    yield break;
 
             }
+
+            //titta på score efter varje tur
+            CheckScore();
         }
     }
 
-
-   
+    void CheckScore()
+    {
+        if (player1.GetComponent<ScoreManager>().GetScore() > 1)
+        {
+            currentState = BattleState.Player2Win;
+        }
+        else if (player2.GetComponent<ScoreManager>().GetScore() > 1)
+        {
+            currentState = BattleState.Player1Win;
+        }
+    }
+    
+       
 }
