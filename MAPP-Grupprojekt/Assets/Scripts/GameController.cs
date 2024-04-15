@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning = false;
 
                     yield return new WaitForSeconds(1f);
-                    currentState = BattleState.Player1Throw; //Gå till nästa state
+                    currentState = BattleState.Player1ChooseWeapon; //Gå till nästa state
                     break;
 
 
