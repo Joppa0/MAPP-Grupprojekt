@@ -8,11 +8,14 @@ public class HeatSeeking : MoveForward
     [SerializeField] private float moveSpeed = 20;
     [SerializeField] private float rotateSpeed = 20;
 
-    private float timer;
-
     private bool canHeatSeek;
 
     private Transform target;
+
+    public override void SnowballBase()
+    {
+        base.SnowballBase();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +52,6 @@ public class HeatSeeking : MoveForward
         float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotation), rotateSpeed * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Destroy(gameObject);
     }
 
     private IEnumerator StartHeatSeeking()
