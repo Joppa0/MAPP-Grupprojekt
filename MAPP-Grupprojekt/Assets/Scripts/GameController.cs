@@ -17,14 +17,14 @@ public class GameController : MonoBehaviour
 
     public ScoreManager scoreManager;
     public Timer timer;
-
+    public WeaponMenu weaponMenu;
 
 
 
 
     public enum BattleState
     {
-        Player1Move, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
+        Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
     }
 
     // Start is called before the first frame update
@@ -54,9 +54,27 @@ public class GameController : MonoBehaviour
                     
                     yield return new WaitUntil(() => player1.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     timer.timerIsRunning = false;
+
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Throw; //Gå till nästa state
                     break;
-                
+
+
+                case BattleState.Player1ChooseWeapon:
+
+
+                    Debug.Log("Player 1's turn to choose weapon.");
+                    timer.timeRemaining = 11f;
+                    timer.timerIsRunning = true;
+                    weaponMenu.ToggleWeaponMenu();
+                    yield return new WaitUntil(() => timer.timeRemaining <= 0);
+                    timer.timerIsRunning= false;
+                    weaponMenu.ToggleWeaponMenu();
+                    yield return new WaitForSeconds(1f);
+                    currentState = BattleState.Player1Throw;
+                    break;
+
+
                 case BattleState.Player1Throw:
 
                     //här lägger vi in logik för kast från spelare 1, och lyssnar på när player 1 har kastat.
@@ -72,7 +90,7 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning= false;
 
 
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player2Move; //Går till nästa state
                     break;
 
@@ -89,6 +107,7 @@ public class GameController : MonoBehaviour
                     
                     yield return new WaitUntil(() => player2.IsMovementComplete || timer.timeRemaining <= 0);  
                     timer.timerIsRunning = false;
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player2Throw; 
                     break;
 
@@ -103,7 +122,7 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player2.IsShootingComplete || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
 
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
                     break;
 
@@ -127,7 +146,7 @@ public class GameController : MonoBehaviour
                     yield break; //avslutar couotine
                 
                 case BattleState.MainMenu:
-                    //gå till huvudmenyn
+                    //gå till huvudmenyn - används inte för tillfället, kan tas bort ifall ingen användning finns.
                     yield break;
 
             }
