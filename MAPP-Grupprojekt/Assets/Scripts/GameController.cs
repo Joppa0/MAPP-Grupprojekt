@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 
     public enum BattleState
     {
-        Player1Move, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
+        Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
     }
 
     // Start is called before the first frame update
@@ -58,6 +58,15 @@ public class GameController : MonoBehaviour
                     yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Throw; //Gå till nästa state
                     break;
+
+
+                case BattleState.Player1ChooseWeapon:
+
+
+                    Debug.Log("Player 1's turn to choose weapon.");
+                    timer.timeRemaining = 10f;
+                    timer.timerIsRunning = true;
+                    //StartCouroutine()
                 
                 case BattleState.Player1Throw:
 
