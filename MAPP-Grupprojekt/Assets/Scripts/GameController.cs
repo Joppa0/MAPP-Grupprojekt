@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 
     public ScoreManager scoreManager;
     public Timer timer;
-
+    public WeaponMenu weaponMenu;
 
 
 
@@ -64,10 +64,17 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 1's turn to choose weapon.");
-                    timer.timeRemaining = 10f;
+                    timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
-                    //StartCouroutine()
-                
+                    weaponMenu.ToggleWeaponMenu();
+                    yield return new WaitUntil(() => timer.timeRemaining <= 0);
+                    timer.timerIsRunning= false;
+                    weaponMenu.ToggleWeaponMenu();
+                    yield return new WaitForSeconds(1f);
+                    currentState = BattleState.Player1Throw;
+                    break;
+
+
                 case BattleState.Player1Throw:
 
                     //här lägger vi in logik för kast från spelare 1, och lyssnar på när player 1 har kastat.
