@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
-
-    [SerializeField] private float thrust = 20;
-
     private Rigidbody2D rgbd;
     protected float timer;
     private GameObject player;
@@ -19,13 +16,8 @@ public class MoveForward : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         rgbd = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        
-
-        rgbd.AddRelativeForce(Vector3.up * thrust);
-
     }
 
     // Update is called once per frame
