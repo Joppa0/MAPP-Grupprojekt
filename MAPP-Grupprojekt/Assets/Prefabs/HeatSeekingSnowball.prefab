@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1351371713344644045}
   - component: {fileID: 8668152374244101769}
   - component: {fileID: -195364206749563674}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: HeatSeekingSnowball
-  m_TagString: Untagged
+  m_TagString: Snowball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -162,5 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 800
+  timer: 0
   moveSpeed: 5
   rotateSpeed: 150

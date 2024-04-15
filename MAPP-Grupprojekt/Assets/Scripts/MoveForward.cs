@@ -8,8 +8,13 @@ public class MoveForward : MonoBehaviour
     [SerializeField] private float thrust = 20;
 
     private Rigidbody2D rgbd;
-    private float timer;
+    protected float timer;
     private GameObject player;
+
+    public virtual void SnowballBase()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +42,7 @@ public class MoveForward : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -45,7 +50,7 @@ public class MoveForward : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected void OnCollisionEnter2D(Collision2D other)
     {
         Destroy(gameObject);
     }
