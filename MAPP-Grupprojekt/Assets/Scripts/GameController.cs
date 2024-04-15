@@ -54,6 +54,8 @@ public class GameController : MonoBehaviour
                     
                     yield return new WaitUntil(() => player1.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     timer.timerIsRunning = false;
+
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Throw; //Gå till nästa state
                     break;
                 
@@ -72,7 +74,7 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning= false;
 
 
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player2Move; //Går till nästa state
                     break;
 
@@ -89,6 +91,7 @@ public class GameController : MonoBehaviour
                     
                     yield return new WaitUntil(() => player2.IsMovementComplete || timer.timeRemaining <= 0);  
                     timer.timerIsRunning = false;
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player2Throw; 
                     break;
 
@@ -103,7 +106,7 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player2.IsShootingComplete || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
 
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
                     break;
 
