@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
+  bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
   speed: 15
   distanceToStop: 0.1
 --- !u!114 &1993292872
