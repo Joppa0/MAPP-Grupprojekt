@@ -32,17 +32,21 @@ public class HeatSeeking : MoveForward
         {
             Destroy(gameObject);
         }
+    }
 
-        Move();
+    private void FixedUpdate()
+    {
         if (canHeatSeek)
         {
             HeatSeek();
         }
+
+        Move();
     }
 
     private void Move()
     {
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+        GetComponent<Rigidbody2D>().velocity = transform.up * moveSpeed;
     }
 
     private void HeatSeek()
