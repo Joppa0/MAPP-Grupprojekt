@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
- 
+
 
 public class GameController : MonoBehaviour
 {
@@ -13,8 +14,9 @@ public class GameController : MonoBehaviour
 
     public PlayerController player1;
     public PlayerController player2;
-    public ScoreManager scoreManager;
 
+    public ScoreManager scoreManager;
+    public Timer timer;
 
 
 
@@ -45,10 +47,13 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 1's turn to move.");
+                    timer.timeRemaining = 10f;
+                    timer.timerIsRunning = true;
                     StartCoroutine(player1.StartMove());
 
                     
-                    yield return new WaitUntil(() => player1.IsMovementComplete);  //Ser till att inget händer tills spelaren har rört sig.
+                    yield return new WaitUntil(() => player1.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
+                    timer.timerIsRunning = false;
                     currentState = BattleState.Player1Throw; //Gå till nästa state
                     break;
                 
@@ -58,8 +63,13 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 1's turn to throw.");
+                    timer.timeRemaining = 10f;
+                    timer.timerIsRunning = true;
                     StartCoroutine(player1.StartShoot());
-                    yield return new WaitUntil(() => player1.IsShootingComplete);
+
+
+                    yield return new WaitUntil(() => player1.IsShootingComplete || timer.timeRemaining <= 0);
+                    timer.timerIsRunning= false;
 
 
                     yield return new WaitForSeconds(2f);
@@ -72,10 +82,13 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 2's turn to move.");
+                    timer.timeRemaining = 10f;
+                    timer.timerIsRunning = true;
                     StartCoroutine(player2.StartMove());
 
                     
-                    yield return new WaitUntil(() => player2.IsMovementComplete);  //Ser till att inget händer tills spelaren har rört sig.
+                    yield return new WaitUntil(() => player2.IsMovementComplete || timer.timeRemaining <= 0);  
+                    timer.timerIsRunning = false;
                     currentState = BattleState.Player2Throw; 
                     break;
 
@@ -84,8 +97,11 @@ public class GameController : MonoBehaviour
                     //Här lägger vi in logik för kast från spelare 2, och lyssnar på när spelare 2 har kastat.
 
                     Debug.Log("Player 2's turn to throw.");
+                    timer.timeRemaining = 10f;
+                    timer.timerIsRunning = true;
                     StartCoroutine(player2.StartShoot());
-                    yield return new WaitUntil(() => player2.IsShootingComplete);
+                    yield return new WaitUntil(() => player2.IsShootingComplete || timer.timeRemaining <= 0);
+                    timer.timerIsRunning = false;
 
                     yield return new WaitForSeconds(2f);
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
