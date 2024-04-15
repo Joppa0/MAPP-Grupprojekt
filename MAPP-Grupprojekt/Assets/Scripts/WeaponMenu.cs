@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WeaponMenu : MonoBehaviour
 {
 
-    public bool HasChosenWeapon { get; private set; }
+    public bool HasChosenWeapon { get; set; }
 
     public GameObject weaponMenu;
     public Button menuButton; // Knappen för att visa menyn

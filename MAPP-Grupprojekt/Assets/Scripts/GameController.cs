@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 
     public enum BattleState
     {
-        Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2Throw,Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
+        Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2ChooseWeapon, Player2Throw, Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
     }
 
     // Start is called before the first frame update
@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player1.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     timer.timerIsRunning = false;
 
+                    weaponMenu.HasChosenWeapon = false;
                     yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1ChooseWeapon; //Gå till nästa state
                     break;
@@ -73,6 +74,8 @@ public class GameController : MonoBehaviour
                     yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Throw;
                     break;
+
+                
 
 
                 case BattleState.Player1Throw:
@@ -107,8 +110,26 @@ public class GameController : MonoBehaviour
                     
                     yield return new WaitUntil(() => player2.IsMovementComplete || timer.timeRemaining <= 0);  
                     timer.timerIsRunning = false;
+                    weaponMenu.HasChosenWeapon = false;
+
+
                     yield return new WaitForSeconds(1f);
-                    currentState = BattleState.Player2Throw; 
+                    currentState = BattleState.Player2ChooseWeapon; 
+                    break;
+
+
+                case BattleState.Player2ChooseWeapon:
+
+
+                    Debug.Log("Player 2's turn to choose weapon.");
+                    timer.timeRemaining = 11f;
+                    timer.timerIsRunning = true;
+                    weaponMenu.ToggleWeaponMenu();
+                    yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
+                    timer.timerIsRunning = false;
+                    weaponMenu.ToggleWeaponMenu();
+                    yield return new WaitForSeconds(1f);
+                    currentState = BattleState.Player2Throw;
                     break;
 
                 case BattleState.Player2Throw:

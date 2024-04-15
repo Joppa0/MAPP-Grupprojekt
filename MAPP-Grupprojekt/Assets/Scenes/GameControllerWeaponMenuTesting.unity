@@ -2697,6 +2697,9 @@ MonoBehaviour:
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1
   distanceToStop: 5
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
   bulletSpacing: 1
 --- !u!114 &1183773516
 MonoBehaviour:
@@ -2713,6 +2716,9 @@ MonoBehaviour:
   bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
 --- !u!114 &1183773517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,6 +2734,9 @@ MonoBehaviour:
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
 --- !u!114 &1183773518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3987,6 +3996,9 @@ MonoBehaviour:
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 15
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: -3, y: -3}
+  maxPower: {x: 3, y: 3}
 --- !u!114 &1605210883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4002,6 +4014,9 @@ MonoBehaviour:
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
   bulletSpacing: 0.5
 --- !u!114 &1605210884
 MonoBehaviour:
@@ -5228,6 +5243,9 @@ MonoBehaviour:
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 15
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: -3, y: -3}
+  maxPower: {x: 3, y: 3}
 --- !u!114 &1993292872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5257,6 +5275,9 @@ MonoBehaviour:
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
   bulletSpacing: 0.5
 --- !u!114 &1993292874
 MonoBehaviour:
@@ -5286,6 +5307,9 @@ MonoBehaviour:
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
 --- !u!114 &1993292876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5301,6 +5325,9 @@ MonoBehaviour:
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
   bulletSpacing: 0.5
 --- !u!114 &1993292877
 MonoBehaviour:
@@ -5317,6 +5344,9 @@ MonoBehaviour:
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 1
   distanceToStop: 0.1
+  power: 20
+  minPower: {x: 0, y: 0}
+  maxPower: {x: 0, y: 0}
 --- !u!1 &2036767657
 GameObject:
   m_ObjectHideFlags: 0
