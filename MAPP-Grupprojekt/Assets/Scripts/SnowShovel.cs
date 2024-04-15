@@ -11,10 +11,10 @@ public class SnowShovel : Shooting
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canShoot) 
+        /*if (Input.GetMouseButtonDown(0) && canShoot) 
         {
             StartCoroutine(StartShoot());
-        }
+        }*/
     }
 
     protected override void Shoot()
@@ -34,12 +34,22 @@ public class SnowShovel : Shooting
 
     private void FireBullet(Vector2 shootPosition)
     {
-        Vector2 aimPos = shootPosition - new Vector2(transform.position.x, transform.position.y);
+        /*Vector2 aimPos = shootPosition - new Vector2(transform.position.x, transform.position.y);
         float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
         float spawnDistance = 2.0f;  // Sätter ett spawnavstånd som undviker kollision med spelaren
                                      // Normaliserar aimPos först och sedan multiplicerar med spawnDistance för att beräkna spawn positionen
         Vector3 spawnPosition = transform.position + (Vector3)(aimPos.normalized * spawnDistance);
-        Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, rotation));
+        Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, rotation));*/
+
+        // Gets the direction to aim in.
+        Vector2 aimPos = target - new Vector2(-transform.position.x, transform.position.y);
+
+        // Calculates the rotation in degrees.
+        float rotation = Mathf.Atan2(aimPos.x, aimPos.y) * Mathf.Rad2Deg;
+
+        // Spawns a new bullet with the desired rotation.
+        GameObject ball = Instantiate(bullet, transform.position + Vector3.Normalize(target) * 1.5f, Quaternion.Euler(0, 0, rotation));
+        ball.GetComponent<Rigidbody2D>().AddForce(target * power, ForceMode2D.Impulse);
     }
 
 
