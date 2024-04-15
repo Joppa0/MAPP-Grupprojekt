@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
                     yield break; //avslutar couotine
                 
                 case BattleState.MainMenu:
-                    //gå till huvudmenyn
+                    //gå till huvudmenyn - används inte för tillfället, kan tas bort ifall ingen användning finns.
                     yield break;
 
             }
