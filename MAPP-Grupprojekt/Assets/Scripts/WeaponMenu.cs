@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class WeaponMenu : MonoBehaviour
 {
+
+    public bool HasChosenWeapon { get; private set; }
+
     public GameObject weaponMenu;
     public Button menuButton; // Knappen för att visa menyn
     public Button snowShovelButton; // Knappen för att aktivera SnowShovel
@@ -36,7 +39,9 @@ public class WeaponMenu : MonoBehaviour
             snowShovelScript.enabled = true;
             if (snowballScript != null) snowballScript.enabled = false;
             if (heatSeekScript != null) heatSeekScript.enabled = false;
+            HasChosenWeapon = true;
         }
+        
     }
 
     public void ToggleSnowball()
@@ -47,6 +52,7 @@ public class WeaponMenu : MonoBehaviour
             snowballScript.enabled = true;
             if (snowShovelScript != null) snowShovelScript.enabled = false;
             if (heatSeekScript != null) heatSeekScript.enabled = false;
+            HasChosenWeapon = true;
         }
     }
 
@@ -58,6 +64,7 @@ public class WeaponMenu : MonoBehaviour
             heatSeekScript.enabled = true;
             if (snowShovelScript != null) snowShovelScript.enabled = false;
             if (snowballScript != null) snowballScript.enabled = false;
+            HasChosenWeapon = true;
         }
     }
 }

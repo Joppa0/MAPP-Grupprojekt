@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     weaponMenu.ToggleWeaponMenu();
-                    yield return new WaitUntil(() => timer.timeRemaining <= 0);
+                    yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
                     timer.timerIsRunning= false;
                     weaponMenu.ToggleWeaponMenu();
                     yield return new WaitForSeconds(1f);
