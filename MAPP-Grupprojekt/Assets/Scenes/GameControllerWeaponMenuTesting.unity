@@ -1466,7 +1466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &926894822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,7 +1689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1039100971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2464,7 +2464,7 @@ MonoBehaviour:
   player2: {fileID: 1605210882}
   scoreManager: {fileID: 1993292874}
   timer: {fileID: 1294272132}
-  weaponMenu: {fileID: 0}
+  weaponMenu: {fileID: 1943900297}
 --- !u!4 &1294272131
 Transform:
   m_ObjectHideFlags: 0
@@ -4199,7 +4199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68b80867cb13b347ad8968c016c8b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
+  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 1
   distanceToStop: 0.1
 --- !u!114 &1993292876
