@@ -7,34 +7,57 @@ public class WeaponMenu : MonoBehaviour
 {
     public GameObject weaponMenu;
     public Button menuButton; // Knappen för att visa menyn
-    public Button snowShovelButton; // Knappen för att inaktivera SnowShovel
+    public Button snowShovelButton; // Knappen för att aktivera SnowShovel
+    public Button snowballButton; // Knappen för att aktivera Snowball
+    public Button heatseekButton; // Knappen för att aktivera HeatSeek
     public SnowShovel snowShovelScript; // Referens till SnowShovel-skriptet som är knutet till spelaren
+    public Snowball snowballScript; // Referens till Snowball-skriptet som är knutet till spelaren
+    public SnowballHeatSeekPrefab heatSeekScript; // Referens till HeatSeek-skriptet som är knutet till spelaren
 
-    // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        // Tilldela klickhändelser till knapparna
+        snowShovelButton.onClick.AddListener(ToggleSnowShovel);
+        snowballButton.onClick.AddListener(ToggleSnowball);
+        heatseekButton.onClick.AddListener(ToggleHeatSeek);
     }
 
     public void ToggleWeaponMenu()
     {
-        // Antingen växla aktivitetsstatus för Canvas eller sätt den till aktiv
+        // Växlar aktivitetsstatus för vapenmenyn
         weaponMenu.SetActive(!weaponMenu.activeSelf);
     }
 
     public void ToggleSnowShovel()
     {
+        // Aktiverar SnowShovel och inaktiverar andra vapen
         if (snowShovelScript != null)
         {
-            snowShovelScript.enabled = !snowShovelScript.enabled; // Toogla aktiviteten för SnowShovel-skriptet
+            snowShovelScript.enabled = true;
+            if (snowballScript != null) snowballScript.enabled = false;
+            if (heatSeekScript != null) heatSeekScript.enabled = false;
         }
+    }
 
+    public void ToggleSnowball()
+    {
+        // Aktiverar Snowball och inaktiverar andra vapen
+        if (snowballScript != null)
+        {
+            snowballScript.enabled = true;
+            if (snowShovelScript != null) snowShovelScript.enabled = false;
+            if (heatSeekScript != null) heatSeekScript.enabled = false;
+        }
+    }
 
+    public void ToggleHeatSeek()
+    {
+        // Aktiverar HeatSeek och inaktiverar andra vapen
+        if (heatSeekScript != null)
+        {
+            heatSeekScript.enabled = true;
+            if (snowShovelScript != null) snowShovelScript.enabled = false;
+            if (snowballScript != null) snowballScript.enabled = false;
+        }
     }
 }

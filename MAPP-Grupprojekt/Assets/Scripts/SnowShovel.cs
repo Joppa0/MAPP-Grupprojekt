@@ -1,53 +1,46 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class SnowShovel : MonoBehaviour
+public class SnowShovel : Shooting
 {
-    [SerializeField] private GameObject bullet;
-    private bool canShoot = true;
-    [SerializeField] private float shootCooldown = 0.5f;
-    [SerializeField] private float bulletSpacing = 0.5f; // Avstånd mellan huvudkulan och de sidokulorna
+    [SerializeField] private float bulletSpacing = 0.5f; // Avstånd mellan huvudkulan och sidokulorna
+
+    private bool canShoot = true; // Kontroll om spelaren kan skjuta
 
     // Update is called once per frame
     void Update()
     {
-        GetTouch();
-    }
-
-    private void GetTouch()
-    {
-        if (Input.GetMouseButtonDown(2) && canShoot) // Mittenklick
+        if (Input.GetMouseButtonDown(0) && canShoot) 
         {
-            StartCoroutine(ShootCooldown());
-            ShootWithSpread(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            StartCoroutine(StartShoot());
         }
     }
 
-    private void Shoot(Vector2 touchPos)
+    protected override void Shoot()
     {
-        Vector2 aimPos = touchPos - new Vector2(transform.position.x, transform.position.y);
-        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
-        Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, rotation));
-    }
-
-    // Ny metod för att skjuta med spridning
-    private void ShootWithSpread(Vector2 touchPos)
-    {
-        // Skjuter den centrala kulan
-        Shoot(touchPos);
+        base.Shoot(); 
 
         // Beräknar position och rotation för sidokulorna
-        Vector2 leftPos = new Vector2(touchPos.x - bulletSpacing, touchPos.y);
-        Vector2 rightPos = new Vector2(touchPos.x + bulletSpacing, touchPos.y);
+        Vector2 leftPos = new Vector2(target.x - bulletSpacing, target.y);
+        Vector2 rightPos = new Vector2(target.x + bulletSpacing, target.y);
 
-        Shoot(leftPos);
-        Shoot(rightPos);
+
+        // Skjuter sidokulorna
+        FireBullet(leftPos);
+        FireBullet(rightPos);
+
     }
 
-    private IEnumerator ShootCooldown()
+    private void FireBullet(Vector2 shootPosition)
     {
-        canShoot = false;
-        yield return new WaitForSeconds(shootCooldown);
-        canShoot = true;
+        Vector2 aimPos = shootPosition - new Vector2(transform.position.x, transform.position.y);
+        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
+        float spawnDistance = 2.0f;  // Sätter ett spawnavstånd som undviker kollision med spelaren
+                                     // Normaliserar aimPos först och sedan multiplicerar med spawnDistance för att beräkna spawn positionen
+        Vector3 spawnPosition = transform.position + (Vector3)(aimPos.normalized * spawnDistance);
+        Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, rotation));
     }
+
+
 }
