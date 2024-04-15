@@ -699,7 +699,9 @@ MonoBehaviour:
   weaponMenu: {fileID: 383275039}
   menuButton: {fileID: 1180810272}
   snowShovelButton: {fileID: 1279163894}
+  snowballButton: {fileID: 326179523}
   snowShovelScript: {fileID: 1459962431}
+  snowballScript: {fileID: 1459962440}
 --- !u!1 &607688257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,10 +1909,9 @@ GameObject:
   - component: {fileID: 1459962436}
   - component: {fileID: 1459962435}
   - component: {fileID: 1459962434}
-  - component: {fileID: 1459962433}
   - component: {fileID: 1459962432}
   - component: {fileID: 1459962431}
-  - component: {fileID: 1459962439}
+  - component: {fileID: 1459962440}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1925,14 +1926,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459962430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  shootCooldown: 0.5
-  bulletSpacing: 0.5
+  speed: 1
+  distanceToStop: 5
+  bulletSpacing: 1
 --- !u!114 &1459962432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,28 +1942,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459962430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66519f352ea22b74187897360e0b1611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 3
   jumpPrecision: 1
---- !u!114 &1459962433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459962430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  speed: 1.5
-  distanceToStop: 0.1
 --- !u!114 &1459962434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,7 +2090,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1459962439
+--- !u!114 &1459962440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2112,10 +2099,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1459962430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
+  m_Script: {fileID: 11500000, guid: a4708e16f6641f54e8f78f3acb41b0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
+  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
   speed: 1
   distanceToStop: 0.1
 --- !u!1 &1634359490

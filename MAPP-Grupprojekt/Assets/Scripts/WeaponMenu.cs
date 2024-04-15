@@ -7,24 +7,21 @@ public class WeaponMenu : MonoBehaviour
 {
     public GameObject weaponMenu;
     public Button menuButton; // Knappen för att visa menyn
-    public Button snowShovelButton; // Knappen för att inaktivera SnowShovel
+    public Button snowShovelButton; // Knappen för att aktivera SnowShovel
+    public Button snowballButton; // Knappen för att aktivera Snowball
     public SnowShovel snowShovelScript; // Referens till SnowShovel-skriptet som är knutet till spelaren
+    public Snowball snowballScript; // Referens till Snowball-skriptet som är knutet till spelaren
 
-    // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        // Tilldela klickhändelser till knapparna
+        snowShovelButton.onClick.AddListener(ToggleSnowShovel);
+        snowballButton.onClick.AddListener(ToggleSnowball);
     }
 
     public void ToggleWeaponMenu()
     {
-        // Antingen växla aktivitetsstatus för Canvas eller sätt den till aktiv
+        // Växlar aktivitetsstatus för vapenmenyn
         weaponMenu.SetActive(!weaponMenu.activeSelf);
     }
 
@@ -32,9 +29,17 @@ public class WeaponMenu : MonoBehaviour
     {
         if (snowShovelScript != null)
         {
-            snowShovelScript.enabled = !snowShovelScript.enabled; // Toogla aktiviteten för SnowShovel-skriptet
+            snowShovelScript.enabled = true; // Aktiverar SnowShovel-skriptet
+            if (snowballScript != null) snowballScript.enabled = false; // Inaktiverar Snowball-skriptet om det finns
         }
+    }
 
-
+    public void ToggleSnowball()
+    {
+        if (snowballScript != null)
+        {
+            snowballScript.enabled = true; // Aktiverar Snowball-skriptet
+            if (snowShovelScript != null) snowShovelScript.enabled = false; // Inaktiverar SnowShovel-skriptet om det finns
+        }
     }
 }
