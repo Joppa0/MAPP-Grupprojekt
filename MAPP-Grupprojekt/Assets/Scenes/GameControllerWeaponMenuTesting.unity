@@ -3986,11 +3986,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 15
   distanceToStop: 0.1
+  rayDistance: 0.5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &1605210884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5276,9 +5277,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   distanceToStop: 0.1
+  rayDistance: 0.5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &1993292872
 MonoBehaviour:
   m_ObjectHideFlags: 0
