@@ -369,11 +369,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 802483520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -50}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -330, y: -50}
   m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &204542726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,11 +2912,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 802483520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -50}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 330, y: -50}
   m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1217354865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3988,9 +3988,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   distanceToStop: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &1605210884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5276,9 +5273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   distanceToStop: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &1993292872
 MonoBehaviour:
   m_ObjectHideFlags: 0
