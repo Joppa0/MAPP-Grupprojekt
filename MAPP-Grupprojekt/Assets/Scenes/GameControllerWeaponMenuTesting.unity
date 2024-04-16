@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 308745869}
   - component: {fileID: 308745868}
   - component: {fileID: 308745867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1302,7 +1302,7 @@ GameObject:
   - component: {fileID: 582127610}
   - component: {fileID: 582127609}
   - component: {fileID: 582127608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1600,7 +1600,7 @@ GameObject:
   - component: {fileID: 599182058}
   - component: {fileID: 599182060}
   - component: {fileID: 599182059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1968,7 +1968,7 @@ GameObject:
   - component: {fileID: 931846045}
   - component: {fileID: 931846044}
   - component: {fileID: 931846043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ice Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 1056474231}
   - component: {fileID: 1056474230}
   - component: {fileID: 1056474229}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3799,7 +3799,7 @@ GameObject:
   - component: {fileID: 1580732287}
   - component: {fileID: 1580732286}
   - component: {fileID: 1580732285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3988,6 +3988,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   distanceToStop: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1605210884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4798,7 +4801,7 @@ GameObject:
   - component: {fileID: 1916754093}
   - component: {fileID: 1916754092}
   - component: {fileID: 1916754094}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5087,9 +5090,6 @@ MonoBehaviour:
   snowShovelButton: {fileID: 536759677}
   snowballButton: {fileID: 1506146748}
   heatseekButton: {fileID: 359111623}
-  snowShovelScript: {fileID: 0}
-  snowballScript: {fileID: 0}
-  heatSeekScript: {fileID: 0}
   player1: {fileID: 1993292875}
   player2: {fileID: 1605210891}
 --- !u!4 &1943900298
@@ -5276,6 +5276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   distanceToStop: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1993292872
 MonoBehaviour:
   m_ObjectHideFlags: 0
