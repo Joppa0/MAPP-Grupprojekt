@@ -40,11 +40,11 @@ public class MoveForward : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    protected void OnCollisionEnter2D(Collision2D other)
-    {
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Grounded"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour
     public bool IsMovementComplete { get; private set; }
 
     private Vector2 target;
+    private Vector3 lastPosition;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float distanceToStop = 0.1f;
+    [SerializeField] private float rayDistance = 0.25f;
+    [SerializeField] private LayerMask groundLayer;
 
     private bool hasTarget;
 
@@ -19,15 +22,30 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    private bool CanMove()
+    {
+        if (target.x < transform.position.x)
+        {
+            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.right, rayDistance, groundLayer);
+            return leftHit.collider == null;
+        }
+        else
+        {
+            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.left, rayDistance, groundLayer);
+            return rightHit.collider == null;
+        }
+    }
+
     private void Move()
     {
         if (!IsMovementComplete && hasTarget)
         {
+            lastPosition = transform.position;
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
 
             // Stops moving if the target has been reached or is close enough.
-            if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop)
+            if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop || !CanMove())
             {
                 // Sets hasTarget to false, since it would otherwise make the player move indefinitely.
                 hasTarget = false;
