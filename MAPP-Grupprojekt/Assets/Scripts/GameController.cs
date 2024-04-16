@@ -12,8 +12,10 @@ public class GameController : MonoBehaviour
 
     public static BattleState currentState;
 
-    public PlayerController player1;
-    public PlayerController player2;
+    public PlayerController player1Controller;
+    public PlayerController player2Controller;
+    public Shooting player1Shooting;
+    public Shooting player2Shooting;
 
     public ScoreManager scoreManager;
     public Timer timer;
@@ -49,10 +51,10 @@ public class GameController : MonoBehaviour
                     Debug.Log("Player 1's turn to move.");
                     timer.timeRemaining = 10f;
                     timer.timerIsRunning = true;
-                    StartCoroutine(player1.StartMove());
+                    StartCoroutine(player1Controller.StartMove());
 
                     
-                    yield return new WaitUntil(() => player1.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
+                    yield return new WaitUntil(() => player1Controller.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     timer.timerIsRunning = false;
 
                     weaponMenu.HasChosenWeapon = false;
@@ -86,10 +88,10 @@ public class GameController : MonoBehaviour
                     Debug.Log("Player 1's turn to throw.");
                     timer.timeRemaining = 10f;
                     timer.timerIsRunning = true;
-                    StartCoroutine(player1.StartShoot());
+                    StartCoroutine(player1Shooting.StartShoot());
 
 
-                    yield return new WaitUntil(() => player1.IsShootingComplete || timer.timeRemaining <= 0);
+                    yield return new WaitUntil(() => player1Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     timer.timerIsRunning= false;
 
 
@@ -105,10 +107,10 @@ public class GameController : MonoBehaviour
                     Debug.Log("Player 2's turn to move.");
                     timer.timeRemaining = 10f;
                     timer.timerIsRunning = true;
-                    StartCoroutine(player2.StartMove());
+                    StartCoroutine(player2Controller.StartMove());
 
                     
-                    yield return new WaitUntil(() => player2.IsMovementComplete || timer.timeRemaining <= 0);  
+                    yield return new WaitUntil(() => player2Controller.IsMovementComplete || timer.timeRemaining <= 0);  
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
 
@@ -139,8 +141,8 @@ public class GameController : MonoBehaviour
                     Debug.Log("Player 2's turn to throw.");
                     timer.timeRemaining = 10f;
                     timer.timerIsRunning = true;
-                    StartCoroutine(player2.StartShoot());
-                    yield return new WaitUntil(() => player2.IsShootingComplete || timer.timeRemaining <= 0);
+                    StartCoroutine(player2Shooting.StartShoot());
+                    yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
 
                     yield return new WaitForSeconds(1f);
@@ -179,11 +181,11 @@ public class GameController : MonoBehaviour
 
     void CheckScore()
     {
-        if (player1.GetComponent<ScoreManager>().GetScore() > 1) 
+        if (player1Controller.GetComponent<ScoreManager>().GetScore() > 1) 
         {
             currentState = BattleState.Player2Win; //Eftersom komponenten som räknar spelare 1's score ligger på spelare 2 och vice versa, så är den enklaste lösningen att titta på motståndarens score-komponent för att bestämma win-case.
         }
-        else if (player2.GetComponent<ScoreManager>().GetScore() > 1)
+        else if (player2Controller.GetComponent<ScoreManager>().GetScore() > 1)
         {
             currentState = BattleState.Player1Win; //Samma här, spelare 1 winner när score-komponenten på spelare 2 är högre än x. (spelare 2 räknar hur många gånger den blivit träffad, och ger poäng till spelare 1).
         }

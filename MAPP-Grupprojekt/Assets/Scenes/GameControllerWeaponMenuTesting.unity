@@ -2695,11 +2695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  speed: 1
-  distanceToStop: 5
   power: 20
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
   bulletSpacing: 1
 --- !u!114 &1183773516
 MonoBehaviour:
@@ -2714,11 +2710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
-  speed: 1
-  distanceToStop: 0.1
   power: 20
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
 --- !u!114 &1183773517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2732,11 +2724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  speed: 1
-  distanceToStop: 0.1
   power: 20
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
 --- !u!114 &1183773518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,8 +3181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f6ce1f045812948a564dca20665078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1993292871}
-  player2: {fileID: 1605210882}
+  player1Controller: {fileID: 1993292871}
+  player2Controller: {fileID: 1605210882}
+  player1Shooting: {fileID: 1993292875}
+  player2Shooting: {fileID: 1605210891}
   scoreManager: {fileID: 1993292874}
   timer: {fileID: 1294272132}
   weaponMenu: {fileID: 1943900297}
@@ -3972,12 +3962,14 @@ GameObject:
   - component: {fileID: 1605210886}
   - component: {fileID: 1605210882}
   - component: {fileID: 1605210884}
-  - component: {fileID: 1605210883}
   - component: {fileID: 1605210890}
   - component: {fileID: 1605210891}
+  - component: {fileID: 1605210894}
+  - component: {fileID: 1605210893}
+  - component: {fileID: 1605210892}
   m_Layer: 3
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3994,31 +3986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 5
   distanceToStop: 0.1
-  power: 5
-  minPower: {x: -3, y: -3}
-  maxPower: {x: 3, y: 3}
---- !u!114 &1605210883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605210881}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  speed: 1
-  distanceToStop: 0.1
-  power: 5
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
-  bulletSpacing: 0.5
 --- !u!114 &1605210884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4184,15 +4153,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 1605210881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4708e16f6641f54e8f78f3acb41b0f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 05b80cc2494a8244e891a65ef18ebc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  equippedSnowball: {fileID: 0}
+  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 1
   distanceToStop: 0.1
   power: 5
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
+  minPower: {x: -3, y: -3}
+  maxPower: {x: 3, y: 3}
+--- !u!114 &1605210892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605210881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
+  power: 5
+  bulletSpacing: 0.5
+--- !u!114 &1605210893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605210881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68b80867cb13b347ad8968c016c8b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
+  power: 5
+--- !u!114 &1605210894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605210881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4708e16f6641f54e8f78f3acb41b0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
+  power: 5
 --- !u!1 &1638658514
 GameObject:
   m_ObjectHideFlags: 0
@@ -5074,9 +5087,11 @@ MonoBehaviour:
   snowShovelButton: {fileID: 536759677}
   snowballButton: {fileID: 1506146748}
   heatseekButton: {fileID: 359111623}
-  snowShovelScript: {fileID: 1993292873}
-  snowballScript: {fileID: 1993292877}
-  heatSeekScript: {fileID: 1993292875}
+  snowShovelScript: {fileID: 0}
+  snowballScript: {fileID: 0}
+  heatSeekScript: {fileID: 0}
+  player1: {fileID: 1993292875}
+  player2: {fileID: 1605210891}
 --- !u!4 &1943900298
 Transform:
   m_ObjectHideFlags: 0
@@ -5106,14 +5121,14 @@ GameObject:
   - component: {fileID: 1993292866}
   - component: {fileID: 1993292871}
   - component: {fileID: 1993292872}
-  - component: {fileID: 1993292873}
   - component: {fileID: 1993292874}
+  - component: {fileID: 1993292875}
+  - component: {fileID: 1993292878}
   - component: {fileID: 1993292877}
   - component: {fileID: 1993292876}
-  - component: {fileID: 1993292875}
   m_Layer: 3
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5259,12 +5274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 15
   distanceToStop: 0.1
-  power: 20
-  minPower: {x: -3, y: -3}
-  maxPower: {x: 3, y: 3}
 --- !u!114 &1993292872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5279,25 +5290,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 3
   jumpPrecision: 1
---- !u!114 &1993292873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993292865}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  speed: 1
-  distanceToStop: 0.1
-  power: 5
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
-  bulletSpacing: 5
 --- !u!114 &1993292874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5318,17 +5310,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993292865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a68b80867cb13b347ad8968c016c8b80, type: 3}
+  m_Script: {fileID: 11500000, guid: 05b80cc2494a8244e891a65ef18ebc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equippedSnowball: {fileID: 0}
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   speed: 1
   distanceToStop: 0.1
   power: 5
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
+  minPower: {x: -3, y: -3}
+  maxPower: {x: 3, y: 3}
 --- !u!114 &1993292876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5336,17 +5329,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993292865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 815492063057716524, guid: 3dc041d37b587422f843e8b01a7ef422, type: 3}
-  speed: 1
-  distanceToStop: 0.1
+  bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   power: 5
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
   bulletSpacing: 0.5
 --- !u!114 &1993292877
 MonoBehaviour:
@@ -5355,17 +5344,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993292865}
-  m_Enabled: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68b80867cb13b347ad8968c016c8b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
+  power: 5
+--- !u!114 &1993292878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993292865}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4708e16f6641f54e8f78f3acb41b0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
-  speed: 1
-  distanceToStop: 0.1
   power: 5
-  minPower: {x: 0, y: 0}
-  maxPower: {x: 0, y: 0}
 --- !u!1 &2036767657
 GameObject:
   m_ObjectHideFlags: 0
