@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 1's turn to move.");
-                    timer.timeRemaining = 10f;
+                    timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Controller.StartMove());
 
@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 1's turn to throw.");
-                    timer.timeRemaining = 10f;
+                    timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Shooting.StartShoot());
 
@@ -105,7 +105,7 @@ public class GameController : MonoBehaviour
 
 
                     Debug.Log("Player 2's turn to move.");
-                    timer.timeRemaining = 10f;
+                    timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Controller.StartMove());
 
@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour
                     //Här lägger vi in logik för kast från spelare 2, och lyssnar på när spelare 2 har kastat.
 
                     Debug.Log("Player 2's turn to throw.");
-                    timer.timeRemaining = 10f;
+                    timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Shooting.StartShoot());
                     yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
