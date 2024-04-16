@@ -2,10 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class Shooting : MonoBehaviour
+public class Shooting : MonoBehaviour
 {
+    public enum Snowballs
+    {
+        Snowball, HeatSeeking, SnowShovel
+    }
+
     public bool IsMovementComplete { get; protected set; }
     public bool IsShootingComplete { get; protected set; }
+    public Snowball equippedSnowball;
 
     protected Vector2 target;
     [SerializeField] protected GameObject bullet;
@@ -94,20 +100,28 @@ public abstract class Shooting : MonoBehaviour
     // Fires a bullet in toward the target.
     protected virtual void Shoot()
     {
-        // Gets the direction to aim in.
-        Vector2 aimPos = target - new Vector2(-transform.position.x, transform.position.y);
-
-        // Calculates the rotation in degrees.
-        float rotation = Mathf.Atan2(aimPos.x, aimPos.y) * Mathf.Rad2Deg;
-
-        // Spawns a new bullet with the desired rotation.
-        GameObject ball = Instantiate(bullet, transform.position + Vector3.Normalize(target) * 1.5f, Quaternion.Euler(0, 0, rotation));
-        ball.GetComponent<Rigidbody2D>().AddForce(target * power, ForceMode2D.Impulse);
+        equippedSnowball.Shoot(target, transform.position);
 
         // Resets target bool.
         hasTarget = false;
 
         // Tells the GameController that shooting is complete.
         IsShootingComplete = true;
+    }
+
+    public void SetEquippedSnowball(Snowballs s)
+    {
+        switch (s)
+        {
+            case Snowballs.Snowball:
+                equippedSnowball = GetComponent<Snowball>();
+                break;
+            case Snowballs.HeatSeeking:
+                equippedSnowball = GetComponent<SnowballHeatSeekPrefab>();
+                break;
+            case Snowballs.SnowShovel:
+                equippedSnowball = GetComponent<SnowShovel>();
+                break;
+        }
     }
 }
