@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Snowball
+  - Undefined
+  - Grounded
   layers:
   - Default
   - TransparentFX
