@@ -21,8 +21,8 @@ public class GameController : MonoBehaviour
     public Timer timer;
     public WeaponMenu weaponMenu;
 
-    public Color activeColor;
-    public Color inactiveColor;
+    public Color activeColor = new Color(1f, 1f, 1f, 1f); // Red: 255, Green: 255, Blue: 255, Alpha: 255
+    public Color inactiveColor = new Color(26f / 255f, 26f / 255f, 26f / 255f, 170f / 255f); // Red: 26, Green: 26, Blue: 26, Alpha: 170
     private SpriteRenderer rend;
 
 
@@ -40,11 +40,13 @@ public class GameController : MonoBehaviour
         rend = player2Controller.GetComponent<SpriteRenderer>();
 
         player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
-        player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
+        player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
 
-        // sätter start state
+        // Debug logs for active and inactive colors
+        Debug.Log("Active Color: " + activeColor);
+        Debug.Log("Inactive Color: " + inactiveColor);
 
-        
+        // Set the start state
         currentState = BattleState.Player1Move;
 
         StartCoroutine(ProcessState());
@@ -175,6 +177,8 @@ public class GameController : MonoBehaviour
                 case BattleState.Player1Win:
 
                     // logik för när spelare 1 vinner.
+                    player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
+                    player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
 
                     Debug.Log("Player 1 wins!");
                     yield return new WaitForSeconds(2f);
@@ -184,7 +188,8 @@ public class GameController : MonoBehaviour
                 case BattleState.Player2Win:
 
                     // logik för när spelare 2 vinner.
-
+                    player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
+                    player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     Debug.Log("Player 2 wins!");
 
                     yield return new WaitForSeconds(2f);
