@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
     public Timer timer;
     public WeaponMenu weaponMenu;
 
+    public Color activeColor;
+    public Color inactiveColor;
+    private SpriteRenderer rend;
+
 
 
 
@@ -32,9 +36,21 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rend = player1Controller.GetComponent<SpriteRenderer>();
+        rend = player2Controller.GetComponent<SpriteRenderer>();
+
+        player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
+        player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
+
         // sätter start state
+
+        
         currentState = BattleState.Player1Move;
+
         StartCoroutine(ProcessState());
+
+
+
 
     }
 
@@ -46,6 +62,7 @@ public class GameController : MonoBehaviour
             {
                 case BattleState.Player1Move:
 
+                    player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
 
 
                     Debug.Log("Player 1's turn to move.");
@@ -96,6 +113,8 @@ public class GameController : MonoBehaviour
 
 
                     yield return new WaitForSeconds(1f);
+
+                    player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     currentState = BattleState.Player2Move; //Går till nästa state
                     break;
 
@@ -103,6 +122,8 @@ public class GameController : MonoBehaviour
 
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
+                    player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
+                    
 
                     Debug.Log("Player 2's turn to move.");
                     timer.timeRemaining = 11f;
@@ -146,6 +167,8 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning = false;
 
                     yield return new WaitForSeconds(1f);
+
+                    player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
                     break;
 
