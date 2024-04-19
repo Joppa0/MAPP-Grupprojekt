@@ -20,11 +20,19 @@ public class ScoreManager : MonoBehaviour
             
             snowballStrikes++;
             scoreText.text = "" + snowballStrikes;
+
+            Vibrate();
         }
     }
 
     public int GetScore()
     {
         return snowballStrikes;
+    }
+
+    private void Vibrate()
+    {
+        //Triggar en kort vibration
+        Handheld.Vibrate();
     }
 }
