@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 
     public static BattleState currentState;
 
+    public WinningScreen winningScreen1;
+    public WinningScreen winningScreen2;
     public PlayerController player1Controller;
     public PlayerController player2Controller;
     public Shooting player1Shooting;
@@ -182,7 +184,7 @@ public class GameController : MonoBehaviour
 
                     Debug.Log("Player 1 wins!");
                     yield return new WaitForSeconds(2f);
-                    SceneManager.LoadSceneAsync(0);
+                    winningScreen1.Player1wins();
                     yield break; //avslutar courotine
 
                 case BattleState.Player2Win:
@@ -193,7 +195,7 @@ public class GameController : MonoBehaviour
                     Debug.Log("Player 2 wins!");
 
                     yield return new WaitForSeconds(2f);
-                    SceneManager.LoadSceneAsync(0);
+                    winningScreen2.Player2wins();
                     yield break; //avslutar couotine
                 
                 case BattleState.MainMenu:
