@@ -284,7 +284,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 95148723}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988537009}
+        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+        m_MethodName: BackOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &95148723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +417,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 481571498}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988537009}
+        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+        m_MethodName: NextOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &481571498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1121621730}
   - component: {fileID: 1121621729}
+  - component: {fileID: 1121621731}
   m_Layer: 0
   m_Name: Selected CharacterP1
   m_TagString: Untagged
@@ -699,6 +724,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121621731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121621728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c126e5cc552b48c49b1075e3574d40dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinDB: {fileID: 11400000, guid: 6a0f4c76d56593d4db3adf106b2f715b, type: 2}
+  artworkSprite: {fileID: 1121621729}
 --- !u!1 &1178321777
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +978,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1354768579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121621731}
+        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+        m_MethodName: BackOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1354768579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,7 +1378,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1427881085}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121621731}
+        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+        m_MethodName: NextOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1427881085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,6 +1507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988537008}
   - component: {fileID: 1988537007}
+  - component: {fileID: 1988537009}
   m_Layer: 0
   m_Name: Selected CharacterP2
   m_TagString: Untagged
@@ -1518,6 +1582,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988537009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988537006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c126e5cc552b48c49b1075e3574d40dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinDB: {fileID: 11400000, guid: 6a0f4c76d56593d4db3adf106b2f715b, type: 2}
+  artworkSprite: {fileID: 1988537007}
 --- !u!1 &1999541570
 GameObject:
   m_ObjectHideFlags: 0
