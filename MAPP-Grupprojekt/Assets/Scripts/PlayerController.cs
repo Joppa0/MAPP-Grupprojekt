@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool IsMovementComplete { get; private set; }
+    public bool IsMovementComplete { get; set; }
 
     private Vector2 target;
     private Vector3 lastPosition;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         // Continues until player has chosen where to move.
         bool done = false;
-        while (!done)
+        while (!done && !IsMovementComplete)
         {
             // Checks if player has touched the screen.
             if (Input.touchCount > 0)

@@ -76,6 +76,8 @@ public class GameController : MonoBehaviour
 
                     
                     yield return new WaitUntil(() => player1Controller.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
+                    player1Controller.IsMovementComplete = true;
+                    
                     timer.timerIsRunning = false;
 
                     weaponMenu.HasChosenWeapon = false;
@@ -113,6 +115,7 @@ public class GameController : MonoBehaviour
 
 
                     yield return new WaitUntil(() => player1Shooting.IsShootingComplete || timer.timeRemaining <= 0);
+                    player1Shooting.IsShootingComplete = true;
                     timer.timerIsRunning= false;
 
 
@@ -136,6 +139,7 @@ public class GameController : MonoBehaviour
 
                     
                     yield return new WaitUntil(() => player2Controller.IsMovementComplete || timer.timeRemaining <= 0);  
+                    player2Controller.IsMovementComplete = true;
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
 
@@ -168,6 +172,7 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Shooting.StartShoot());
                     yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
+                    player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
 
                     yield return new WaitForSeconds(1f);
