@@ -18,6 +18,5 @@ public class SnowShovel : Snowball
         // Skjuter sidokulorna
         base.Shoot(leftPos, playerPos);
         base.Shoot(rightPos, playerPos);
-
     }
 }

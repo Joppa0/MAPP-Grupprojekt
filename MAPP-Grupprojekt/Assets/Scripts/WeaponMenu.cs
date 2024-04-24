@@ -37,7 +37,7 @@ public class WeaponMenu : MonoBehaviour
 
     private void UpdateCurrentPlayer()
     {
-        currentPlayer = player1.Equals(currentPlayer) ? player2 : player1;
+        currentPlayer = GameController.currentState == GameController.BattleState.Player1ChooseWeapon ? player1 : player2;
     }
 
     public void ToggleSnowShovel()
@@ -50,8 +50,10 @@ public class WeaponMenu : MonoBehaviour
         //    if (heatSeekScript != null) heatSeekScript.enabled = false;
         //    HasChosenWeapon = true;
         //}
-        currentPlayer.SetEquippedSnowball(Shooting.Snowballs.SnowShovel);
         UpdateCurrentPlayer();
+
+        currentPlayer.SetEquippedSnowball(Shooting.Snowballs.SnowShovel);
+        
         HasChosenWeapon = true;
     }
 
@@ -65,8 +67,10 @@ public class WeaponMenu : MonoBehaviour
         //    if (heatSeekScript != null) heatSeekScript.enabled = false;
         //    HasChosenWeapon = true;
         //}
-        currentPlayer.SetEquippedSnowball(Shooting.Snowballs.Snowball);
         UpdateCurrentPlayer();
+
+        currentPlayer.SetEquippedSnowball(Shooting.Snowballs.Snowball);
+        
         HasChosenWeapon = true;
     }
 
@@ -80,8 +84,10 @@ public class WeaponMenu : MonoBehaviour
         //    if (snowballScript != null) snowballScript.enabled = false;
         //    HasChosenWeapon = true;
         //}
-        currentPlayer.SetEquippedSnowball(Shooting.Snowballs.HeatSeeking);
         UpdateCurrentPlayer();
+
+        currentPlayer.SetEquippedSnowball(Shooting.Snowballs.HeatSeeking);
+        
         HasChosenWeapon = true;
     }
 }

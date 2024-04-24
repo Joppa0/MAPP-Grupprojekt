@@ -5,11 +5,8 @@ public class SnowballHeatSeekPrefab : Snowball
 {
     public override void Shoot(Vector3 target, Vector3 playerPos)
     {
-        // Gets the direction to aim in.
-        Vector2 aimPos = target - playerPos;
-
         // Calculates the rotation in degrees.
-        float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
+        float rotation = Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg;
 
         // Spawns a new bullet with the desired rotation.
         GameObject ball = Instantiate(bullet, playerPos + Vector3.Normalize(target) * 1.5f, Quaternion.Euler(0, 0, rotation));
