@@ -13,15 +13,7 @@ public class SkinManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("selectedOption"))
-        {
-            selectedOption = 0;
-        }
-        else
-        {
-            Load();
-        }
-
+        Load();
         UpdateSkin(selectedOption);
     }
 
@@ -55,12 +47,14 @@ public class SkinManager : MonoBehaviour
 
     private void Load()
     {
-        selectedOption = PlayerPrefs.GetInt("selectedOption");
+        string playerPrefKey = $"selectedOption_{gameObject.name}";
+        selectedOption = PlayerPrefs.GetInt(playerPrefKey, 0);
     }
 
     private void Save()
     {
-        PlayerPrefs.SetInt("selectedOption", selectedOption);
+        string playerPrefKey = $"selectedOption_{gameObject.name}";
+        PlayerPrefs.SetInt(playerPrefKey, selectedOption);
     }
 
 }

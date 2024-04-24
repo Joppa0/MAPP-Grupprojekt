@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1121621729}
   - component: {fileID: 1121621731}
   m_Layer: 0
-  m_Name: Selected CharacterP1
+  m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,7 +1553,7 @@ GameObject:
   - component: {fileID: 1988537007}
   - component: {fileID: 1988537009}
   m_Layer: 0
-  m_Name: Selected CharacterP2
+  m_Name: Player 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
