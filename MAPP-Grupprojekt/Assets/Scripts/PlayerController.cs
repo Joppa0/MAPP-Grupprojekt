@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float distanceToStop = 0.1f;
     [SerializeField] private float rayDistance = 0.25f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float calculatedDistance = 10;
 
     private bool hasTarget;
 
@@ -91,6 +92,25 @@ public class PlayerController : MonoBehaviour
             }
             yield return null;
         }
+
+        //Limited movement, right
+        if (target.x > transform.position.x)
+        {
+            if (Mathf.Abs(transform.position.x - target.x) > calculatedDistance)
+            {
+                target.x = transform.position.x + calculatedDistance;
+            }
+        }
+
+        //Limited movement, left
+        if (target.x < transform.position.x)
+        {
+            if (Mathf.Abs(transform.position.x - target.x) > calculatedDistance)
+            {
+                target.x = transform.position.x - calculatedDistance;
+            }
+        }
+
     }
 
     // Initiates movement.
