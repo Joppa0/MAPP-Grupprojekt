@@ -13,12 +13,11 @@ public class WeaponMenu : MonoBehaviour
     public Button snowShovelButton; // Knappen för att aktivera SnowShovel
     public Button snowballButton; // Knappen för att aktivera Snowball
     public Button heatseekButton; // Knappen för att aktivera HeatSeek
-    /*public SnowShovel snowShovelScript; // Referens till SnowShovel-skriptet som är knutet till spelaren
-    public Snowball snowballScript; // Referens till Snowball-skriptet som är knutet till spelaren
-    public SnowballHeatSeekPrefab heatSeekScript; // Referens till HeatSeek-skriptet som är knutet till spelaren
-    */
+    [SerializeField] private int heatSeekingShotsPlayer1 = 1;
+    [SerializeField] private int heatSeekingShotsPlayer2 = 1;
     [SerializeField] private Shooting player1, player2;
     private Shooting currentPlayer;
+    
 
     void Start()
     {
@@ -32,9 +31,29 @@ public class WeaponMenu : MonoBehaviour
     public void ToggleWeaponMenu()
     {
         // Växlar aktivitetsstatus för vapenmenyn
+        UpdateCurrentPlayer();
         weaponMenu.SetActive(!weaponMenu.activeSelf);
+        SetHeatSeekButton();
     }
 
+    // Sets the heat seeking button interactable if current player has enough shots.
+    private void SetHeatSeekButton()
+    {
+        if (currentPlayer == player1 && heatSeekingShotsPlayer1 > 0)
+        {
+            heatseekButton.interactable = true;
+        }
+        else if (currentPlayer == player2 && heatSeekingShotsPlayer2 > 0)
+        {
+            heatseekButton.interactable = true;
+        }
+        else
+        {
+            heatseekButton.interactable = false;
+        }
+    }
+
+    // Changes which player will have their shot updated.
     private void UpdateCurrentPlayer()
     {
         currentPlayer = GameController.currentState == GameController.BattleState.Player1ChooseWeapon ? player1 : player2;
@@ -42,16 +61,6 @@ public class WeaponMenu : MonoBehaviour
 
     public void ToggleSnowShovel()
     {
-        // Aktiverar SnowShovel och inaktiverar andra vapen
-        //if (snowShovelScript != null)
-        //{
-        //    snowShovelScript.enabled = true;
-        //    if (snowballScript != null) snowballScript.enabled = false;
-        //    if (heatSeekScript != null) heatSeekScript.enabled = false;
-        //    HasChosenWeapon = true;
-        //}
-        UpdateCurrentPlayer();
-
         currentPlayer.SetEquippedSnowball(Shooting.Snowballs.SnowShovel);
         
         HasChosenWeapon = true;
@@ -59,16 +68,6 @@ public class WeaponMenu : MonoBehaviour
 
     public void ToggleSnowball()
     {
-        // Aktiverar Snowball och inaktiverar andra vapen
-        //if (snowballScript != null)
-        //{
-        //    snowballScript.enabled = true;
-        //    if (snowShovelScript != null) snowShovelScript.enabled = false;
-        //    if (heatSeekScript != null) heatSeekScript.enabled = false;
-        //    HasChosenWeapon = true;
-        //}
-        UpdateCurrentPlayer();
-
         currentPlayer.SetEquippedSnowball(Shooting.Snowballs.Snowball);
         
         HasChosenWeapon = true;
@@ -76,18 +75,23 @@ public class WeaponMenu : MonoBehaviour
 
     public void ToggleHeatSeek()
     {
-        // Aktiverar HeatSeek och inaktiverar andra vapen
-        //if (heatSeekScript != null)
-        //{
-        //    heatSeekScript.enabled = true;
-        //    if (snowShovelScript != null) snowShovelScript.enabled = false;
-        //    if (snowballScript != null) snowballScript.enabled = false;
-        //    HasChosenWeapon = true;
-        //}
-        UpdateCurrentPlayer();
+        DecrementHeatSeeking();
 
         currentPlayer.SetEquippedSnowball(Shooting.Snowballs.HeatSeeking);
         
         HasChosenWeapon = true;
+    }
+
+    // Removes one available shot from the player.
+    private void DecrementHeatSeeking()
+    {
+        if (currentPlayer.Equals(player1))
+        {
+            heatSeekingShotsPlayer1--;
+        }
+        else
+        {
+            heatSeekingShotsPlayer2--;
+        }
     }
 }
