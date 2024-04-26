@@ -6163,7 +6163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
-  power: 5
+  power: 2
 --- !u!114 &1605210894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7939,6 +7939,8 @@ MonoBehaviour:
   snowShovelButton: {fileID: 536759677}
   snowballButton: {fileID: 1506146748}
   heatseekButton: {fileID: 359111623}
+  heatSeekingShotsPlayer1: 1
+  heatSeekingShotsPlayer2: 1
   player1: {fileID: 1993292875}
   player2: {fileID: 1605210891}
 --- !u!4 &1943900298
@@ -8339,7 +8341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8363327510554656297, guid: 0fb4d37ebd0d1b6498b89892f34f7f9d, type: 3}
-  power: 5
+  power: 2
 --- !u!114 &1993292878
 MonoBehaviour:
   m_ObjectHideFlags: 0

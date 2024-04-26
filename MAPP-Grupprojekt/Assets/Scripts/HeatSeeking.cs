@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HeatSeeking : MoveForward
 {
-    [SerializeField] private float moveSpeed = 20;
+    public float MoveSpeed { get; set; }
     [SerializeField] private float rotateSpeed = 20;
 
     private bool canHeatSeek;
@@ -46,7 +46,7 @@ public class HeatSeeking : MoveForward
 
     private void Move()
     {
-        GetComponent<Rigidbody2D>().velocity = transform.up * moveSpeed;
+        GetComponent<Rigidbody2D>().velocity = transform.up * MoveSpeed;
     }
 
     private void HeatSeek()
