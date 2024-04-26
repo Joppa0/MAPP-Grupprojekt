@@ -184,9 +184,9 @@ public class GameController : MonoBehaviour
                 case BattleState.Player1Win:
 
                     // logik för när spelare 1 vinner.
+                    GetComponent<VibrationController>().HeavyVibration();
                     player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
-
                     Debug.Log("Player 1 wins!");
                     yield return new WaitForSeconds(2f);
                     winningScreen1.Player1wins();
@@ -195,10 +195,10 @@ public class GameController : MonoBehaviour
                 case BattleState.Player2Win:
 
                     // logik för när spelare 2 vinner.
+                    GetComponent<VibrationController>().HeavyVibration();
                     player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     Debug.Log("Player 2 wins!");
-
                     yield return new WaitForSeconds(2f);
                     winningScreen2.Player2wins();
                     yield break; //avslutar couotine

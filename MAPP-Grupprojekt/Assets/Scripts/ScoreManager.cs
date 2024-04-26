@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int snowballStrikes = 0;
 
     [SerializeField] private TMP_Text scoreText;
+    
 
     private void Start()
     {
@@ -17,11 +18,9 @@ public class ScoreManager : MonoBehaviour
     {
         if (other.CompareTag("Snowball"))
         {
-            
             snowballStrikes++;
             scoreText.text = "" + snowballStrikes;
-
-            Vibrate();
+            VibrationController.Instance.HeavyVibration();
         }
     }
 
@@ -30,9 +29,5 @@ public class ScoreManager : MonoBehaviour
         return snowballStrikes;
     }
 
-    private void Vibrate()
-    {
-        //Triggar en kort vibration
-        Handheld.Vibrate();
-    }
+
 }
