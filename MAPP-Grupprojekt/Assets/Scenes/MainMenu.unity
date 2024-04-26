@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 462181417}
   - component: {fileID: 462181416}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1881029342}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: START
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 385565e8166c9d5489229d7151269140, type: 2}
   m_sharedMaterial: {fileID: 1246799270738787031, guid: 385565e8166c9d5489229d7151269140, type: 2}
@@ -1753,7 +1753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de42fe392205db74d8aa2bd8cd539d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: 1
 --- !u!4 &1881029343
 Transform:
   m_ObjectHideFlags: 0
