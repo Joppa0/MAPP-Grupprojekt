@@ -1669,7 +1669,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 359111624}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &359111624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2291,10 +2303,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2723,6 +2735,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1943900299}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ReloadCurrentScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3529,6 +3553,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1943900299}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ToHomeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4842,6 +4878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1294272131}
+  - component: {fileID: 1294272133}
   - component: {fileID: 1294272130}
   - component: {fileID: 1294272132}
   m_Layer: 0
@@ -4904,6 +4941,18 @@ MonoBehaviour:
   timeRemaining: 10
   timerIsRunning: 0
   timerText: {fileID: 1741443961}
+--- !u!114 &1294272133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294272129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1341630522
 GameObject:
   m_ObjectHideFlags: 0
@@ -5330,7 +5379,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1506146749}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1506146749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6119,6 +6180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 204542726}
+  vibrationController: {fileID: 1294272133}
 --- !u!114 &1605210891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6273,6 +6335,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1611059587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6397,6 +6471,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1943900299}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6745,6 +6831,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1943900299}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ToHomeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7939,6 +8037,8 @@ MonoBehaviour:
   snowShovelButton: {fileID: 536759677}
   snowballButton: {fileID: 1506146748}
   heatseekButton: {fileID: 359111623}
+  heatSeekingShotsPlayer1: 1
+  heatSeekingShotsPlayer2: 1
   player1: {fileID: 1993292875}
   player2: {fileID: 1605210891}
 --- !u!4 &1943900298
@@ -8295,6 +8395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1217354865}
+  vibrationController: {fileID: 1294272133}
 --- !u!114 &1993292875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8658,6 +8759,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2113411346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8782,6 +8895,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1943900299}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ToHomeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294272133}
+        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
+        m_MethodName: LightVibration
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

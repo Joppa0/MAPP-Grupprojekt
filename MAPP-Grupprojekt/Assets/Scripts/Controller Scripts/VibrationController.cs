@@ -5,19 +5,7 @@ using CandyCoded.HapticFeedback;
 
 public class VibrationController : MonoBehaviour
 {
-    public static VibrationController Instance;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject); // Ensures only one instance exists
-        }
-    }
     public void DefaultVibration()
     {
         Debug.Log("Default Vibration performed!");

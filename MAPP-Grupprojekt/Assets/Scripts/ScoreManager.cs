@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int snowballStrikes = 0;
 
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private VibrationController vibrationController;
     
 
     private void Start()
@@ -20,7 +21,7 @@ public class ScoreManager : MonoBehaviour
         {
             snowballStrikes++;
             scoreText.text = "" + snowballStrikes;
-            VibrationController.Instance.HeavyVibration();
+            vibrationController.HeavyVibration();
         }
     }
 
