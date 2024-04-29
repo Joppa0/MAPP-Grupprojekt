@@ -21,7 +21,9 @@ public class ScoreManager : MonoBehaviour
         {
             snowballStrikes++;
             scoreText.text = "" + snowballStrikes;
+            #if UNITY_ANDROID || UNITY_IOS
             vibrationController.HeavyVibration();
+            #endif
         }
     }
 

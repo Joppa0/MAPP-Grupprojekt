@@ -184,7 +184,9 @@ public class GameController : MonoBehaviour
                 case BattleState.Player1Win:
 
                     // logik för när spelare 1 vinner.
+                    #if UNITY_ANDROID || UNITY_IOS
                     GetComponent<VibrationController>().HeavyVibration();
+                    #endif
                     player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     Debug.Log("Player 1 wins!");
@@ -195,7 +197,9 @@ public class GameController : MonoBehaviour
                 case BattleState.Player2Win:
 
                     // logik för när spelare 2 vinner.
+                    #if UNITY_ANDROID || UNITY_IOS
                     GetComponent<VibrationController>().HeavyVibration();
+                    #endif
                     player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     Debug.Log("Player 2 wins!");
