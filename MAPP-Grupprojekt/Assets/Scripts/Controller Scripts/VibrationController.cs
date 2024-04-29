@@ -35,6 +35,7 @@ public class VibrationController : MonoBehaviour
 #else
         return;
 #endif
+    }
 
     
 }
