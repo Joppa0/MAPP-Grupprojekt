@@ -12,7 +12,8 @@ public class Shooting : MonoBehaviour
     public bool IsShootingComplete { get; set; }
     public Snowball equippedSnowball;
 
-    private Vector2 target;
+    public Vector3 target;
+    private LineRenderer lineRenderer;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Vector2 minPower, maxPower;
 
@@ -37,6 +38,19 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         equippedSnowball = GetComponent<Snowball>();
+        lineRenderer = GetComponent<LineRenderer>();
+    }
+
+    // Initiates shooting.
+    public IEnumerator StartShoot()
+    {
+        IsShootingComplete = false;
+
+        StartCoroutine(SetShootTarget());
+
+        yield return new WaitUntil(() => hasTarget);
+
+        Shoot();
     }
 
     private IEnumerator SetShootTarget()
@@ -62,6 +76,23 @@ public class Shooting : MonoBehaviour
                     // Sets start point for drag action.
                     startPoint = Camera.main.ScreenToWorldPoint(touch.position);
                     startPoint.z = 15;
+
+                    StartLine();
+                }
+
+                else if (touch.phase == TouchPhase.Moved && startPoint.z == 15)
+                {
+                    // Sets end point for drag action.
+                    endPoint = Camera.main.ScreenToWorldPoint(touch.position);
+                    endPoint.z = 15;
+
+                    /* 
+                     * Sets the shoot target to the opposite vector of the start and end points.
+                     * Vector is clamped so the shot has a maximum and minimum force.
+                     */
+                    target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+
+                    UpdateLineRenderer();
                 }
 
                 else if (touch.phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(touch.fingerId) && startPoint.z == 15)
@@ -80,6 +111,8 @@ public class Shooting : MonoBehaviour
                     hasTarget = true;
 
                     done = true;
+
+                    EndLine();
                 }
             }
 
@@ -88,9 +121,21 @@ public class Shooting : MonoBehaviour
             {
                 startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 startPoint.z = 15;
+
+                StartLine();
             }
 
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && startPoint.z == 15)
+            else if (Input.GetMouseButton(0) && startPoint.z == 15)
+            {
+                endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                endPoint.z = 15;
+
+                target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+
+                UpdateLineRenderer();
+            }
+
+            else if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && startPoint.z == 15)
             {
                 endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 endPoint.z = 15;
@@ -100,21 +145,30 @@ public class Shooting : MonoBehaviour
                 hasTarget = true;
 
                 done = true;
+
+                EndLine();
             }
             yield return null;
         }
     }
 
-    // Initiates shooting.
-    public IEnumerator StartShoot()
+    private void UpdateLineRenderer()
     {
-        IsShootingComplete = false;
+        // Ställa in start- och slutpunkt till spelarens och targets positioner.
+        // Slutpunkt en viss längd bort.
+        // Krök linjen.
+        Vector3[] linePositions = {transform.position, transform.position + target};
+        lineRenderer.SetPositions(linePositions);
+    }
 
-        StartCoroutine(SetShootTarget());
+    private void StartLine()
+    {
+        lineRenderer.enabled = true;
+    }
 
-        yield return new WaitUntil(() => hasTarget);
-
-        Shoot();
+    private void EndLine()
+    {
+        lineRenderer.enabled = false;
     }
 
     // Fires a bullet in toward the target.
