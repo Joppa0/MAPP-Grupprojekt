@@ -6851,6 +6851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 204542726}
+  vibrationController: {fileID: 1294272133}
 --- !u!114 &1605210891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9350,6 +9351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1217354865}
+  vibrationController: {fileID: 1294272133}
 --- !u!114 &1993292875
 MonoBehaviour:
   m_ObjectHideFlags: 0

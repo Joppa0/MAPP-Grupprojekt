@@ -3,7 +3,7 @@ using UnityEngine.UI;
 #if UNITY_ANDROID || UNITY_IOS
 using CandyCoded.HapticFeedback;
 #endif
-/*
+
 
 public class VibrationController : MonoBehaviour
 {
@@ -35,8 +35,8 @@ public class VibrationController : MonoBehaviour
 #else
         return;
 #endif
-    }
+    
 
     
 }
-*/
+
