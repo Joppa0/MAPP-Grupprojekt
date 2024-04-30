@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public Button resumeButton; // Knappen för att fortsätta spelet
     public Button homeButton; // Knappen för att gå till hemskärmen
     public Button reloadButton; // Knappen för att gå ladda om scenen
+    private Animator Pauseanimator;
 
     // Start is called before the first frame update
     void Start()
