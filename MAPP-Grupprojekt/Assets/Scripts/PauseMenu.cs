@@ -15,13 +15,27 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        pauseAnimator = pauseMenu.GetComponent<Animator>();
-        if (pauseAnimator != null)
+        // Assuming the child GameObject with the Animator is named "AnimatorChild"
+        GameObject animChild = pauseMenu.transform.Find("Image1").gameObject;
+        if (animChild != null)
         {
-            // Set the animator to update even when Time.timeScale is set to 0
-            pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            pauseAnimator = animChild.GetComponent<Animator>();
+            if (pauseAnimator != null)
+            {
+                pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
+            else
+            {
+                Debug.LogError("Animator component not found on AnimatorChild!");
+            }
+        }
+        else
+        {
+            Debug.LogError("AnimatorChild GameObject not found!");
         }
     }
+
+
 
     public void Pause()
     {
