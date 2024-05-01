@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
-{
+{ 
     public GameObject pauseMenu;
     public Button menuButton; // Button to show the menu
     public Button resumeButton; // Button to continue the game
@@ -15,17 +15,26 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        // Fetch the Animator from the child GameObjects
-        pauseAnimator = pauseMenu.GetComponentInChildren<Animator>();
-        if (pauseAnimator != null)
+        // Assuming the child GameObject with the Animator is named "AnimatorChild"
+        GameObject animChild = pauseMenu.transform.Find("Image1").gameObject;
+        if (animChild != null)
         {
-            pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            pauseAnimator = animChild.GetComponent<Animator>();
+            if (pauseAnimator != null)
+            {
+                pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
+            else
+            {
+                Debug.LogError("Animator component not found on AnimatorChild!");
+            }
         }
         else
         {
-            Debug.LogError("Animator not found on any child objects!");
+            Debug.LogError("AnimatorChild GameObject not found!");
         }
     }
+
 
 
     public void Pause()
