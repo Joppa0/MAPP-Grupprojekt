@@ -157,7 +157,38 @@ public class Shooting : MonoBehaviour
         // Ställa in start- och slutpunkt till spelarens och targets positioner.
         // Slutpunkt en viss längd bort.
         // Krök linjen.
-        Vector3[] linePositions = {transform.position, transform.position + target};
+        //Vector3[] linePositions = {transform.position, transform.position + target};
+
+        if (target.magnitude <= 0)
+            return;
+
+        float rotation = 90 + (Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg);
+
+        if (rotation > 90)
+        {
+            rotation = 180 - rotation;
+        }
+
+        //float rotation = 80;
+        float radians = rotation * Mathf.Deg2Rad;
+        float initialVelocity = target.magnitude * 5 / equippedSnowball.GetBullet().GetComponent<Rigidbody2D>().mass;
+        //float initialVelocity = 20;
+
+        Vector3[] linePositions = new Vector3[lineRenderer.positionCount];
+        linePositions[0] = transform.position;
+
+        // Beräkna vinkel på skottet och starthastigheten.
+        for (int i = 1; i < linePositions.Length; i++)
+        {
+            if (target.x > 0)
+                linePositions[i].x = transform.position.x + i;
+            else
+                linePositions[i].x = transform.position.x - i;
+
+            linePositions[i].y = transform.position.y + i * Mathf.Tan(radians) - Mathf.Abs(Physics.gravity.y) * ((i * i) /
+                (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
+        }
+
         lineRenderer.SetPositions(linePositions);
     }
 
