@@ -193,12 +193,31 @@ public class Shooting : MonoBehaviour
                 (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
         }
 
-        lineRenderer.SetPositions(linePositions);
-
-        for (int i = 0; i < linePositions.Length; i++)
+        for (int i = 0; i < linePositions.Length - 1; i++)
         {
+            RaycastHit2D hit = Physics2D.Raycast(linePositions[i], linePositions[i + 1] - linePositions[i], Vector3.Distance(linePositions[i], linePositions[i + 1]), ~LayerMask.GetMask("No player hit"));
 
+            if (hit.collider != null)
+            {
+                linePositions[9] = hit.point;
+
+                for (int j = 1; j < linePositions.Length - 1; j++)
+                {
+                    if (target.x > 0)
+                        linePositions[j].x = linePositions[j - 1].x + Mathf.Abs(linePositions[0].x - linePositions[linePositions.Length - 1].x) / (linePositions.Length - 1);
+                    else
+                        linePositions[j].x = linePositions[j - 1].x - Mathf.Abs(linePositions[0].x - linePositions[linePositions.Length - 1].x) / (linePositions.Length - 1);
+
+                    float distance = Mathf.Abs(linePositions[j].x - linePositions[0].x);
+
+                    linePositions[j].y = transform.position.y + distance * Mathf.Tan(radians) - gravity * (distance * distance /
+                    (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
+                }
+                break;
+            }
         }
+
+        lineRenderer.SetPositions(linePositions);
     }
 
     private void StartLine()
