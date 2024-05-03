@@ -152,44 +152,53 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    // Sets new points for the sight line to show the snowball's predicted path.
     private void UpdateLineRenderer()
     {
-        // Ställa in start- och slutpunkt till spelarens och targets positioner.
-        // Slutpunkt en viss längd bort.
-        // Krök linjen.
-        //Vector3[] linePositions = {transform.position, transform.position + target};
-
+        // Don't draw a new line if the player hasn't started dragging their finger.
         if (target.magnitude <= 0)
             return;
 
+        // Get rotation angle the snowball will be thrown from.
         float rotation = 90 + (Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg);
 
+        // Rotation can't be over 90.
         if (rotation > 90)
         {
             rotation = 180 - rotation;
         }
 
-        //float rotation = 80;
+        // Convert rotation to radians, which is needed for Cos and Tan.
         float radians = rotation * Mathf.Deg2Rad;
+
         float initialVelocity = target.magnitude * 5 / equippedSnowball.GetBullet().GetComponent<Rigidbody2D>().mass;
-        //float initialVelocity = 20;
 
         Vector3[] linePositions = new Vector3[lineRenderer.positionCount];
         linePositions[0] = transform.position;
 
-        // Beräkna vinkel på skottet och starthastigheten.
+        // Calculate gravity for the equipped snowball.
+        float gravity = Mathf.Abs(Physics.gravity.y) * equippedSnowball.GetBullet().GetComponent<Rigidbody2D>().gravityScale;
+
+        // Calculate position for each point along the line.
         for (int i = 1; i < linePositions.Length; i++)
         {
+            // Space each line point.
             if (target.x > 0)
                 linePositions[i].x = transform.position.x + i;
             else
                 linePositions[i].x = transform.position.x - i;
 
-            linePositions[i].y = transform.position.y + i * Mathf.Tan(radians) - Mathf.Abs(Physics.gravity.y) * ((i * i) /
+            // Calculate y position according to the trajectory formula.
+            linePositions[i].y = transform.position.y + i * Mathf.Tan(radians) - gravity * (i * i /
                 (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
         }
 
         lineRenderer.SetPositions(linePositions);
+
+        for (int i = 0; i < linePositions.Length; i++)
+        {
+
+        }
     }
 
     private void StartLine()
@@ -202,7 +211,7 @@ public class Shooting : MonoBehaviour
         lineRenderer.enabled = false;
     }
 
-    // Fires a bullet in toward the target.
+    // Fires a snowball in toward the target.
     private void Shoot()
     {
         equippedSnowball.Shoot(target, transform.position);
