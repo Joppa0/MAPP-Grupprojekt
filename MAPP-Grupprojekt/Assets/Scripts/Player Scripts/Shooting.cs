@@ -195,21 +195,26 @@ public class Shooting : MonoBehaviour
 
         for (int i = 0; i < linePositions.Length - 1; i++)
         {
+            // Check if the line will intersect anything else than a player.
             RaycastHit2D hit = Physics2D.Raycast(linePositions[i], linePositions[i + 1] - linePositions[i], Vector3.Distance(linePositions[i], linePositions[i + 1]), ~LayerMask.GetMask("No player hit"));
 
             if (hit.collider != null)
             {
+                // Last point on the line becomes the hit point, effectively cutting the line.
                 linePositions[9] = hit.point;
 
                 for (int j = 1; j < linePositions.Length - 1; j++)
                 {
+                    // Move x position for each point along the line to get an even distribution.
                     if (target.x > 0)
                         linePositions[j].x = linePositions[j - 1].x + Mathf.Abs(linePositions[0].x - linePositions[linePositions.Length - 1].x) / (linePositions.Length - 1);
                     else
                         linePositions[j].x = linePositions[j - 1].x - Mathf.Abs(linePositions[0].x - linePositions[linePositions.Length - 1].x) / (linePositions.Length - 1);
 
+                    // Calculate distance along the line.
                     float distance = Mathf.Abs(linePositions[j].x - linePositions[0].x);
 
+                    // Calculate new y position for the point after having moved.
                     linePositions[j].y = transform.position.y + distance * Mathf.Tan(radians) - gravity * (distance * distance /
                     (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
                 }
