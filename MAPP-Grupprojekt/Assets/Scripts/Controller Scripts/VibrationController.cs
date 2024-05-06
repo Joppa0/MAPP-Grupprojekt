@@ -8,7 +8,7 @@ using CandyCoded.HapticFeedback;
 public class VibrationController : MonoBehaviour
 {
 
-    /*public void DefaultVibration()
+    public void DefaultVibration()
     {
 #if UNITY_ANDROID || UNITY_IOS
         Debug.Log("Default Vibration performed!");
@@ -37,5 +37,5 @@ public class VibrationController : MonoBehaviour
 #endif
 
     
-*/}
+}
 

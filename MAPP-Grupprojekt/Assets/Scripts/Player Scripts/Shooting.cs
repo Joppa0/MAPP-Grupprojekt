@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class Shooting : MonoBehaviour
 {
+
+    
     public enum Snowballs
     {
         Snowball, HeatSeeking, SnowShovel
@@ -110,11 +113,17 @@ public class Shooting : MonoBehaviour
     {
         IsShootingComplete = false;
 
+        //snowballCamera.SwitchCameras(true);
+
         StartCoroutine(SetShootTarget());
 
         yield return new WaitUntil(() => hasTarget);
 
         Shoot();
+
+        //yield return new WaitForSeconds(2f);
+
+        //snowballCamera.SwitchCameras(false);
     }
 
     // Fires a bullet in toward the target.
