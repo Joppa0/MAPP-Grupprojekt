@@ -32,7 +32,6 @@ public class SightLine : MonoBehaviour
         float initialVelocity = target.magnitude * snowball.GetPower() / snowball.GetSnowball().GetComponent<Rigidbody2D>().mass;
 
         Vector3[] linePositions = new Vector3[lineRenderer.positionCount];
-        //linePositions[0] = transform.position;
 
         // Calculate gravity for the equipped snowball.
         float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetSnowball().GetComponent<Rigidbody2D>().gravityScale;
@@ -41,12 +40,9 @@ public class SightLine : MonoBehaviour
         for (int i = 0; i < linePositions.Length; i++)
         {
             // Space each line point.
-            if (target.x > 0)
-                linePositions[i].x = transform.position.x + i;
-            else
-                linePositions[i].x = transform.position.x - i;
+            linePositions[i].x = target.x > 0 ? transform.position.x + i: transform.position.x - i;
 
-            // Calculate y position according to the trajectory formula.
+            // Assign the height value.
             linePositions[i].y = GetLinePositionHeight(radians, gravity, initialVelocity, i);
         }
 
@@ -81,6 +77,7 @@ public class SightLine : MonoBehaviour
         lineRenderer.SetPositions(linePositions);
     }
 
+    // Calculate y-position of a point on the line according to the trajectory formula.
     private float GetLinePositionHeight(float radians, float gravity, float initialVelocity, float x)
     {
         return transform.position.y + x * Mathf.Tan(radians) - gravity * (x * x /
