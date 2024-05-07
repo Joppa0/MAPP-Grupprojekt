@@ -6,11 +6,17 @@ using static UnityEngine.GraphicsBuffer;
 [RequireComponent(typeof(LineRenderer))]
 public class SightLine : MonoBehaviour
 {
+    [SerializeField] private float lineDarkeningMultiplier;
+
     private LineRenderer lineRenderer;
+
+    private Color initialColor;
+
     // Start is called before the first frame update
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        initialColor = lineRenderer.startColor;
     }
 
     // Sets new points for the sight line to show the snowball's predicted path.
@@ -74,6 +80,8 @@ public class SightLine : MonoBehaviour
             }
         }
 
+        UpdateLineColor(target.magnitude);
+
         lineRenderer.SetPositions(linePositions);
     }
 
@@ -82,6 +90,15 @@ public class SightLine : MonoBehaviour
     {
         return transform.position.y + x * Mathf.Tan(radians) - gravity * (x * x /
                 (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
+    }
+
+    private void UpdateLineColor(float force)
+    {
+        // Gets the new color by converting the force to a value from 0-1, then subtracts it from the old color.
+        Color color = initialColor - new Color(force * lineDarkeningMultiplier / 255, force * lineDarkeningMultiplier / 255, force * lineDarkeningMultiplier / 255, 0);
+
+        lineRenderer.startColor = color;
+        lineRenderer.endColor = color;
     }
 
     public void StartLine()
