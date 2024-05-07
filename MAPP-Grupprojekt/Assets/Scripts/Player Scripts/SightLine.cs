@@ -32,13 +32,13 @@ public class SightLine : MonoBehaviour
         float initialVelocity = target.magnitude * snowball.GetPower() / snowball.GetSnowball().GetComponent<Rigidbody2D>().mass;
 
         Vector3[] linePositions = new Vector3[lineRenderer.positionCount];
-        linePositions[0] = transform.position;
+        //linePositions[0] = transform.position;
 
         // Calculate gravity for the equipped snowball.
         float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetSnowball().GetComponent<Rigidbody2D>().gravityScale;
 
         // Calculate position for each point along the line.
-        for (int i = 1; i < linePositions.Length; i++)
+        for (int i = 0; i < linePositions.Length; i++)
         {
             // Space each line point.
             if (target.x > 0)
@@ -47,8 +47,7 @@ public class SightLine : MonoBehaviour
                 linePositions[i].x = transform.position.x - i;
 
             // Calculate y position according to the trajectory formula.
-            linePositions[i].y = transform.position.y + i * Mathf.Tan(radians) - gravity * (i * i /
-                (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
+            linePositions[i].y = GetLinePositionHeight(radians, gravity, initialVelocity, i);
         }
 
         for (int i = 0; i < linePositions.Length - 1; i++)
@@ -59,7 +58,7 @@ public class SightLine : MonoBehaviour
             if (hit.collider != null)
             {
                 // Last point on the line becomes the hit point, effectively cutting the line.
-                linePositions[9] = hit.point;
+                linePositions[linePositions.Length - 1] = hit.point;
 
                 for (int j = 1; j < linePositions.Length - 1; j++)
                 {
@@ -73,14 +72,19 @@ public class SightLine : MonoBehaviour
                     float distance = Mathf.Abs(linePositions[j].x - linePositions[0].x);
 
                     // Calculate new y position for the point after having moved.
-                    linePositions[j].y = transform.position.y + distance * Mathf.Tan(radians) - gravity * (distance * distance /
-                    (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
+                    linePositions[j].y = GetLinePositionHeight(radians, gravity, initialVelocity, distance);
                 }
                 break;
             }
         }
 
         lineRenderer.SetPositions(linePositions);
+    }
+
+    private float GetLinePositionHeight(float radians, float gravity, float initialVelocity, float x)
+    {
+        return transform.position.y + x * Mathf.Tan(radians) - gravity * (x * x /
+                (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
     }
 
     public void StartLine()
