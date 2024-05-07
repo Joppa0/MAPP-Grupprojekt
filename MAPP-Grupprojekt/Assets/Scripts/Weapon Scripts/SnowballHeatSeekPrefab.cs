@@ -9,7 +9,7 @@ public class SnowballHeatSeekPrefab : Snowball
         float rotation = Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg;
 
         // Spawns a new bullet with the desired rotation.
-        GameObject ball = Instantiate(bullet, playerPos + Vector3.Normalize(target) * 1.5f, Quaternion.Euler(0, 0, rotation));
+        GameObject ball = Instantiate(snowball, playerPos + Vector3.Normalize(target) * 1.5f, Quaternion.Euler(0, 0, rotation));
 
         ball.GetComponent<HeatSeeking>().MoveSpeed = target.magnitude * power;
     }
