@@ -46,7 +46,7 @@ public class SightLine : MonoBehaviour
         for (int i = 0; i < linePositions.Length; i++)
         {
             // Space each line point.
-            linePositions[i].x = target.x > 0 ? transform.position.x + i: transform.position.x - i;
+            linePositions[i].x = target.x > 0 ? transform.position.x + i : transform.position.x - i;
 
             // Assign the height value.
             linePositions[i].y = GetLinePositionHeight(radians, gravity, initialVelocity, i);
