@@ -3,40 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class PauseMenu : MonoBehaviour
 { 
-        
-    
-    
     public GameObject pauseMenu;
+    public Button menuButton; // Button to show the menu
+    public Button resumeButton; // Button to continue the game
+    public Button homeButton; // Button to go to the home screen
+    public Button reloadButton; // Button to reload the scene
+    private Animator pauseAnimator;
 
-    public Button menuButton; // Knappen för att visa menyn
-    public Button resumeButton; // Knappen för att fortsätta spelet
-    public Button homeButton; // Knappen för att gå till hemskärmen
-    public Button reloadButton; // Knappen för att gå ladda om scenen
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        // Assuming the child GameObject with the Animator is named "AnimatorChild"
+        GameObject animChild = pauseMenu.transform.Find("Image1").gameObject;
+        if (animChild != null)
+        {
+            pauseAnimator = animChild.GetComponent<Animator>();
+            if (pauseAnimator != null)
+            {
+                pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
+            else
+            {
+                Debug.LogError("Animator component not found on AnimatorChild!");
+            }
+        }
+        else
+        {
+            Debug.LogError("AnimatorChild GameObject not found!");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void Pause()
     {
-        // Växlar aktivitetsstatus för vapenmenyn
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         Time.timeScale = 0.0f;
     }
 
     public void Resume()
     {
-        // Växlar aktivitetsstatus för vapenmenyn
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         Time.timeScale = 1.0f;
     }
@@ -48,14 +56,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ReloadCurrentScene()
     {
-        // Get the current scene name using the scene manager
         Scene currentScene = SceneManager.GetActiveScene();
-
-        // Load the current scene using the scene name
         SceneManager.LoadScene(currentScene.name);
         Time.timeScale = 1.0f;
     }
-
-
-
 }
