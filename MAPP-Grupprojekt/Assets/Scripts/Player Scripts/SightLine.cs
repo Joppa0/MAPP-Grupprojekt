@@ -14,7 +14,7 @@ public class SightLine : MonoBehaviour
     }
 
     // Sets new points for the sight line to show the snowball's predicted path.
-    public void UpdateLineRenderer(Vector3 target, GameObject snowball)
+    public void UpdateLineRenderer(Vector3 target, Snowball snowball)
     {
         // Don't draw a new line if the player hasn't started dragging their finger.
         if (target.magnitude <= 0)
@@ -24,21 +24,18 @@ public class SightLine : MonoBehaviour
         float rotation = 90 + (Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg);
 
         // Rotation can't be over 90.
-        if (rotation > 90)
-        {
-            rotation = 180 - rotation;
-        }
+        rotation = rotation > 90 ? 180 - rotation : rotation;
 
         // Convert rotation to radians, which is needed for Cos and Tan.
         float radians = rotation * Mathf.Deg2Rad;
 
-        float initialVelocity = target.magnitude * 5 / snowball.GetComponent<Rigidbody2D>().mass;
+        float initialVelocity = target.magnitude * snowball.GetPower() / snowball.GetSnowball().GetComponent<Rigidbody2D>().mass;
 
         Vector3[] linePositions = new Vector3[lineRenderer.positionCount];
         linePositions[0] = transform.position;
 
         // Calculate gravity for the equipped snowball.
-        float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetComponent<Rigidbody2D>().gravityScale;
+        float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetSnowball().GetComponent<Rigidbody2D>().gravityScale;
 
         // Calculate position for each point along the line.
         for (int i = 1; i < linePositions.Length; i++)

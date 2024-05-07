@@ -13,7 +13,6 @@ public class Shooting : MonoBehaviour
     public Snowball equippedSnowball;
 
     public Vector3 target;
-    private LineRenderer lineRenderer;
     private SightLine sightLine;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Vector2 minPower, maxPower;
@@ -39,7 +38,6 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         equippedSnowball = GetComponent<Snowball>();
-        lineRenderer = GetComponent<LineRenderer>();
         sightLine = GetComponent<SightLine>();
     }
 
@@ -48,7 +46,7 @@ public class Shooting : MonoBehaviour
     {
         IsShootingComplete = false;
 
-        sightLine.StartCoroutine(SetShootTarget());
+        StartCoroutine(SetShootTarget());
 
         yield return new WaitUntil(() => hasTarget);
 
@@ -94,7 +92,7 @@ public class Shooting : MonoBehaviour
                      */
                     target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
 
-                    sightLine.UpdateLineRenderer(target, equippedSnowball.GetSnowball());
+                    sightLine.UpdateLineRenderer(target, equippedSnowball);
                 }
 
                 else if (touch.phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(touch.fingerId) && startPoint.z == 15)
@@ -134,7 +132,7 @@ public class Shooting : MonoBehaviour
 
                 target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
 
-                sightLine.UpdateLineRenderer(target, equippedSnowball.GetSnowball());
+                sightLine.UpdateLineRenderer(target, equippedSnowball);
             }
 
             else if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && startPoint.z == 15)

@@ -9,6 +9,8 @@ public class Snowball : MonoBehaviour
 
     public GameObject GetSnowball() { return snowball; }
 
+    public float GetPower() { return power; }
+
     public virtual void Shoot(Vector3 target, Vector3 playerPos)
     {
         // Calculates the rotation in degrees.
