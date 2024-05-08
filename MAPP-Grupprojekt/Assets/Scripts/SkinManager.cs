@@ -8,6 +8,7 @@ public class SkinManager : MonoBehaviour
     public SkinDatabase skinDB;
 
     public SpriteRenderer artworkSprite;
+    public SpriteRenderer artworkArmSprite;
 
     private int selectedOption = 0;
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class SkinManager : MonoBehaviour
     {
         Skin skin = skinDB.GetSkin(selectedOption);
         artworkSprite.sprite = skin.skinSprite;
+        artworkArmSprite.sprite = skin.skinArm;
     }
 
     private void Load()

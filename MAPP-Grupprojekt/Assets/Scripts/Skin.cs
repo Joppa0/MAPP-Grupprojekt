@@ -5,5 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Skin
 {
-    public Sprite skinSprite; 
+    public Sprite skinSprite;
+    public Sprite skinArm;
 }
