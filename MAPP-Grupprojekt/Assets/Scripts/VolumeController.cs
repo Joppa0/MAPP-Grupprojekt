@@ -1,18 +1,24 @@
 using UnityEngine;
-using UnityEngine.UI; // Required for accessing UI components like Slider
 
 public class VolumeController : MonoBehaviour
 {
-    public Slider volumeSlider; // Drag your slider here in the inspector
     private AudioSource audioSource;
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
+        UpdateVolume(); // Initial volume setting
     }
 
     void Update()
     {
-        audioSource.volume = volumeSlider.value; // Set volume based on slider value
+        UpdateVolume(); // Continuously update volume
+    }
+
+    private void UpdateVolume()
+    {
+        if (AudioSettingsManager.instance != null)
+            audioSource.volume = AudioSettingsManager.instance.volume;
     }
 }
