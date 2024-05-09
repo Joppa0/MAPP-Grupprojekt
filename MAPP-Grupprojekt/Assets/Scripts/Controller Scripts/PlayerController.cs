@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 target;
     private Vector3 lastPosition;
+    private Animator anim;
+    private Rigidbody2D rgdb;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float distanceToStop = 0.1f;
     [SerializeField] private float rayDistance = 0.25f;
@@ -17,6 +19,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float calculatedDistance = 10;
 
     private bool hasTarget;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        rgdb = GetComponent<Rigidbody2D>();
+    }
 
     private void FixedUpdate()
     {
@@ -44,7 +52,7 @@ public class PlayerController : MonoBehaviour
             lastPosition = transform.position;
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
-
+            anim.SetFloat("Walk", Mathf.Abs(transform.position.x - target.x));
             // Stops moving if the target has been reached or is close enough.
             if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop || !CanMove())
             {

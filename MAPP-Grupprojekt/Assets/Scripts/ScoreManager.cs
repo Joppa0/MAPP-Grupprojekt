@@ -9,11 +9,13 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private VibrationController vibrationController;
+    private Animator anim;
     
 
     private void Start()
     {
         scoreText.text = "" + snowballStrikes;
+        anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,7 +25,8 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "" + snowballStrikes;
             #if UNITY_ANDROID || UNITY_IOS
             vibrationController.HeavyVibration();
-            #endif
+#endif
+            anim.SetTrigger("Hit");
         }
     }
 

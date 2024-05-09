@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c121d9ebc101d4685cf4721c34a7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 1.5
   distanceToStop: 0.1
   rayDistance: 0.5
   groundLayer:
