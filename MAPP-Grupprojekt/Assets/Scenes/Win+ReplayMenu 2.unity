@@ -889,6 +889,10 @@ PrefabInstance:
       propertyPath: vibrationController
       value: 
       objectReference: {fileID: 1294272133}
+    - target: {fileID: 6611182303502061139, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
