@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab8ffaf1e8fd3b44a839a05d4048a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineDarkeningMultiplier: 8
+  lineDarkeningMultiplier: 10
 --- !u!95 &7943873948823585017
 Animator:
   serializedVersion: 5
