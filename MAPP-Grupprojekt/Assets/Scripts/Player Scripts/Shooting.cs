@@ -14,6 +14,8 @@ public class Shooting : MonoBehaviour
 
     public Vector3 target;
     private SightLine sightLine;
+    private Animator anim;
+
     [SerializeField] private GameObject bullet;
     [SerializeField] private Vector2 minPower, maxPower;
 
@@ -39,6 +41,7 @@ public class Shooting : MonoBehaviour
     {
         equippedSnowball = GetComponent<Snowball>();
         sightLine = GetComponent<SightLine>();
+        anim = GetComponent<Animator>();
     }
 
     // Initiates shooting.
@@ -152,9 +155,12 @@ public class Shooting : MonoBehaviour
         }
     }
 
+
     // Fires a snowball in toward the target.
     private void Shoot()
     {
+        anim.SetTrigger("Throw");
+
         equippedSnowball.Shoot(target, transform.position);
 
         // Resets target bool.
