@@ -52,6 +52,7 @@ public class PauseMenu : MonoBehaviour
     public void ToHomeScene()
     {
         SceneManager.LoadSceneAsync(0);
+        Time.timeScale = 1.0f;
     }
 
     public void ReloadCurrentScene()
