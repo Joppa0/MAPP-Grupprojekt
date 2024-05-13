@@ -1005,7 +1005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 27.880219, y: -26.207642}
+  m_AnchoredPosition: {x: 27.880249, y: -26.207642}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &555141653
@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 555491417}
   - component: {fileID: 555491416}
   m_Layer: 0
-  m_Name: Penguin_BlueHat
+  m_Name: PenguinHatP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2693,7 +2693,7 @@ GameObject:
   - component: {fileID: 1632514244}
   - component: {fileID: 1632514243}
   m_Layer: 0
-  m_Name: Penguin_BlueHat
+  m_Name: PenguinHatP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

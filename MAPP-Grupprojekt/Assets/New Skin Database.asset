@@ -15,3 +15,8 @@ MonoBehaviour:
   skin:
   - skinSprite: {fileID: 0}
   - skinSprite: {fileID: 21300000, guid: bd3d4f94728ec374f9acd35413793a81, type: 3}
+  - skinSprite: {fileID: 21300000, guid: 97a1c322691ae9b4bb12170f9ddd0e2f, type: 3}
+  - skinSprite: {fileID: 21300000, guid: 4a208c5e7c9c82441baf3100b9f1225c, type: 3}
+  - skinSprite: {fileID: 21300000, guid: c3f5b4c88d5b20042a99c579b98d75a9, type: 3}
+  - skinSprite: {fileID: 21300000, guid: 80f432b8b9320cc46b418551d5b7ee3b, type: 3}
+  - skinSprite: {fileID: 21300000, guid: e06ee9c0f68163b4697851f99edc8fff, type: 3}
