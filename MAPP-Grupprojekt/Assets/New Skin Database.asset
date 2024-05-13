@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New Skin Database
   m_EditorClassIdentifier: 
   skin:
-  - skinSprite: {fileID: 21300000, guid: 0fd2656efe410514a8b0bbc227f812aa, type: 3}
-  - skinSprite: {fileID: 21300000, guid: 246411d577e3da34c887cccd0e6d6de8, type: 3}
+  - skinSprite: {fileID: 0}
+  - skinSprite: {fileID: 21300000, guid: bd3d4f94728ec374f9acd35413793a81, type: 3}
