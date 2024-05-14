@@ -162,3 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 225
+  smokePrefab: {fileID: 3167399193981158415, guid: d873e2070a511ae45994fddcedbb6d61, type: 3}

@@ -13,5 +13,7 @@ public class SnowballHeatSeekPrefab : Snowball
         GameObject ball = Instantiate(snowball, playerPos + Vector3.Normalize(target) * 1.5f, Quaternion.Euler(0, 0, rotation));
 
         ball.GetComponent<HeatSeeking>().MoveSpeed = Mathf.Clamp(target.magnitude * power, minSpeed, maxSpeed);
+
+        ball.GetComponent<HeatSeeking>().SpawnSmokeCloud();
     }
 }
