@@ -95,8 +95,10 @@ public class HeatSeeking : MoveForward
             return;
         }
 
+        // Updates position to follow the snowball.
         smoke.transform.position = transform.position;
 
+        // Sets rotation of the smoke to be in the opposite direction of the snowball.
         smoke.transform.eulerAngles = new Vector3(-transform.eulerAngles.z + 90, 90, -90);
     }
 
