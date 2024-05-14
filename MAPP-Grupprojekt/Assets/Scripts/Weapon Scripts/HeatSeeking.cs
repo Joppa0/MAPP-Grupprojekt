@@ -7,6 +7,8 @@ public class HeatSeeking : MoveForward
 {
     public float MoveSpeed { get; set; }
     [SerializeField] private float rotateSpeed = 20;
+    [SerializeField] private GameObject smokePrefab;
+    private GameObject smoke;
 
     private bool canHeatSeek;
 
@@ -32,6 +34,8 @@ public class HeatSeeking : MoveForward
         {
             Destroy(gameObject);
         }
+
+        UpdateSmoke();
     }
 
     private void FixedUpdate()
@@ -77,5 +81,34 @@ public class HeatSeeking : MoveForward
                 target = player.transform;
             }
         }
+    }
+
+    public void SpawnSmokeCloud()
+    {
+        smoke = Instantiate(smokePrefab, transform.position, smokePrefab.transform.rotation);
+    }
+
+    private void UpdateSmoke()
+    {
+        if (smoke == null)
+        {
+            return;
+        }
+
+        // Updates position to follow the snowball.
+        smoke.transform.position = transform.position;
+
+        // Sets rotation of the smoke to be in the opposite direction of the snowball.
+        smoke.transform.eulerAngles = new Vector3(-transform.eulerAngles.z + 90, 90, -90);
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null && collision.gameObject.CompareTag("Player"))
+        {
+            smoke.GetComponent<DestroyAfterDelay>().DestroyParticles();
+        }
+
+        base.OnTriggerEnter2D(collision);
     }
 }
