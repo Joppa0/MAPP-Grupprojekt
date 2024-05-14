@@ -6,11 +6,13 @@ public class DestroyAfterDelay : MonoBehaviour
 {
     [SerializeField] private float delay;
 
+    // Destroys the particle system after the given delay.
     public void DestroyParticles()
     {
-        //yield return new WaitForSeconds(delay);
+        // Stops spawning new particles.
         var em = GetComponent<ParticleSystem>().emission;
         em.rateOverTime = 0;
+
         Destroy(gameObject, delay);
     }
 }
