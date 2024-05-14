@@ -34,7 +34,7 @@ public class MoveForward : MonoBehaviour
 
     }
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -46,5 +46,4 @@ public class MoveForward : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
