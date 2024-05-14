@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b511418a417083540bad632426327808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snowball: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
+  snowball: {fileID: 5542907564401750229, guid: 4af6420e0c8804c43b3d94fc173faee7, type: 3}
   power: 5
   bulletSpacing: 0.5
 --- !u!114 &669276314553652387
