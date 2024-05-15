@@ -7,10 +7,10 @@ using CandyCoded.HapticFeedback;
 
 public class VibrationController : MonoBehaviour
 {
-
+#if UNITY_ANDROID || UNITY_IOS
     public void DefaultVibration()
     {
-#if UNITY_ANDROID || UNITY_IOS
+
         Debug.Log("Default Vibration performed!");
             Handheld.Vibrate();
     }
@@ -32,11 +32,10 @@ public class VibrationController : MonoBehaviour
         Debug.Log("Heavy Vibration performed!");
         //HapticFeedback.HeavyFeedback();
     }
-#else
-        return;
-#endif
 
+#endif
 
     
 }
+
 
