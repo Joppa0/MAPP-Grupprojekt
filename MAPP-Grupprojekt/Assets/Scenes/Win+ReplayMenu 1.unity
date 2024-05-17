@@ -1475,6 +1475,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4320037886797075193, guid: 0673b5d7223977642bca78bde34cd7df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320037886797075193, guid: 0673b5d7223977642bca78bde34cd7df, type: 3}
       propertyPath: m_TagString
       value: Grounded
       objectReference: {fileID: 0}
@@ -10268,7 +10272,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.3
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10357,7 +10361,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followSpeed: 5
   zoomSpeed: 2
-  zoomAmount: 2
+  zoomAmount: 5
+  minOrthographicSize: 5
+  maxOrthographicSize: 10
 --- !u!114 &1294272133 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7461390552175928555, guid: 399b44f385f6a0b47a978749256cf446, type: 3}
@@ -20887,6 +20893,10 @@ PrefabInstance:
       propertyPath: player2Shooting
       value: 
       objectReference: {fileID: 461788961}
+    - target: {fileID: 4023047666713471529, guid: 399b44f385f6a0b47a978749256cf446, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1266937453}
     - target: {fileID: 4023047666713471529, guid: 399b44f385f6a0b47a978749256cf446, type: 3}
       propertyPath: player1Controller
       value: 
