@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Works the same way as touch, but with the mouse. Used for debugging.
-            else if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            else if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

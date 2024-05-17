@@ -20,6 +20,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Vector2 minPower, maxPower;
 
     private bool hasTarget;
+    private Timer timer;
 
     public void SetEquippedSnowball(Snowballs s)
     {
@@ -42,6 +43,7 @@ public class Shooting : MonoBehaviour
         equippedSnowball = GetComponent<Snowball>();
         sightLine = GetComponent<SightLine>();
         anim = GetComponent<Animator>();
+        timer = GameObject.Find("GameController").GetComponent<Timer>();
     }
 
     // Initiates shooting.
@@ -54,6 +56,9 @@ public class Shooting : MonoBehaviour
         yield return new WaitUntil(() => hasTarget);
 
         Shoot();
+
+        // Tells the GameController that shooting is complete.
+        IsShootingComplete = true;
     }
 
     private IEnumerator SetShootTarget()
@@ -63,11 +68,18 @@ public class Shooting : MonoBehaviour
             yield break;
         }
 
-        Vector3 startPoint = Vector3.zero, endPoint;
+        Vector3 startPoint = Vector3.zero, endPoint = Vector3.zero;
         bool done = false;
 
         while (!done)
         {
+            if (timer.timeRemaining <= 0)
+            {
+                done = true;
+                IsShootingComplete = true;
+                sightLine.EndLine();
+            }
+
             // Checks if player has touched the screen.
             if (Input.touchCount > 0)
             {
@@ -77,8 +89,7 @@ public class Shooting : MonoBehaviour
                 if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
                     // Sets start point for drag action.
-                    startPoint = Camera.main.ScreenToWorldPoint(touch.position);
-                    startPoint.z = 15;
+                    startPoint = GetWorldPoint(touch.position);
 
                     sightLine.StartLine();
                 }
@@ -86,14 +97,9 @@ public class Shooting : MonoBehaviour
                 else if (touch.phase == TouchPhase.Moved && startPoint.z == 15)
                 {
                     // Sets end point for drag action.
-                    endPoint = Camera.main.ScreenToWorldPoint(touch.position);
-                    endPoint.z = 15;
+                    endPoint = GetWorldPoint(touch.position);
 
-                    /* 
-                     * Sets the shoot target to the opposite vector of the start and end points.
-                     * Vector is clamped so the shot has a maximum and minimum force.
-                     */
-                    target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+                    SetTargetPosition(startPoint, endPoint);
 
                     sightLine.UpdateLineRenderer(target, equippedSnowball);
                 }
@@ -101,14 +107,9 @@ public class Shooting : MonoBehaviour
                 else if (touch.phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(touch.fingerId) && startPoint.z == 15)
                 {
                     // Sets end point for drag action.
-                    endPoint = Camera.main.ScreenToWorldPoint(touch.position);
-                    endPoint.z = 15;
+                    endPoint = GetWorldPoint(touch.position);
 
-                    /* 
-                     * Sets the shoot target to the opposite vector of the start and end points.
-                     * Vector is clamped so the shot has a maximum and minimum force.
-                     */
-                    target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+                    SetTargetPosition(startPoint, endPoint);
 
                     // Signals the target has been found.
                     hasTarget = true;
@@ -122,28 +123,25 @@ public class Shooting : MonoBehaviour
             // Works the same way as touch, but with the mouse. Used for debugging.
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                startPoint.z = 15;
+                startPoint = GetWorldPoint(Input.mousePosition);
 
                 sightLine.StartLine();
             }
 
             else if (Input.GetMouseButton(0) && startPoint.z == 15)
             {
-                endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                endPoint.z = 15;
+                endPoint = GetWorldPoint(Input.mousePosition);
 
-                target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+                SetTargetPosition(startPoint, endPoint);
 
                 sightLine.UpdateLineRenderer(target, equippedSnowball);
             }
 
             else if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && startPoint.z == 15)
             {
-                endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                endPoint.z = 15;
+                GetWorldPoint(Input.mousePosition);
 
-                target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+                SetTargetPosition(startPoint, endPoint);
 
                 hasTarget = true;
 
@@ -155,6 +153,21 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    private Vector3 GetWorldPoint(Vector2 position)
+    {
+        Vector3 point = Camera.main.ScreenToWorldPoint(position);
+        point.z = 15;
+        return point;
+    }
+
+    private void SetTargetPosition(Vector3 startPoint, Vector3 endPoint)
+    {
+        /* 
+         * Sets the shoot target to the opposite vector of the start and end points.
+         * Vector is clamped so the shot has a maximum and minimum force.
+         */
+        target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+    }
 
     // Fires a snowball in toward the target.
     private void Shoot()
@@ -165,8 +178,5 @@ public class Shooting : MonoBehaviour
 
         // Resets target bool.
         hasTarget = false;
-
-        // Tells the GameController that shooting is complete.
-        IsShootingComplete = true;
     }
 }
