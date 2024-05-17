@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
         CalculateCameraBounds();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isFollowingSnowball)
         {
