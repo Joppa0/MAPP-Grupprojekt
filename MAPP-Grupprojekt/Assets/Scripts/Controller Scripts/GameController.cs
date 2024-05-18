@@ -18,7 +18,6 @@ public class GameController : MonoBehaviour
     public PlayerController player2Controller;
     public Shooting player1Shooting;
     public Shooting player2Shooting;
-
     public ScoreManager scoreManager;
     public Timer timer;
     public WeaponMenu weaponMenu;
@@ -63,6 +62,9 @@ public class GameController : MonoBehaviour
     {
         while (true)
         {
+            //titta på score innan varje tur
+            CheckScore();
+
             switch (currentState)
             {
                 case BattleState.Player1Move:
@@ -78,11 +80,8 @@ public class GameController : MonoBehaviour
 
                     yield return new WaitUntil(() => player1Controller.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     player1Controller.IsMovementComplete = true;
-
                     timer.timerIsRunning = false;
-
                     weaponMenu.HasChosenWeapon = false;
-
                     currentState = BattleState.Player1ChooseWeapon; //Gå till nästa state
                     break;
 
@@ -97,7 +96,6 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
-
                     currentState = BattleState.Player1Throw;
                     break;
 
@@ -113,8 +111,6 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Shooting.StartShoot());
-
-
                     yield return new WaitUntil(() => player1Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     player1Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
@@ -131,21 +127,14 @@ public class GameController : MonoBehaviour
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
                     player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
-
-
                     Debug.Log("Player 2's turn to move.");
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Controller.StartMove());
-
-
                     yield return new WaitUntil(() => player2Controller.IsMovementComplete || timer.timeRemaining <= 0);
                     player2Controller.IsMovementComplete = true;
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
-
-
-
                     currentState = BattleState.Player2ChooseWeapon;
                     break;
 
@@ -160,7 +149,6 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
-
                     currentState = BattleState.Player2Throw;
                     break;
 
@@ -175,9 +163,6 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
-
-
-
                     player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
                     break;
@@ -212,8 +197,7 @@ public class GameController : MonoBehaviour
 
             }
 
-            //titta på score efter varje tur
-            CheckScore();
+
         }
     }
 
