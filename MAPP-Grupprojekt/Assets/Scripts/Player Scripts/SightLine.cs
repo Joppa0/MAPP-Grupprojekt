@@ -7,6 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class SightLine : MonoBehaviour
 {
     [SerializeField] private float lineDarkeningMultiplier;
+    [SerializeField] private float maxLength = 10;
 
     private LineRenderer lineRenderer;
 
@@ -46,10 +47,13 @@ public class SightLine : MonoBehaviour
         for (int i = 0; i < linePositions.Length; i++)
         {
             // Space each line point.
-            linePositions[i].x = target.x > 0 ? transform.position.x + i : transform.position.x - i;
+            linePositions[i].x = target.x > 0 ? transform.position.x + (maxLength / linePositions.Length * i) : transform.position.x - (maxLength / linePositions.Length * i);
+
+            //x-value has to be positive for the calcultion.
+            float distanceFromPlayer = Mathf.Abs(linePositions[i].x - transform.position.x);
 
             // Assign the height value.
-            linePositions[i].y = GetLinePositionHeight(radians, gravity, initialVelocity, i);
+            linePositions[i].y = GetLinePositionHeight(radians, gravity, initialVelocity, distanceFromPlayer);
         }
 
         for (int i = 0; i < linePositions.Length - 1; i++)

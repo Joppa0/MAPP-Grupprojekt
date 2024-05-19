@@ -18,7 +18,6 @@ public class GameController : MonoBehaviour
     public PlayerController player2Controller;
     public Shooting player1Shooting;
     public Shooting player2Shooting;
-
     public ScoreManager scoreManager;
     public Timer timer;
     public WeaponMenu weaponMenu;
@@ -33,7 +32,7 @@ public class GameController : MonoBehaviour
 
     public enum BattleState
     {
-        Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2ChooseWeapon, Player2Throw, Player1Win, Player2Win, MainMenu // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
+        Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2ChooseWeapon, Player2Throw, Player1Win, Player2Win, // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
     }
 
     // Start is called before the first frame update
@@ -63,6 +62,9 @@ public class GameController : MonoBehaviour
     {
         while (true)
         {
+            //titta på score innan varje tur
+            CheckScore();
+
             switch (currentState)
             {
                 case BattleState.Player1Move:
@@ -75,14 +77,11 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Controller.StartMove());
 
-                    
+
                     yield return new WaitUntil(() => player1Controller.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     player1Controller.IsMovementComplete = true;
-                    
                     timer.timerIsRunning = false;
-
                     weaponMenu.HasChosenWeapon = false;
-                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1ChooseWeapon; //Gå till nästa state
                     break;
 
@@ -95,13 +94,12 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning = true;
                     weaponMenu.ToggleWeaponMenu();
                     yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
-                    timer.timerIsRunning= false;
+                    timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
-                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player1Throw;
                     break;
 
-                
+
 
 
                 case BattleState.Player1Throw:
@@ -113,14 +111,12 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Shooting.StartShoot());
-
-
                     yield return new WaitUntil(() => player1Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     player1Shooting.IsShootingComplete = true;
-                    timer.timerIsRunning= false;
+                    timer.timerIsRunning = false;
 
 
-                    yield return new WaitForSeconds(1f);
+
 
                     player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     currentState = BattleState.Player2Move; //Går till nästa state
@@ -131,22 +127,15 @@ public class GameController : MonoBehaviour
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
                     player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
-                    
-
                     Debug.Log("Player 2's turn to move.");
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Controller.StartMove());
-
-                    
-                    yield return new WaitUntil(() => player2Controller.IsMovementComplete || timer.timeRemaining <= 0);  
+                    yield return new WaitUntil(() => player2Controller.IsMovementComplete || timer.timeRemaining <= 0);
                     player2Controller.IsMovementComplete = true;
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
-
-
-                    yield return new WaitForSeconds(1f);
-                    currentState = BattleState.Player2ChooseWeapon; 
+                    currentState = BattleState.Player2ChooseWeapon;
                     break;
 
 
@@ -160,7 +149,6 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
-                    yield return new WaitForSeconds(1f);
                     currentState = BattleState.Player2Throw;
                     break;
 
@@ -175,9 +163,6 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
-
-                    yield return new WaitForSeconds(1f);
-
                     player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
                     break;
@@ -185,9 +170,9 @@ public class GameController : MonoBehaviour
                 case BattleState.Player1Win:
 
                     // logik för när spelare 1 vinner.
-                    #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
                     GetComponent<VibrationController>().HeavyVibration();
-                    #endif
+#endif
                     player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     Debug.Log("Player 1 wins!");
@@ -198,30 +183,27 @@ public class GameController : MonoBehaviour
                 case BattleState.Player2Win:
 
                     // logik för när spelare 2 vinner.
-                    #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
                     GetComponent<VibrationController>().HeavyVibration();
-                    #endif
+#endif
                     player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     Debug.Log("Player 2 wins!");
                     yield return new WaitForSeconds(2f);
                     winningScreen2.Player2wins();
                     yield break; //avslutar couotine
-                
-                case BattleState.MainMenu:
-                    //gå till huvudmenyn - används inte för tillfället, kan tas bort ifall ingen användning finns.
-                    yield break;
+
+
 
             }
 
-            //titta på score efter varje tur
-            CheckScore();
+
         }
     }
 
     void CheckScore()
     {
-        if (player1Controller.GetComponent<ScoreManager>().GetScore() >= 5) 
+        if (player1Controller.GetComponent<ScoreManager>().GetScore() >= 5)
         {
             currentState = BattleState.Player2Win; //Eftersom komponenten som räknar spelare 1's score ligger på spelare 2 och vice versa, så är den enklaste lösningen att titta på motståndarens score-komponent för att bestämma win-case.
         }
@@ -230,6 +212,6 @@ public class GameController : MonoBehaviour
             currentState = BattleState.Player1Win; //Samma här, spelare 1 winner när score-komponenten på spelare 2 är högre än x. (spelare 2 räknar hur många gånger den blivit träffad, och ger poäng till spelare 1).
         }
     }
-    
-       
+
+
 }
