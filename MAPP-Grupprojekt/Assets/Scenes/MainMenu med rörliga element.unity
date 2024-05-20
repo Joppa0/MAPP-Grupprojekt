@@ -479,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2D-rigg psB
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 7754aebc0af499a4ea4b456ac5a2ac87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 7754aebc0af499a4ea4b456ac5a2ac87, type: 3}
       propertyPath: m_LocalScale.x
       value: 427.67856
