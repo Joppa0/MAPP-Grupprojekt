@@ -20771,6 +20771,7 @@ GameObject:
   - component: {fileID: 1943900297}
   - component: {fileID: 1943900299}
   - component: {fileID: 1943900300}
+  - component: {fileID: 1943900301}
   m_Layer: 0
   m_Name: ScriptHolderWeaponMenu
   m_TagString: Untagged
@@ -20845,6 +20846,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winningScreen: {fileID: 250625952}
   winningScreen2: {fileID: 115208912}
+--- !u!114 &1943900301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943900296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe9a8fe22d437c43bdf9fc7303540ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1Move: {fileID: 722825886}
+  p2Move: {fileID: 668128591}
+  p1Weapon: {fileID: 1979593359}
+  p2Weapon: {fileID: 184937785}
+  p1Shoot: {fileID: 442605730}
+  p2Shoot: {fileID: 838056907}
 --- !u!1 &1979593359
 GameObject:
   m_ObjectHideFlags: 0
@@ -20863,7 +20882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1979593360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22182,6 +22201,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1741443961}
+    - target: {fileID: 4023047666713471529, guid: 399b44f385f6a0b47a978749256cf446, type: 3}
+      propertyPath: action
+      value: 
+      objectReference: {fileID: 1943900301}
     - target: {fileID: 4023047666713471529, guid: 399b44f385f6a0b47a978749256cf446, type: 3}
       propertyPath: weaponMenu
       value: 

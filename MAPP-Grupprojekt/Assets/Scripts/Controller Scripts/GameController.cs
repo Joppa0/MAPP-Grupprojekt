@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     public ScoreManager scoreManager;
     public Timer timer;
     public WeaponMenu weaponMenu;
+    public ShowActionController action;
+
 
     public Color activeColor = new Color(1f, 1f, 1f, 1f); // Red: 255, Green: 255, Blue: 255, Alpha: 255
     public Color inactiveColor = new Color(26f / 255f, 26f / 255f, 26f / 255f, 170f / 255f); // Red: 26, Green: 26, Blue: 26, Alpha: 170
@@ -71,6 +73,7 @@ public class GameController : MonoBehaviour
 
                     player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
 
+                    action.P1Move();
 
                     Debug.Log("Player 1's turn to move.");
                     timer.timeRemaining = 11f;
@@ -80,6 +83,7 @@ public class GameController : MonoBehaviour
 
                     yield return new WaitUntil(() => player1Controller.IsMovementComplete || timer.timeRemaining <= 0);  //Ser till att inget händer tills spelaren har rört sig, eller tills timern är slut.
                     player1Controller.IsMovementComplete = true;
+                    action.P1Move();
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
                     currentState = BattleState.Player1ChooseWeapon; //Gå till nästa state
@@ -93,9 +97,11 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     weaponMenu.ToggleWeaponMenu();
+                    action.P1ChooseWeapon();
                     yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
+                    action.P1ChooseWeapon();
                     currentState = BattleState.Player1Throw;
                     break;
 
@@ -106,7 +112,7 @@ public class GameController : MonoBehaviour
 
                     //här lägger vi in logik för kast från spelare 1, och lyssnar på när player 1 har kastat.
 
-
+                    action.P1Shoot();
                     Debug.Log("Player 1's turn to throw.");
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
@@ -119,6 +125,8 @@ public class GameController : MonoBehaviour
 
 
                     player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
+                    action.P1Shoot();
+
                     currentState = BattleState.Player2Move; //Går till nästa state
                     break;
 
@@ -127,12 +135,16 @@ public class GameController : MonoBehaviour
                     // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
 
                     player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
+                    action.P2Move();
+
                     Debug.Log("Player 2's turn to move.");
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Controller.StartMove());
                     yield return new WaitUntil(() => player2Controller.IsMovementComplete || timer.timeRemaining <= 0);
                     player2Controller.IsMovementComplete = true;
+                    action.P2Move();
+
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
                     currentState = BattleState.Player2ChooseWeapon;
@@ -146,15 +158,20 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     weaponMenu.ToggleWeaponMenu();
+                    action.P2ChooseWeapon();
+
                     yield return new WaitUntil(() => weaponMenu.HasChosenWeapon || timer.timeRemaining <= 0);
                     timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
+                    action.P2ChooseWeapon();
+
                     currentState = BattleState.Player2Throw;
                     break;
 
                 case BattleState.Player2Throw:
 
                     //Här lägger vi in logik för kast från spelare 2, och lyssnar på när spelare 2 har kastat.
+                    action.P2Shoot();
 
                     Debug.Log("Player 2's turn to throw.");
                     timer.timeRemaining = 11f;
@@ -164,6 +181,8 @@ public class GameController : MonoBehaviour
                     player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
                     player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
+                    action.P2Shoot();
+
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
                     break;
 
