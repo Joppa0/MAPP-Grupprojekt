@@ -48,3 +48,6 @@ TagManager:
   - name: 2D-rigg
     uniqueID: 2066551665
     locked: 0
+  - name: New Layer 2
+    uniqueID: 2054724823
+    locked: 0

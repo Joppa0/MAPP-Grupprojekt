@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
 {
     public float followSpeed = 5f;
     public float zoomSpeed = 2f;
-    public float zoomAmount = 7f;  // Set to a value smaller than the initial orthographic size
+    public float zoomAmount = 7f;
     public float minOrthographicSize = 5f;
     public float maxOrthographicSize = 10f;
 
@@ -17,14 +17,15 @@ public class CameraController : MonoBehaviour
     private Camera mainCamera;
     private float originalOrthographicSize;
 
-    private void Awake() => mainCamera = Camera.main;
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
 
     void Start()
     {
         originalPosition = transform.position;
         originalOrthographicSize = mainCamera.orthographicSize;
-
-        // Calculate camera bounds
         CalculateCameraBounds();
     }
 
@@ -39,22 +40,17 @@ public class CameraController : MonoBehaviour
             if (snowball != null)
             {
                 targetPosition = snowball.transform.position;
-
-                // Clamp target position within camera bounds
                 targetPosition = GetClampedPosition(targetPosition);
 
-                // Move camera towards snowball
                 Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-                newPosition.z = -10; // Ensure correct z-position for 2D camera
+                newPosition.z = -10;
                 transform.position = newPosition;
 
-                // Zoom in towards snowball
                 float newOrthographicSize = Mathf.Lerp(mainCamera.orthographicSize, zoomAmount, zoomSpeed * Time.deltaTime);
                 mainCamera.orthographicSize = Mathf.Clamp(newOrthographicSize, minOrthographicSize, maxOrthographicSize);
             }
             else
             {
-                // If snowball is destroyed or inactive, stop following
                 isFollowingSnowball = false;
                 StartCoroutine(ReturnToOriginalPosition());
             }
@@ -69,7 +65,6 @@ public class CameraController : MonoBehaviour
 
         float minX = bounds.min.x + camHorzExtent;
         float maxX = bounds.max.x - camHorzExtent;
-
         float minY = bounds.min.y + camVertExtent;
         float maxY = bounds.max.y - camVertExtent;
 
@@ -100,6 +95,7 @@ public class CameraController : MonoBehaviour
 
     IEnumerator ReturnToOriginalPosition()
     {
+        yield return new WaitForSeconds(0.5f);
         while (Vector3.Distance(transform.position, originalPosition) > 0.1f || Mathf.Abs(mainCamera.orthographicSize - originalOrthographicSize) > 0.1f)
         {
             transform.position = Vector3.Lerp(transform.position, originalPosition, followSpeed * Time.deltaTime);
