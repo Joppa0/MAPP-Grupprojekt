@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour
 {
     //[SerializeField] private int levelToLoad;
+    [SerializeField] private GameObject credits;
     [SerializeField] private GameObject tutorial;
-    
+
     public Animator transition;
 
     public float transitionTime = 0.5f;
+
 
     public void StartGame()
     {
@@ -20,7 +22,7 @@ public class MenuController : MonoBehaviour
 
     public void PlayGame()
     {
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex +1));
     }
 
     public void QuitGame()
@@ -38,12 +40,27 @@ public class MenuController : MonoBehaviour
         tutorial.SetActive(false);
     }
 
-    IEnumerator LoadLevel(){
+
+    IEnumerator LoadLevel(int levelIndex){
         
         transition.SetTrigger("Start");
         
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadScene(levelIndex);
+
     }
+
+
+     public void ShowCredits()
+    {
+        credits.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        credits.SetActive(false);
+
+    }
+   
 }
