@@ -43,50 +43,32 @@ public class SightLine : MonoBehaviour
         // Calculate gravity for the equipped snowball.
         float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetSnowball().GetComponent<Rigidbody2D>().gravityScale;
 
-        // Calculate position for each point along the line.
-        for (int i = 0; i < linePositions.Length; i++)
+        float timeStep = 0.1f;
+
+        float maxTime = 2;
+
+        List<Vector3> points = new List<Vector3>();
+
+        for (float i = 0; i < maxTime; i += timeStep)
         {
-            // Space each line point.
-            linePositions[i].x = target.x > 0 ? transform.position.x + (maxLength / linePositions.Length * i) : transform.position.x - (maxLength / linePositions.Length * i);
+            Vector3 newPoint = new Vector3();
 
-            //x-value has to be positive for the calcultion.
-            float distanceFromPlayer = Mathf.Abs(linePositions[i].x - transform.position.x);
+            newPoint.x = target.x > 0 ? transform.position.x + (initialVelocity * Mathf.Cos(radians) * i) : transform.position.x - (initialVelocity * Mathf.Cos(radians) * i);
 
-            // Assign the height value.
-            linePositions[i].y = GetLinePositionHeight(radians, gravity, initialVelocity, distanceFromPlayer);
-        }
+            newPoint.y = transform.position.y + (initialVelocity * Mathf.Sin(radians) * i) - (0.5f * (gravity * i * i));
 
-        for (int i = 0; i < linePositions.Length - 1; i++)
-        {
-            // Check if the line will intersect anything else than a player.
-            RaycastHit2D hit = Physics2D.Raycast(linePositions[i], linePositions[i + 1] - linePositions[i], Vector3.Distance(linePositions[i], linePositions[i + 1]), ~LayerMask.GetMask("No player hit"));
+            //Vector2 start = points.ToArray()[points.Count - 1];
 
-            if (hit.collider != null)
-            {
-                // Last point on the line becomes the hit point, effectively cutting the line.
-                linePositions[linePositions.Length - 1] = hit.point;
+            //RaycastHit2D hit = Physics2D.Raycast(start, newPoint, Vector2.Distance(start, newPoint), ~LayerMask.GetMask("No player hit"));
 
-                for (int j = 1; j < linePositions.Length - 1; j++)
-                {
-                    // Move x position for each point along the line to get an even distribution.
-                    if (target.x > 0)
-                        linePositions[j].x = linePositions[j - 1].x + Mathf.Abs(linePositions[0].x - linePositions[linePositions.Length - 1].x) / (linePositions.Length - 1);
-                    else
-                        linePositions[j].x = linePositions[j - 1].x - Mathf.Abs(linePositions[0].x - linePositions[linePositions.Length - 1].x) / (linePositions.Length - 1);
-
-                    // Calculate distance along the line.
-                    float distance = Mathf.Abs(linePositions[j].x - linePositions[0].x);
-
-                    // Calculate new y position for the point after having moved.
-                    linePositions[j].y = GetLinePositionHeight(radians, gravity, initialVelocity, distance);
-                }
-                break;
-            }
+            points.Add(newPoint);
         }
 
         UpdateLineColor(target.magnitude);
 
-        lineRenderer.SetPositions(linePositions);
+        lineRenderer.positionCount = points.Count;
+
+        lineRenderer.SetPositions(points.ToArray());
     }
 
     // Calculate y-position of a point on the line according to the trajectory formula.
