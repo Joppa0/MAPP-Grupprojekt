@@ -1012,6 +1012,63 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &963553185
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787635838623409417, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168556802206525799, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: m_Name
+      value: Transiton
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
 --- !u!1 &1074687231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,10 +1837,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1588822806}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
-        m_Mode: 1
+      - m_Target: {fileID: 1499975230}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1792,10 +1849,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1588822808}
-        m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
-        m_MethodName: MediumVibration
-        m_Mode: 1
+      - m_Target: {fileID: 11500000, guid: 17df026546b4b7a4e9367ab5c2cf0346, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2011,6 +2068,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427881082}
   m_CullTransparentMesh: 1
+--- !u!1 &1499975230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8168556802206525799, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+  m_PrefabInstance: {fileID: 963553185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1512548148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,6 +2179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorial: {fileID: 0}
+  transition: {fileID: 0}
+  transitionTime: 0.5
 --- !u!4 &1588822807
 Transform:
   m_ObjectHideFlags: 0
@@ -2821,6 +2885,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1074687234}
+  - {fileID: 963553185}
   - {fileID: 1999541574}
   - {fileID: 1777715675}
   - {fileID: 1121621730}
