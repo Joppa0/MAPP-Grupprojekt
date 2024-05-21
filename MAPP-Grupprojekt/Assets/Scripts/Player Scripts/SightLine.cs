@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -8,6 +9,8 @@ public class SightLine : MonoBehaviour
 {
     [SerializeField] private float lineDarkeningMultiplier;
     [SerializeField] private float maxLength = 10;
+    [SerializeField] private float maxTime = 2;
+    [SerializeField] private float timeStep = 0.1f;
 
     private LineRenderer lineRenderer;
 
@@ -38,29 +41,32 @@ public class SightLine : MonoBehaviour
 
         float initialVelocity = target.magnitude * snowball.GetPower() / snowball.GetSnowball().GetComponent<Rigidbody2D>().mass;
 
-        Vector3[] linePositions = new Vector3[lineRenderer.positionCount];
-
         // Calculate gravity for the equipped snowball.
         float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetSnowball().GetComponent<Rigidbody2D>().gravityScale;
 
-        float timeStep = 0.1f;
-
-        float maxTime = 2;
-
         List<Vector3> points = new List<Vector3>();
 
-        for (float i = 0; i < maxTime; i += timeStep)
+        points.Add(transform.position);
+
+        for (float i = timeStep; i < maxTime; i += timeStep)
         {
-            Vector3 newPoint = new Vector3();
+            Vector3 newPoint = Vector3.zero;
 
-            newPoint.x = target.x > 0 ? transform.position.x + (initialVelocity * Mathf.Cos(radians) * i) : transform.position.x - (initialVelocity * Mathf.Cos(radians) * i);
+            newPoint.x = GetLinePositionX(radians, initialVelocity, i, target);
 
-            newPoint.y = transform.position.y + (initialVelocity * Mathf.Sin(radians) * i) - (0.5f * (gravity * i * i));
+            newPoint.y = GetLinePositionY(radians, initialVelocity, i, gravity);
 
-            //Vector2 start = points.ToArray()[points.Count - 1];
+            Vector3 start = points[points.Count - 1];
 
-            //RaycastHit2D hit = Physics2D.Raycast(start, newPoint, Vector2.Distance(start, newPoint), ~LayerMask.GetMask("No player hit"));
+            // Check if the line will collide with the environment.
+            RaycastHit2D hit = Physics2D.Raycast(start, newPoint - start, Vector3.Distance(start, newPoint), ~LayerMask.GetMask("No player hit"));
 
+            // Cut off the line.
+            if (hit.collider != null)
+            {
+                points.Add(hit.point);
+                break;
+            }
             points.Add(newPoint);
         }
 
@@ -71,11 +77,16 @@ public class SightLine : MonoBehaviour
         lineRenderer.SetPositions(points.ToArray());
     }
 
-    // Calculate y-position of a point on the line according to the trajectory formula.
-    private float GetLinePositionHeight(float radians, float gravity, float initialVelocity, float x)
+    // Calculate x-position of a point on the line according to projectile motion.
+    private float GetLinePositionX(float radians, float initialVelocity, float x, Vector3 target)
     {
-        return transform.position.y + x * Mathf.Tan(radians) - gravity * (x * x /
-                (2 * (initialVelocity * initialVelocity) * (Mathf.Cos(radians) * Mathf.Cos(radians))));
+        return target.x > 0 ? transform.position.x + (initialVelocity * Mathf.Cos(radians) * x) : transform.position.x - (initialVelocity * Mathf.Cos(radians) * x);
+    }
+
+    // Calculate y-position of a point on the line according to projectile motion.
+    private float GetLinePositionY(float radians, float initialVelocity, float x, float gravity)
+    {
+        return transform.position.y + (initialVelocity * Mathf.Sin(radians) * x) - (0.5f * (gravity * x * x));
     }
 
     private void UpdateLineColor(float force)
