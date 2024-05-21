@@ -361,6 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2787635838623409417}
   - component: {fileID: 133825005007074735}
+  - component: {fileID: 561234062395275209}
   m_Layer: 8
   m_Name: Transiton
   m_TagString: Untagged
@@ -399,3 +400,15 @@ MonoBehaviour:
   tutorial: {fileID: 0}
   transition: {fileID: 2324731619536020935}
   transitionTime: 1
+--- !u!114 &561234062395275209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168556802206525799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
