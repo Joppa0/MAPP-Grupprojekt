@@ -1584,11 +1584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 401072260676846511, guid: 0673b5d7223977642bca78bde34cd7df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0078
+      value: 0.009
       objectReference: {fileID: 0}
     - target: {fileID: 401072260676846511, guid: 0673b5d7223977642bca78bde34cd7df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.247
+      value: 2.225
       objectReference: {fileID: 0}
     - target: {fileID: 401072260676846511, guid: 0673b5d7223977642bca78bde34cd7df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8754,11 +8754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3327020990683008510, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.52903295
+      value: -0.493
       objectReference: {fileID: 0}
     - target: {fileID: 3327020990683008510, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3485882
+      value: 2.175
       objectReference: {fileID: 0}
     - target: {fileID: 3327020990683008510, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11140,7 +11140,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 6.2491064
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -22092,6 +22092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 666544814}
     m_Modifications:
+    - target: {fileID: 1085566247721634805, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3009091381865745603, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_Name
       value: Big rock
@@ -22106,11 +22110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3327020990683008510, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5427149
+      value: 0.494
       objectReference: {fileID: 0}
     - target: {fileID: 3327020990683008510, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.370588
+      value: 2.219
       objectReference: {fileID: 0}
     - target: {fileID: 3327020990683008510, guid: 3e29d825d1ccb5240ad03178ff0d9711, type: 3}
       propertyPath: m_LocalPosition.z

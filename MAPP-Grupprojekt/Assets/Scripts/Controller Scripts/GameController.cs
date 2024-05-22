@@ -23,15 +23,6 @@ public class GameController : MonoBehaviour
     public WeaponMenu weaponMenu;
     public ShowActionController action;
 
-
-    public Color activeColor = new Color(1f, 1f, 1f, 1f); // Red: 255, Green: 255, Blue: 255, Alpha: 255
-    public Color inactiveColor = new Color(26f / 255f, 26f / 255f, 26f / 255f, 170f / 255f); // Red: 26, Green: 26, Blue: 26, Alpha: 170
-    private SpriteRenderer rend;
-
-
-
-
-
     public enum BattleState
     {
         Player1Move, Player1ChooseWeapon, Player1Throw, Player2Move, Player2ChooseWeapon, Player2Throw, Player1Win, Player2Win, // Olika stadier som spelet kan befinna sig i. Tanken är att i varje stadie ska det endast ske det som är menat att ske. Exempel: Player1Move state = spelare 1 ger input för movement.
@@ -40,24 +31,9 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rend = player1Controller.GetComponent<SpriteRenderer>();
-        rend = player2Controller.GetComponent<SpriteRenderer>();
-
-        player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
-        player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
-
-        // Debug logs for active and inactive colors
-        Debug.Log("Active Color: " + activeColor);
-        Debug.Log("Inactive Color: " + inactiveColor);
-
         // Set the start state
         currentState = BattleState.Player1Move;
-
         StartCoroutine(ProcessState());
-
-
-
-
     }
 
     IEnumerator ProcessState()
@@ -70,8 +46,6 @@ public class GameController : MonoBehaviour
             switch (currentState)
             {
                 case BattleState.Player1Move:
-
-                    player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
 
                     action.P1Move();
 
@@ -120,11 +94,6 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player1Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     player1Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
-
-
-
-
-                    player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
                     action.P1Shoot();
 
                     currentState = BattleState.Player2Move; //Går till nästa state
@@ -132,9 +101,6 @@ public class GameController : MonoBehaviour
 
                 case BattleState.Player2Move:
 
-                    // Här lägger vi in logik för att röra på player 2 och lyssnar på när player 2 har rört på sig.
-
-                    player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
                     action.P2Move();
 
                     Debug.Log("Player 2's turn to move.");
@@ -180,7 +146,7 @@ public class GameController : MonoBehaviour
                     yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
                     player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
-                    player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
+
                     action.P2Shoot();
 
                     currentState = BattleState.Player1Move; // Går tillbaka till steg 1.
@@ -192,8 +158,7 @@ public class GameController : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
                     GetComponent<VibrationController>().HeavyVibration();
 #endif
-                    player1Controller.GetComponent<SpriteRenderer>().color = activeColor;
-                    player2Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
+
                     Debug.Log("Player 1 wins!");
                     yield return new WaitForSeconds(2f);
                     winningScreen1.Player1wins();
@@ -205,8 +170,7 @@ public class GameController : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
                     GetComponent<VibrationController>().HeavyVibration();
 #endif
-                    player2Controller.GetComponent<SpriteRenderer>().color = activeColor;
-                    player1Controller.GetComponent<SpriteRenderer>().color = inactiveColor;
+
                     Debug.Log("Player 2 wins!");
                     yield return new WaitForSeconds(2f);
                     winningScreen2.Player2wins();
