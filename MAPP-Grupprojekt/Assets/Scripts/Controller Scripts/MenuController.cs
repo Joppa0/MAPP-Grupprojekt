@@ -4,23 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuController : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     //[SerializeField] private int levelToLoad;
     [SerializeField] private GameObject tutorial;
-    
-    public Animator transition;
-
-    public float transitionTime = 0.5f;
+    [SerializeField] private GameObject credits;
 
     public void StartGame()
     {
-         SceneManager.LoadSceneAsync(1); // Hï¿½r kan vi skriva in vad leveln heter, "Level 1", ELLER siffran pï¿½ SceneBuildIndex. Nï¿½r man klickar pï¿½ Play, ska leveln som stï¿½r kï¿½ras.
+         SceneManager.LoadSceneAsync(1); // Här kan vi skriva in vad leveln heter, "Level 1", ELLER siffran på SceneBuildIndex. När man klickar på Play, ska leveln som står köras.
     }
 
     public void PlayGame()
     {
-        StartCoroutine(LoadLevel());
+        SceneManager.LoadSceneAsync(2);
     }
 
     public void QuitGame()
@@ -38,12 +35,13 @@ public class MenuController : MonoBehaviour
         tutorial.SetActive(false);
     }
 
-    IEnumerator LoadLevel(){
-        
-        transition.SetTrigger("Start");
-        
-        yield return new WaitForSeconds(transitionTime);
+    public void ShowCredits()
+    {
+        credits.SetActive(true);
+    }
 
-        SceneManager.LoadSceneAsync(2);
+    public void CloseCredits()
+    {
+        credits.SetActive(false);
     }
 }
