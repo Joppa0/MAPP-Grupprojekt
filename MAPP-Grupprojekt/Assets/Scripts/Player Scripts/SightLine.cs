@@ -63,8 +63,6 @@ public class SightLine : MonoBehaviour
             float distance = maxLength - currentLength;
             currentLength += Vector3.Distance(prevPoint, newPoint);
 
-            // Vector3.MoveTowards??
-
             // If the total length of the line is over the allowed max length.
             if (currentLength > maxLength) 
             {
