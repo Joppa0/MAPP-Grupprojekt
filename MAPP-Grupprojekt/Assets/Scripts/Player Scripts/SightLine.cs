@@ -48,18 +48,37 @@ public class SightLine : MonoBehaviour
 
         points.Add(transform.position);
 
+        float currentLength = 0;
+
         for (float i = timeStep; i < maxTime; i += timeStep)
         {
             Vector3 newPoint = Vector3.zero;
 
+            // Get x and y values for the new point at the specified time during its flight.
             newPoint.x = GetLinePositionX(radians, initialVelocity, i, target);
-
             newPoint.y = GetLinePositionY(radians, initialVelocity, i, gravity);
 
-            Vector3 start = points[points.Count - 1];
+            // Get the distance between the previous and new point.
+            Vector3 prevPoint = points[points.Count - 1];
+            float distance = maxLength - currentLength;
+            currentLength += Vector3.Distance(prevPoint, newPoint);
+
+            // Vector3.MoveTowards??
+
+            // If the total length of the line is over the allowed max length.
+            if (currentLength > maxLength) 
+            {
+                // Get the point between the previous and new point that gives the line an exact distance matching the maximum allowed.
+                Vector3 v = newPoint - prevPoint;
+                Vector3 u = v / v.magnitude;
+                points.Add(prevPoint + (distance * u));
+
+                // Stop adding new points, since max distance is reached.
+                break;
+            }
 
             // Check if the line will collide with the environment.
-            RaycastHit2D hit = Physics2D.Raycast(start, newPoint - start, Vector3.Distance(start, newPoint), ~LayerMask.GetMask("No player hit"));
+            RaycastHit2D hit = Physics2D.Raycast(prevPoint, newPoint - prevPoint, Vector3.Distance(prevPoint, newPoint), ~LayerMask.GetMask("No player hit"));
 
             // Cut off the line.
             if (hit.collider != null)
@@ -67,13 +86,13 @@ public class SightLine : MonoBehaviour
                 points.Add(hit.point);
                 break;
             }
+
             points.Add(newPoint);
         }
 
         UpdateLineColor(target.magnitude);
 
         lineRenderer.positionCount = points.Count;
-
         lineRenderer.SetPositions(points.ToArray());
     }
 
