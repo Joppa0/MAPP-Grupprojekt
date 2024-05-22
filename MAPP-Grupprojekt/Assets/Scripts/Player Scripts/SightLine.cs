@@ -69,9 +69,7 @@ public class SightLine : MonoBehaviour
             if (currentLength > maxLength) 
             {
                 // Get the point between the previous and new point that gives the line an exact distance matching the maximum allowed.
-                Vector3 v = newPoint - prevPoint;
-                Vector3 u = v / v.magnitude;
-                points.Add(prevPoint + (distance * u));
+                points.Add(Vector3.MoveTowards(prevPoint, newPoint, distance));
 
                 // Stop adding new points, since max distance is reached.
                 break;
