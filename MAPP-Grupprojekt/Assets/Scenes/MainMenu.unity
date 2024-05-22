@@ -2822,7 +2822,7 @@ Animator:
   m_GameObject: {fileID: 824103433}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a9dba4122fa4fd40a34cb111bdc7f02, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0f6c1fc34a67072419ce4039b9fd8f21, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dc32f9d17cb44ef448798d0901eb5840, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f08f9f57a55d09d4e96a2f0578395b4d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3232,14 +3232,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0.63529414, b: 0.28627452, a: 1}
+  m_Color: {r: 1, g: 0.5764706, b: 0.15686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 114cd2c3b46760843a3ee43705b6e0c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da048501754f6c245aa4f4d1f0c22ee3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4751,7 +4751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 114cd2c3b46760843a3ee43705b6e0c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da048501754f6c245aa4f4d1f0c22ee3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4908,6 +4908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17df026546b4b7a4e9367ab5c2cf0346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorial: {fileID: 799146393}
+  transition: {fileID: 0}
+  transitionTime: 0.5
 --- !u!4 &1901007474
 Transform:
   m_ObjectHideFlags: 0
