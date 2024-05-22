@@ -42,6 +42,6 @@ public class MainMenu : MonoBehaviour
 
     public void CloseCredits()
     {
-        credits.SetActive(false);
+        credits.SetActive(!credits.activeSelf);
     }
 }
