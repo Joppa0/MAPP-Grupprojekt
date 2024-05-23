@@ -105,4 +105,35 @@ public class CameraController : MonoBehaviour
         transform.position = originalPosition;
         mainCamera.orthographicSize = originalOrthographicSize;
     }
+
+    // Method to start the Coroutine.
+    // Otherwise the effect wouldn't play if Shake is called by a gameobject that is immedietly destroyed.
+    public void StartShake(float magnitude, float duration)
+    {
+        StartCoroutine(Shake(magnitude, duration));
+    }
+
+
+    private IEnumerator Shake(float magnitude, float duration)
+    {
+        // Save start position.
+        Vector3 startPos = transform.position;
+
+        float elapsed = 0;
+
+        while (elapsed < duration)
+        {
+            // Get random x and y values to move the camera in.
+            float x = Random.Range(-magnitude, magnitude);
+            float y = Random.Range(-magnitude, magnitude);
+
+            // Update camera positon.
+            transform.position = new Vector3(transform.position.x + x, transform.position.y + y, startPos.z);
+
+            elapsed += Time.deltaTime;
+
+            // Wait for next frame.
+            yield return null;
+        }
+    }
 }

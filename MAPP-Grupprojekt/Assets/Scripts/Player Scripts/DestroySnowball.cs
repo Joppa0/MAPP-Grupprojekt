@@ -38,11 +38,13 @@ public class DestroySnowball : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Camera.main.GetComponent<CameraController>().StartShake(0.03f, 0.1f);
             Destroy(gameObject);
         }
 
         if (other.gameObject.CompareTag("Grounded"))
         {
+            Camera.main.GetComponent<CameraController>().StartShake(0.03f, 0.1f);
             Destroy(gameObject);
         }
     }
