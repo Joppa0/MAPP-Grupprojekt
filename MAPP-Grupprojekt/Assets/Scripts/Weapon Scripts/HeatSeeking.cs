@@ -14,11 +14,6 @@ public class HeatSeeking : DestroySnowball
 
     private Transform target;
 
-    public override void SnowballBase()
-    {
-        base.SnowballBase();
-    }
-
     // Start is called before the first frame update
     void Start()
     {

@@ -8,11 +8,6 @@ public class DestroySnowball : MonoBehaviour
     protected float timer;
     private GameObject player;
 
-    public virtual void SnowballBase()
-    {
-
-    }
-
     // Start is called before the first frame update
     void Start()
     {
