@@ -30,7 +30,7 @@ public class Shooting : MonoBehaviour
                 equippedSnowball = GetComponent<Snowball>();
                 break;
             case Snowballs.HeatSeeking:
-                equippedSnowball = GetComponent<SnowballHeatSeekPrefab>();
+                equippedSnowball = GetComponent<HeatSeekingSnowball>();
                 break;
             case Snowballs.SnowShovel:
                 equippedSnowball = GetComponent<SnowShovel>();

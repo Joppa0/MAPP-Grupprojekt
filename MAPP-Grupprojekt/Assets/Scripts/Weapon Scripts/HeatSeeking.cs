@@ -3,7 +3,7 @@ using System.Collections.Generic;
 // using UnityEditor.Timeline;
 using UnityEngine;
 
-public class HeatSeeking : MoveForward
+public class HeatSeeking : DestroySnowball
 {
     public float MoveSpeed { get; set; }
     [SerializeField] private float rotateSpeed = 20;

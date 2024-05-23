@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SnowballHeatSeekPrefab : Snowball
+public class HeatSeekingSnowball : Snowball
 {
     [SerializeField] private float minSpeed, maxSpeed;
     public override void Shoot(Vector3 target, Vector3 playerPos)
