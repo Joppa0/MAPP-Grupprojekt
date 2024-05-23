@@ -104,7 +104,7 @@ public class HeatSeeking : MoveForward
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null && collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Grounded") || collision.CompareTag("Player"))
         {
             smoke.GetComponent<DestroyAfterDelay>().DestroyParticles();
         }
