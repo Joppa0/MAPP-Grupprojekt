@@ -41,7 +41,7 @@ public class SightLine : MonoBehaviour
 
         float initialVelocity = target.magnitude * snowball.GetPower() / snowball.GetSnowball().GetComponent<Rigidbody2D>().mass;
 
-        // Calculate gravity for the equipped snowball.
+        // Calculate local gravity for the equipped snowball.
         float gravity = Mathf.Abs(Physics.gravity.y) * snowball.GetSnowball().GetComponent<Rigidbody2D>().gravityScale;
 
         List<Vector3> points = new List<Vector3>();
@@ -76,7 +76,7 @@ public class SightLine : MonoBehaviour
             // Check if the line will collide with the environment.
             RaycastHit2D hit = Physics2D.Raycast(prevPoint, newPoint - prevPoint, Vector3.Distance(prevPoint, newPoint), ~LayerMask.GetMask("No player hit"));
 
-            // Cut off the line.
+            // Cut off the line at point of contact.
             if (hit.collider != null)
             {
                 points.Add(hit.point);
@@ -106,7 +106,7 @@ public class SightLine : MonoBehaviour
 
     private void UpdateLineColor(float force)
     {
-        // Gets the new color by converting the force to a value from 0-1, then subtracts it from the old color.
+        // Gets the new color by converting the force to a value between 0-1, then subtracts it from the old color.
         Color color = initialColor - new Color(force * lineDarkeningMultiplier / 255, force * lineDarkeningMultiplier / 255, force * lineDarkeningMultiplier / 255, 0);
 
         lineRenderer.startColor = color;
