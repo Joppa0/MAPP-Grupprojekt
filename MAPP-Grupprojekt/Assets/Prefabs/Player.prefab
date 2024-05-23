@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2737246718447474628}
   - component: {fileID: 7901953043857592285}
   - component: {fileID: 1366206280044694706}
-  - component: {fileID: 3311411989476856300}
   - component: {fileID: 6241028941906988540}
   - component: {fileID: 1570463253320427750}
   - component: {fileID: 2949681730203014315}
@@ -178,20 +177,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   calculatedDistance: 3
---- !u!114 &3311411989476856300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664812850246643070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66519f352ea22b74187897360e0b1611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 3
-  jumpPrecision: 1
 --- !u!114 &6241028941906988540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineDarkeningMultiplier: 10
+  maxLength: 10
+  maxTime: 2
+  timeStep: 0.1
 --- !u!95 &7943873948823585017
 Animator:
   serializedVersion: 5

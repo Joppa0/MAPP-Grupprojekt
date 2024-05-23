@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 27333f88157f4804cabda9a16abdf456
+    path: "Assets/Scenes/MainMenu med r\xF6rliga element.unity"
+    guid: 108fd2b35ce29bc4b93177a845f48e0d
   - enabled: 1
     path: Assets/Scenes/SkinSelectionMenu.unity
     guid: a19c98fe11e4323408feca147ea394b8
