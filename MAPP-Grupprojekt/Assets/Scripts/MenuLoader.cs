@@ -10,7 +10,7 @@ public class MenuLoader : MonoBehaviour
     
     public Animator transition;
 
-    public float transitionTime = 0.5f;
+    public float transitionTime = 1f;
 
     public void StartGame()
     {
