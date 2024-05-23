@@ -172,8 +172,6 @@ public class Shooting : MonoBehaviour
     // Fires a snowball in toward the target.
     private void Shoot()
     {
-        Camera.main.GetComponent<CameraController>().StartShake(0.03f, 0.1f);
-
         anim.SetTrigger("Throw");
 
         equippedSnowball.Shoot(target, transform.position);

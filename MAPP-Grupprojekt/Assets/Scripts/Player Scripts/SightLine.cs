@@ -28,8 +28,11 @@ public class SightLine : MonoBehaviour
     {
         // Don't draw a new line if the player hasn't started dragging their finger.
         if (target.magnitude <= 0)
+        {
+            // Reset all points so the previous throw's line won't render when starting another throw.
+            lineRenderer.positionCount = 0;
             return;
-
+        }
         // Get rotation angle the snowball will be thrown from.
         float rotation = 90 + (Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg);
 
