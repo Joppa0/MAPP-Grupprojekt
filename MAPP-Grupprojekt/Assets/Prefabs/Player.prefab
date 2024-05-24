@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineDarkeningMultiplier: 10
-  maxLength: 7
+  maxLength: 8
   maxTime: 4
   timeStep: 0.1
 --- !u!95 &7943873948823585017
