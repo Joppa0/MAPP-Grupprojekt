@@ -46,7 +46,7 @@ public class DestroySnowball : MonoBehaviour
             GetComponent<TrailRenderer>().enabled = false;
             Camera.main.GetComponent<CameraController>().StartShake(0.05f, 0.15f);
             audSou.PlayOneShot(hitSound, 1f);
-            Instantiate(featherParticles, other.transform.position, Quaternion.identity);
+            featherParticles = Instantiate(featherParticles, other.transform.position, Quaternion.identity);
             featherParticles.GetComponent<DestroyAfterDelay>().DestroyParticles();
             Destroy(gameObject, 1f);
         }
