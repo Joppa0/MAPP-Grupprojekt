@@ -10,6 +10,8 @@ public class Shooting : MonoBehaviour
     }
 
     public bool IsShootingComplete { get; set; }
+    public bool HasSnowballLanded {  get; set; }
+
     public Snowball equippedSnowball;
 
     public Vector3 target;
@@ -50,12 +52,17 @@ public class Shooting : MonoBehaviour
     public IEnumerator StartShoot()
     {
         IsShootingComplete = false;
+        HasSnowballLanded = false;
 
         StartCoroutine(SetShootTarget());
 
         yield return new WaitUntil(() => hasTarget);
 
         Shoot();
+
+
+        // Wait until the snowball has landed.
+        yield return new WaitUntil(() => HasSnowballLanded);
 
         // Tells the GameController that shooting is complete.
         IsShootingComplete = true;
@@ -176,7 +183,20 @@ public class Shooting : MonoBehaviour
 
         equippedSnowball.Shoot(target, transform.position);
 
+        // Start checking if the snowball has landed
+        StartCoroutine(CheckSnowballLanded());
+
         // Resets target bool.
         hasTarget = false;
     }
+
+    private IEnumerator CheckSnowballLanded()
+    {
+        // Wait until the snowball is no longer present in the scene
+        yield return new WaitUntil(() => GameObject.FindWithTag("Snowball") == null);
+
+        HasSnowballLanded = true;
+    }
+
+
 }

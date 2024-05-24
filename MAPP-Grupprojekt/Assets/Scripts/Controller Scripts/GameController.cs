@@ -91,8 +91,8 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Shooting.StartShoot());
-                    yield return new WaitUntil(() => player1Shooting.IsShootingComplete || timer.timeRemaining <= 0);
-                    player1Shooting.IsShootingComplete = true;
+                    yield return new WaitUntil(() => (player1Shooting.IsShootingComplete && player1Shooting.HasSnowballLanded) || timer.timeRemaining <= 0);
+                    //player1Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
                     action.P1Shoot();
 
@@ -143,8 +143,8 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Shooting.StartShoot());
-                    yield return new WaitUntil(() => player2Shooting.IsShootingComplete || timer.timeRemaining <= 0);
-                    player2Shooting.IsShootingComplete = true;
+                    yield return new WaitUntil(() => (player2Shooting.IsShootingComplete && player2Shooting.HasSnowballLanded) || timer.timeRemaining <= 0);
+                    //player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
 
                     action.P2Shoot();
