@@ -28,7 +28,9 @@ public class SightLine : MonoBehaviour
     {
         // Don't draw a new line if the player hasn't started dragging their finger.
         if (target.magnitude <= 0)
+        {
             return;
+        }
 
         // Get rotation angle the snowball will be thrown from.
         float rotation = 90 + (Mathf.Atan2(-target.x, target.y) * Mathf.Rad2Deg);
@@ -58,7 +60,7 @@ public class SightLine : MonoBehaviour
             newPoint.x = GetLinePositionX(radians, initialVelocity, i, target);
             newPoint.y = GetLinePositionY(radians, initialVelocity, i, gravity);
 
-            // Get the distance between the previous and new point.
+            // Add the distance between the previous and new point to the total.
             Vector3 prevPoint = points[points.Count - 1];
             float distance = maxLength - currentLength;
             currentLength += Vector3.Distance(prevPoint, newPoint);
@@ -88,25 +90,27 @@ public class SightLine : MonoBehaviour
 
         UpdateLineColor(target.magnitude);
 
+        // Set all the positions in the list to the line renderer.
         lineRenderer.positionCount = points.Count;
         lineRenderer.SetPositions(points.ToArray());
     }
 
-    // Calculate x-position of a point on the line according to projectile motion.
+    // Calculates x-position of a point on the line according to projectile motion.
     private float GetLinePositionX(float radians, float initialVelocity, float x, Vector3 target)
     {
         return target.x > 0 ? transform.position.x + (initialVelocity * Mathf.Cos(radians) * x) : transform.position.x - (initialVelocity * Mathf.Cos(radians) * x);
     }
 
-    // Calculate y-position of a point on the line according to projectile motion.
+    // Calculates y-position of a point on the line according to projectile motion.
     private float GetLinePositionY(float radians, float initialVelocity, float x, float gravity)
     {
         return transform.position.y + (initialVelocity * Mathf.Sin(radians) * x) - (0.5f * (gravity * x * x));
     }
 
+    // Changes the line color depending on how hard the player is going to throw.
     private void UpdateLineColor(float force)
     {
-        // Gets the new color by converting the force to a value between 0-1, then subtracts it from the old color.
+        // Get the new color by converting the force to a value between 0-1, then subtracts it from the old color.
         Color color = initialColor - new Color(force * lineDarkeningMultiplier / 255, force * lineDarkeningMultiplier / 255, force * lineDarkeningMultiplier / 255, 0);
 
         lineRenderer.startColor = color;
@@ -121,5 +125,8 @@ public class SightLine : MonoBehaviour
     public void EndLine()
     {
         lineRenderer.enabled = false;
+
+        // Reset all points so the previous throw's line won't render when starting another throw.
+        lineRenderer.positionCount = 0;
     }
 }

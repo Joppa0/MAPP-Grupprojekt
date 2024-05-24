@@ -113,7 +113,7 @@ public class CameraController : MonoBehaviour
         StartCoroutine(Shake(magnitude, duration));
     }
 
-
+    // Shakes the camera by the specified amount for the specified time.
     private IEnumerator Shake(float magnitude, float duration)
     {
         // Save start position.

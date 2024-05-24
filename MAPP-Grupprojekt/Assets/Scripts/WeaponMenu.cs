@@ -59,6 +59,7 @@ public class WeaponMenu : MonoBehaviour
         currentPlayer = GameController.currentState == GameController.BattleState.Player1ChooseWeapon ? player1 : player2;
     }
 
+    // Sets the player's equipped weapon to SnowShovel.
     public void ToggleSnowShovel()
     {
         currentPlayer.SetEquippedSnowball(Shooting.Snowballs.SnowShovel);
@@ -66,6 +67,7 @@ public class WeaponMenu : MonoBehaviour
         HasChosenWeapon = true;
     }
 
+    // Sets the player's equipped weapon to Snowball.
     public void ToggleSnowball()
     {
         currentPlayer.SetEquippedSnowball(Shooting.Snowballs.Snowball);
@@ -73,6 +75,7 @@ public class WeaponMenu : MonoBehaviour
         HasChosenWeapon = true;
     }
 
+    // Sets the player's equipped weapon to HeatSeeking.
     public void ToggleHeatSeek()
     {
         DecrementHeatSeeking();

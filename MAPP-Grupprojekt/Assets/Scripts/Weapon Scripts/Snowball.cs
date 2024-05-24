@@ -22,6 +22,7 @@ public class Snowball : MonoBehaviour
         ball.GetComponent<Rigidbody2D>().AddForce(target * power, ForceMode2D.Impulse);
     }
 
+    // Disables the snowball's collider for a short time so it doesn't instantly collide with the player who threw it.
     private IEnumerator DisableCollider(GameObject ball)
     {
         ball.GetComponent<Collider2D>().enabled = false;

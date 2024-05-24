@@ -225,17 +225,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176911085}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1699301614}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 200, y: 260}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 455, y: -16}
+  m_SizeDelta: {x: 100, y: 130}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!95 &176911087
 Animator:
@@ -1474,9 +1474,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1881029342}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 2091581122}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2091581124}
+        m_TargetAssemblyTypeName: MenuLoader, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1486,7 +1498,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1881029344}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2496,7 +2508,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1881029344}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2641,7 +2653,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1881029344}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -4129,7 +4141,6 @@ GameObject:
   - component: {fileID: 1176469959}
   - component: {fileID: 1176469958}
   - component: {fileID: 1176469957}
-  - component: {fileID: 1176469961}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4232,18 +4243,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1176469961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176469956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1194708399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4473,7 +4472,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267851481}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 1f318be25aaa36548b84d2d5a12e23c1, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 0594b79551082f945886564278d788b5, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -5606,6 +5605,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transiton
       objectReference: {fileID: 0}
+    - target: {fileID: 6442535792991746567, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: tutorial
+      value: 
+      objectReference: {fileID: 799146393}
+    - target: {fileID: 6442535792991746567, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+      propertyPath: transitionTime
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5659,7 +5666,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1881029343}
   - component: {fileID: 1881029342}
-  - component: {fileID: 1881029344}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -5696,18 +5702,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1881029344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881029341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1915690912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,6 +6228,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047909575}
   m_CullTransparentMesh: 1
+--- !u!1 &2091581122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1377349590884056476, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+  m_PrefabInstance: {fileID: 1829820012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2091581124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6442535792991746567, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
+  m_PrefabInstance: {fileID: 1829820012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091581122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17df026546b4b7a4e9367ab5c2cf0346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127762177
 GameObject:
   m_ObjectHideFlags: 0

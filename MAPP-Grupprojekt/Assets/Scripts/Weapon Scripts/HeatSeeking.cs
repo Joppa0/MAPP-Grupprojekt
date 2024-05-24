@@ -48,30 +48,36 @@ public class HeatSeeking : DestroySnowball
         GetComponent<Rigidbody2D>().velocity = transform.up * MoveSpeed;
     }
 
+    // Slowly rotates the snowball toward the target.
     private void HeatSeek()
     {
+        // Find the vector pointing towards the target.
         Vector3 aimPos = target.position - transform.position;
 
+        // Convert vector to rotation.
         float rotation = Mathf.Atan2(-aimPos.x, aimPos.y) * Mathf.Rad2Deg;
 
+        // Rotate a fixed amount toward the target.
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, rotation), rotateSpeed * Time.deltaTime);
     }
 
     private IEnumerator StartHeatSeeking()
     {
+        FindTarget();
         yield return new WaitForSeconds(1);
         canHeatSeek = true;
-        FindNearestPlayer();
     }
 
-    private void FindNearestPlayer()
+    private void FindTarget()
     {
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+        // Check for the player farthest away from the snowball, and sets it as the target.
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
             if (target == null)
             {
                 target = player.transform;
             }
-            else if (Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(target.position, transform.position))
+            else if (Vector3.Distance(player.transform.position, transform.position) > Vector3.Distance(target.position, transform.position))
             {
                 target = player.transform;
             }
@@ -99,6 +105,7 @@ public class HeatSeeking : DestroySnowball
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        // Destroy smoke effect.
         if (collision.CompareTag("Grounded") || collision.CompareTag("Player"))
         {
             smoke.GetComponent<DestroyAfterDelay>().DestroyParticles();
