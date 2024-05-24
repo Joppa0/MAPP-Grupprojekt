@@ -372,7 +372,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1588822808}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -920,7 +920,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1588822808}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2038,7 +2038,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1588822808}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2329,7 +2329,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1923247236}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: MediumVibration
         m_Mode: 1
@@ -2474,7 +2474,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1588822808}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2609,7 +2609,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1588822807}
   - component: {fileID: 1588822806}
-  - component: {fileID: 1588822808}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -2646,18 +2645,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1588822808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588822805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1602883097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,17 +3218,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1377349590884056476, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
   m_PrefabInstance: {fileID: 1923247234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1923247236 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9030515144797529314, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
-  m_PrefabInstance: {fileID: 1923247234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923247235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1923247237 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6442535792991746567, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}

@@ -1498,7 +1498,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2091581125}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2508,7 +2508,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1881029344}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -2653,7 +2653,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1881029344}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -4141,7 +4141,6 @@ GameObject:
   - component: {fileID: 1176469959}
   - component: {fileID: 1176469958}
   - component: {fileID: 1176469957}
-  - component: {fileID: 1176469961}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4244,18 +4243,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1176469961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176469956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1194708399
 GameObject:
   m_ObjectHideFlags: 0
@@ -5679,7 +5666,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1881029343}
   - component: {fileID: 1881029342}
-  - component: {fileID: 1881029344}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -5716,18 +5702,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1881029344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881029341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1915690912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6268,17 +6242,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17df026546b4b7a4e9367ab5c2cf0346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2091581125 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9030515144797529314, guid: 7241accf185b73b4b82b700dc91f9fce, type: 3}
-  m_PrefabInstance: {fileID: 1829820012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091581122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2127762177

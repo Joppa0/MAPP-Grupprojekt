@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3542890250822957298}
-  - component: {fileID: 7461390552175928555}
   - component: {fileID: 4023047666713471529}
   - component: {fileID: 3897872449584131523}
   m_Layer: 0
@@ -34,18 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7461390552175928555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8556253131309873708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4023047666713471529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,8 +54,7 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   timer: {fileID: 3897872449584131523}
   weaponMenu: {fileID: 0}
-  activeColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 0.6666667}
+  action: {fileID: 0}
 --- !u!114 &3897872449584131523
 MonoBehaviour:
   m_ObjectHideFlags: 0

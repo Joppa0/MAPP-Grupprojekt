@@ -155,9 +155,7 @@ public class GameController : MonoBehaviour
                 case BattleState.Player1Win:
 
                     // logik för när spelare 1 vinner.
-#if UNITY_ANDROID || UNITY_IOS
-                    GetComponent<VibrationController>().HeavyVibration();
-#endif
+
 
                     Debug.Log("Player 1 wins!");
                     yield return new WaitForSeconds(2f);
@@ -167,9 +165,7 @@ public class GameController : MonoBehaviour
                 case BattleState.Player2Win:
 
                     // logik för när spelare 2 vinner.
-#if UNITY_ANDROID || UNITY_IOS
-                    GetComponent<VibrationController>().HeavyVibration();
-#endif
+
 
                     Debug.Log("Player 2 wins!");
                     yield return new WaitForSeconds(2f);
