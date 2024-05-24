@@ -208,6 +208,11 @@ MonoBehaviour:
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   minPower: {x: -3, y: -3}
   maxPower: {x: 3, y: 3}
+  throwSounds:
+  - {fileID: 8300000, guid: 719a5c5b4b72b9e479e4f203d18e6268, type: 3}
+  - {fileID: 8300000, guid: 83ced05f09f76d747831ccf15adb0386, type: 3}
+  - {fileID: 8300000, guid: b61d5347cb5f43847bd48623227cbf48, type: 3}
+  - {fileID: 8300000, guid: 0e55ada088b009d409256d6a55dd0509, type: 3}
 --- !u!114 &2949681730203014315
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class Shooting : MonoBehaviour
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private Vector2 minPower, maxPower;
+    [SerializeField] private AudioClip[] throwSounds;
 
     private bool hasTarget;
     private Timer timer;
@@ -187,6 +188,9 @@ public class Shooting : MonoBehaviour
     private void Shoot()
     {
         anim.SetTrigger("Throw");
+
+        // Randomly play one of the 4 throw sounds.
+        GetComponent<AudioSource>().PlayOneShot(throwSounds[Random.Range(0, throwSounds.Length)], 18f);
 
         equippedSnowball.Shoot(target, transform.position);
 
