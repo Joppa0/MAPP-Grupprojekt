@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a338a523c710c3244a1680a23f0303c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: a1111d804d8c3414a818bd10b3484dcf, type: 3}
   rotateSpeed: 75
   smokePrefab: {fileID: 3167399193981158415, guid: d873e2070a511ae45994fddcedbb6d61, type: 3}
 --- !u!58 &1220868765126839974
@@ -158,7 +158,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
