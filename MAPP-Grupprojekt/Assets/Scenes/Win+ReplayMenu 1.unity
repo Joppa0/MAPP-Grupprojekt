@@ -1767,7 +1767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -330, y: -50}
+  m_AnchoredPosition: {x: -300, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &204542726
@@ -2988,7 +2988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1600834146079239380, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.36
+      value: 8.31
       objectReference: {fileID: 0}
     - target: {fileID: 1600834146079239380, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3033,7 +3033,7 @@ PrefabInstance:
     - target: {fileID: 6241028941906988540, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: vibrationController
       value: 
-      objectReference: {fileID: 1294272133}
+      objectReference: {fileID: 0}
     - target: {fileID: 6611182303502061139, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: m_FlipX
       value: 1
@@ -3476,7 +3476,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -3777,7 +3777,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -4576,7 +4576,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -4846,7 +4846,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bd3d4f94728ec374f9acd35413793a81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5737,7 +5737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &836876997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7728,7 +7728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: 0}
+  m_AnchoredPosition: {x: -220, y: -100}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958647501
@@ -9043,7 +9043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110, y: 0}
+  m_AnchoredPosition: {x: -110, y: -100}
   m_SizeDelta: {x: 130, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1180213924
@@ -9227,7 +9227,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bd3d4f94728ec374f9acd35413793a81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -9273,7 +9273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 330, y: -50}
+  m_AnchoredPosition: {x: 300, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1217354865
@@ -9491,7 +9491,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -9696,17 +9696,6 @@ MonoBehaviour:
   zoomAmount: 4
   minOrthographicSize: 2
   maxOrthographicSize: 10
---- !u!114 &1294272133 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7461390552175928555, guid: 399b44f385f6a0b47a978749256cf446, type: 3}
-  m_PrefabInstance: {fileID: 6099629509672223573}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65f42830e930d146ade753be14c421e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1297760010
 GameObject:
   m_ObjectHideFlags: 0
@@ -10156,7 +10145,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -11774,7 +11763,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -11940,7 +11929,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -12300,7 +12289,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -13063,7 +13052,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1294272133}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VibrationController, Assembly-CSharp
         m_MethodName: LightVibration
         m_Mode: 1
@@ -19656,7 +19645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1600834146079239380, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.23
+      value: -8.77
       objectReference: {fileID: 0}
     - target: {fileID: 1600834146079239380, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19701,7 +19690,7 @@ PrefabInstance:
     - target: {fileID: 6241028941906988540, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: vibrationController
       value: 
-      objectReference: {fileID: 1294272133}
+      objectReference: {fileID: 0}
     - target: {fileID: 6611182303502061139, guid: 5f18a924dbe9c1844be9fb02933659ea, type: 3}
       propertyPath: m_FlipX
       value: 0
