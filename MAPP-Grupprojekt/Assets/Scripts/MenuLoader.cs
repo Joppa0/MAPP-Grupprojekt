@@ -20,7 +20,7 @@ public class MenuLoader : MonoBehaviour
     public void PlayGame()
     {
         
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1)); //byter scen till nästa scen i buildsettings index
     }
 
     public void QuitGame()
@@ -43,9 +43,9 @@ public class MenuLoader : MonoBehaviour
         
         transition.SetTrigger("HideScene");
         
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSeconds(transitionTime); //sätter igång ett delay
 
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(levelIndex);//laddar in nästa scen
     }
     }
 

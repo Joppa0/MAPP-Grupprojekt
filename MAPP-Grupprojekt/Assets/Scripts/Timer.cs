@@ -18,12 +18,12 @@ public class Timer : MonoBehaviour
     {
         if (timerIsRunning){
             if (timeRemaining > 0){
-                timeRemaining -= Time.deltaTime;
+                timeRemaining -= Time.deltaTime; //kollar hur mycket tid som finns
             }
             else{
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
-                timerIsRunning = false;
+                timerIsRunning = false; //visar att timern har tagit slut
             }
         }
         DisplayTime(timeRemaining);
@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //visar timern
 
     }
 }
