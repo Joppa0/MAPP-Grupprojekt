@@ -4396,7 +4396,7 @@ AudioSource:
   m_GameObject: {fileID: 561781772}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7147c3aa6df92dc4dbdfae4eea7de903, type: 2}
   m_audioClip: {fileID: 8300000, guid: 62285294ec55464488e46b0a522489c9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4492,7 +4492,7 @@ AudioSource:
   m_GameObject: {fileID: 561781772}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7147c3aa6df92dc4dbdfae4eea7de903, type: 2}
   m_audioClip: {fileID: 8300000, guid: 47b32d9f081e6cd4da948baaebcd4ae8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -13239,7 +13239,7 @@ AudioSource:
   m_GameObject: {fileID: 1149437231}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7147c3aa6df92dc4dbdfae4eea7de903, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8438c17d554671047b36eb14ca365782, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.162
@@ -13380,6 +13380,7 @@ GameObject:
   - component: {fileID: 1180213923}
   - component: {fileID: 1180213924}
   - component: {fileID: 1180213925}
+  - component: {fileID: 1180213926}
   m_Layer: 8
   m_Name: VolumeSlider
   m_TagString: Untagged
@@ -13472,6 +13473,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99aa862757bff9149a8e4ff7ce188dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1180213926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180213922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052bd270b37b398499508e9db2a36980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAudioMixer: {fileID: 24100000, guid: 7147c3aa6df92dc4dbdfae4eea7de903, type: 2}
 --- !u!1 &1185170172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 7754aebc0af499a4ea4b456ac5a2ac87, type: 3}
