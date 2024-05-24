@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
             //Julia
-            audSou.PlayOneShot(walkOnSnowSound, 1f);
             anim.SetFloat("Walk", Mathf.Abs(transform.position.x - target.x));
             // Stops moving if the target has been reached or is close enough.
             if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop || !CanMove())
@@ -186,6 +185,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private IEnumerator CheckMovementForSound()
+    {
+        while(IsMovementComplete == false)
+        {
+            audSou.PlayOneShot(walkOnSnowSound, 1f);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     // Initiates movement.
     public IEnumerator StartMove()
     {
@@ -195,5 +203,7 @@ public class PlayerController : MonoBehaviour
 
         // Waits until the target position has been found.
         yield return new WaitUntil(() => hasTarget);
+
+        StartCoroutine(CheckMovementForSound());
     }
 }
