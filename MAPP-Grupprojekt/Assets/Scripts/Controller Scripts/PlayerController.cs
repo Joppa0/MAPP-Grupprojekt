@@ -9,9 +9,7 @@ public class PlayerController : MonoBehaviour
     public bool IsMovementComplete { get; set; }
 
     private Vector2 target;
-    private Vector3 lastPosition;
     private Animator anim;
-    private Rigidbody2D rgdb;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float distanceToStop = 0.1f;
     [SerializeField] private float rayDistance = 0.25f;
@@ -29,7 +27,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        rgdb = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         audSou = GetComponent<AudioSource>();
     }
@@ -43,12 +40,12 @@ public class PlayerController : MonoBehaviour
     {
         if (target.x < transform.position.x)
         {
-            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.right, rayDistance, groundLayer);
+            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, rayDistance, groundLayer);
             return leftHit.collider == null;
         }
         else
         {
-            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.left, rayDistance, groundLayer);
+            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, rayDistance, groundLayer);
             return rightHit.collider == null;
         }
     }
@@ -57,7 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsMovementComplete && hasTarget)
         {
-            lastPosition = transform.position;
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
             anim.SetFloat("Walk", Mathf.Abs(transform.position.x - target.x));
@@ -69,8 +65,11 @@ public class PlayerController : MonoBehaviour
 
                 // Tells GameController that movement is complete, meaning the state machine can change states.
                 IsMovementComplete = true;
+
                 audSou.Stop();
-                if(transform.position.x > 0)
+                anim.SetFloat("Walk", 0);
+
+                if (transform.position.x > 0)
                 {
                     rend.flipX = true;
                 }

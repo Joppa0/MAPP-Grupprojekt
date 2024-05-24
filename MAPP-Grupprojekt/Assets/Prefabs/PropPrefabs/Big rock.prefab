@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1085566247721634805}
   - component: {fileID: 6800428511778983355}
   - component: {fileID: 1097294393590692062}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big rock
   m_TagString: Grounded
   m_Icon: {fileID: 0}
