@@ -17,14 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rayDistance = 0.25f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float calculatedDistance = 10;
-    //Julia
     [SerializeField] public AudioClip walkOnSnowSound;
 
     private bool hasTarget;
     private float horizontalValue;
     private SpriteRenderer rend;
     private AudioSource audSou;
-    //Julia
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
 
@@ -32,25 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rgdb = GetComponent<Rigidbody2D>();
-        //Julia
         rend = GetComponent<SpriteRenderer>();
         audSou = GetComponent<AudioSource>();
-    }
-
-    //Julia
-    private void Update()
-    {
-        horizontalValue = Input.GetAxis("Horizontal");
-
-        if(horizontalValue < 0f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-
-        else if(horizontalValue > 0)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
     }
 
     private void FixedUpdate()
@@ -79,7 +60,6 @@ public class PlayerController : MonoBehaviour
             lastPosition = transform.position;
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
-            //Julia
             anim.SetFloat("Walk", Mathf.Abs(transform.position.x - target.x));
             // Stops moving if the target has been reached or is close enough.
             if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop || !CanMove())
@@ -89,31 +69,29 @@ public class PlayerController : MonoBehaviour
 
                 // Tells GameController that movement is complete, meaning the state machine can change states.
                 IsMovementComplete = true;
+                audSou.Stop();
+                if(transform.position.x > 0)
+                {
+                    rend.flipX = true;
+                }
+                if(transform.position.x < 0)
+                {
+                    rend.flipX = false;
+                }
             }
         }
     }
 
-    //Julia
-    private void SetSpriteFlip(bool flip)
+    //Checks if sprite should flip
+    private void CheckSpriteFlip()
     {
-        Vector3 currentScale = transform.localScale;
-        currentScale.x = Mathf.Abs(currentScale.x) * (flip ? -1 : 1);
-        transform.localScale = currentScale;
-    }
-
-    //Julia
-    private void FlipSpriteBasedOnDirection()
-    {
-        float deltaX = endTouchPosition.x - startTouchPosition.x;
-
-        if (deltaX > 0)
+        if(target.x > transform.position.x)
         {
-            SetSpriteFlip(false);
+            rend.flipX = false;
         }
-
-        else if (deltaX < 0 )
+        if(target.x < transform.position.x)
         {
-            SetSpriteFlip(true);
+            rend.flipX = true;
         }
     }
 
@@ -134,12 +112,6 @@ public class PlayerController : MonoBehaviour
                     // Gets the touch position in world coordinates and sets it as the target to move toward.
                     target = Camera.main.ScreenToWorldPoint(touch.position);
 
-                    //Julia 4 rader
-                    startTouchPosition = touch.position;
-                    endTouchPosition = touch.position;
-                    FlipSpriteBasedOnDirection();
-                    startTouchPosition = endTouchPosition;
-
                     hasTarget = true;
 
                     // Stops loop.
@@ -151,11 +123,6 @@ public class PlayerController : MonoBehaviour
             else if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                startTouchPosition = Input.mousePosition;
-                endTouchPosition = Input.mousePosition;
-                FlipSpriteBasedOnDirection();
-                startTouchPosition = endTouchPosition;
 
                 hasTarget = true;
 
@@ -190,7 +157,7 @@ public class PlayerController : MonoBehaviour
         while(IsMovementComplete == false)
         {
             audSou.PlayOneShot(walkOnSnowSound, 1f);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(3f);
         }
     }
 
@@ -205,5 +172,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitUntil(() => hasTarget);
 
         StartCoroutine(CheckMovementForSound());
+        CheckSpriteFlip();
     }
 }
