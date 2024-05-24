@@ -17,13 +17,40 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rayDistance = 0.25f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float calculatedDistance = 10;
+    //Julia
+    [SerializeField] public AudioClip walkOnSnowSound;
 
     private bool hasTarget;
+    private float horizontalValue;
+    private SpriteRenderer rend;
+    private AudioSource audSou;
+    //Julia
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         rgdb = GetComponent<Rigidbody2D>();
+        //Julia
+        rend = GetComponent<SpriteRenderer>();
+        audSou = GetComponent<AudioSource>();
+    }
+
+    //Julia
+    private void Update()
+    {
+        horizontalValue = Input.GetAxis("Horizontal");
+
+        if(horizontalValue < 0f)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        else if(horizontalValue > 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
     }
 
     private void FixedUpdate()
@@ -52,6 +79,8 @@ public class PlayerController : MonoBehaviour
             lastPosition = transform.position;
             // Moves toward target.
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), Time.deltaTime * speed);
+            //Julia
+            audSou.PlayOneShot(walkOnSnowSound, 1f);
             anim.SetFloat("Walk", Mathf.Abs(transform.position.x - target.x));
             // Stops moving if the target has been reached or is close enough.
             if (Mathf.Abs(transform.position.x - target.x) <= distanceToStop || !CanMove())
@@ -62,6 +91,30 @@ public class PlayerController : MonoBehaviour
                 // Tells GameController that movement is complete, meaning the state machine can change states.
                 IsMovementComplete = true;
             }
+        }
+    }
+
+    //Julia
+    private void SetSpriteFlip(bool flip)
+    {
+        Vector3 currentScale = transform.localScale;
+        currentScale.x = Mathf.Abs(currentScale.x) * (flip ? -1 : 1);
+        transform.localScale = currentScale;
+    }
+
+    //Julia
+    private void FlipSpriteBasedOnDirection()
+    {
+        float deltaX = endTouchPosition.x - startTouchPosition.x;
+
+        if (deltaX > 0)
+        {
+            SetSpriteFlip(false);
+        }
+
+        else if (deltaX < 0 )
+        {
+            SetSpriteFlip(true);
         }
     }
 
@@ -82,6 +135,12 @@ public class PlayerController : MonoBehaviour
                     // Gets the touch position in world coordinates and sets it as the target to move toward.
                     target = Camera.main.ScreenToWorldPoint(touch.position);
 
+                    //Julia 4 rader
+                    startTouchPosition = touch.position;
+                    endTouchPosition = touch.position;
+                    FlipSpriteBasedOnDirection();
+                    startTouchPosition = endTouchPosition;
+
                     hasTarget = true;
 
                     // Stops loop.
@@ -94,11 +153,17 @@ public class PlayerController : MonoBehaviour
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+                startTouchPosition = Input.mousePosition;
+                endTouchPosition = Input.mousePosition;
+                FlipSpriteBasedOnDirection();
+                startTouchPosition = endTouchPosition;
+
                 hasTarget = true;
 
                 done = true;
             }
             yield return null;
+
         }
 
         //Limited movement, right
