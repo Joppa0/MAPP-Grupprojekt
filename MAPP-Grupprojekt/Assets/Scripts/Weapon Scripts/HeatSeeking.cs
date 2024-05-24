@@ -15,8 +15,9 @@ public class HeatSeeking : DestroySnowball
     private Transform target;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(StartHeatSeeking());
     }
 
@@ -111,6 +112,24 @@ public class HeatSeeking : DestroySnowball
             smoke.GetComponent<DestroyAfterDelay>().DestroyParticles();
         }
 
-        base.OnTriggerEnter2D(collision);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            smoke = null;
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<CircleCollider2D>().enabled = false;
+            Camera.main.GetComponent<CameraController>().StartShake(0.05f, 0.15f);
+            audSou.PlayOneShot(hitSound, 1f);
+            Destroy(gameObject, 1f);
+        }
+
+        if (collision.gameObject.CompareTag("Grounded"))
+        {
+            smoke = null;
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<CircleCollider2D>().enabled = false;
+            Camera.main.GetComponent<CameraController>().StartShake(0.05f, 0.15f);
+            audSou.PlayOneShot(hitSound, 1f);
+            Destroy(gameObject, 1f);
+        }
     }
 }

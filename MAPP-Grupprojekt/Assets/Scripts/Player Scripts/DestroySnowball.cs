@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DestroySnowball : MonoBehaviour
 {
-    [SerializeField] private AudioClip hitSound;
+    [SerializeField] protected AudioClip hitSound;
 
     private Rigidbody2D rgbd;
     protected float timer;
     private GameObject player;
-    private AudioSource audSou;
+    protected AudioSource audSou;
     private SpriteRenderer rend;
 
     // Start is called before the first frame update
-    void Start()
+     protected virtual void Start()
     {
         rgbd = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -42,7 +42,7 @@ public class DestroySnowball : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<CircleCollider2D>().enabled = false;
-            //GetComponent<TrailRenderer>().enabled = false;
+            GetComponent<TrailRenderer>().enabled = false;
             Camera.main.GetComponent<CameraController>().StartShake(0.05f, 0.15f);
             audSou.PlayOneShot(hitSound, 1f);
             Destroy(gameObject, 1f);
@@ -52,7 +52,7 @@ public class DestroySnowball : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<CircleCollider2D>().enabled = false;
-            //GetComponent<TrailRenderer>().enabled = false;
+            GetComponent<TrailRenderer>().enabled = false;
             Camera.main.GetComponent<CameraController>().StartShake(0.05f, 0.15f);
             audSou.PlayOneShot(hitSound, 1f);
             Destroy(gameObject, 1f);
