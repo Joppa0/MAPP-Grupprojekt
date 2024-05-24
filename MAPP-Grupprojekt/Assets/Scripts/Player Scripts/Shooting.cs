@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Shooting : MonoBehaviour
 {
+    // Saves the different types of snowballs that can be equipped.
     public enum Snowballs
     {
         Snowball, HeatSeeking, SnowShovel
@@ -14,7 +15,7 @@ public class Shooting : MonoBehaviour
 
     public Snowball equippedSnowball;
 
-    public Vector3 target;
+    private Vector3 target;
     private SightLine sightLine;
     private Animator anim;
 
@@ -24,6 +25,7 @@ public class Shooting : MonoBehaviour
     private bool hasTarget;
     private Timer timer;
 
+    // Changes the equipped snowball based on the value of the enum parameter.
     public void SetEquippedSnowball(Snowballs s)
     {
         switch (s)
@@ -60,7 +62,6 @@ public class Shooting : MonoBehaviour
 
         Shoot();
 
-
         // Wait until the snowball has landed.
         yield return new WaitUntil(() => HasSnowballLanded);
 
@@ -68,6 +69,7 @@ public class Shooting : MonoBehaviour
         IsShootingComplete = true;
     }
 
+    // Finds and sets the direction to shoot in.
     private IEnumerator SetShootTarget()
     {
         if (IsShootingComplete)
@@ -80,6 +82,7 @@ public class Shooting : MonoBehaviour
 
         while (!done)
         {
+            // Break the loop if the player runs out of time.
             if (timer.timeRemaining <= 0)
             {
                 done = true;
@@ -87,23 +90,25 @@ public class Shooting : MonoBehaviour
                 sightLine.EndLine();
             }
 
-            // Checks if player has touched the screen.
+            // Check if player has touched the screen.
             if (Input.touchCount > 0)
             {
-                // Gets touch position.
+                // Get touch position.
                 Touch touch = Input.GetTouch(0);
 
+                // Check if the player just started touching the screen and didn't touch a UI element.
                 if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
-                    // Sets start point for drag action.
+                    // Set start point for drag action.
                     startPoint = GetWorldPoint(touch.position);
 
                     sightLine.StartLine();
                 }
 
+                // Check if the player held down and moved their finger over the screen.
                 else if (touch.phase == TouchPhase.Moved && startPoint.z == 15)
                 {
-                    // Sets end point for drag action.
+                    // Set end point for drag action.
                     endPoint = GetWorldPoint(touch.position);
 
                     SetTargetPosition(startPoint, endPoint);
@@ -111,14 +116,15 @@ public class Shooting : MonoBehaviour
                     sightLine.UpdateLineRenderer(target, equippedSnowball);
                 }
 
+                // Check if the player released their finger from the screen.
                 else if (touch.phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(touch.fingerId) && startPoint.z == 15)
                 {
-                    // Sets end point for drag action.
+                    // Set end point for drag action.
                     endPoint = GetWorldPoint(touch.position);
 
                     SetTargetPosition(startPoint, endPoint);
 
-                    // Signals the target has been found.
+                    // Signal the target has been found.
                     hasTarget = true;
 
                     done = true;
@@ -160,6 +166,7 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    // Gets the world point from the touch position on the screen.
     private Vector3 GetWorldPoint(Vector2 position)
     {
         Vector3 point = Camera.main.ScreenToWorldPoint(position);
@@ -176,7 +183,7 @@ public class Shooting : MonoBehaviour
         target = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
     }
 
-    // Fires a snowball in toward the target.
+    // Fires a snowball toward the target.
     private void Shoot()
     {
         anim.SetTrigger("Throw");
@@ -197,6 +204,4 @@ public class Shooting : MonoBehaviour
 
         HasSnowballLanded = true;
     }
-
-
 }
