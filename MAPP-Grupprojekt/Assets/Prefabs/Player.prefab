@@ -84,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0fd2656efe410514a8b0bbc227f812aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,7 +190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
-  vibrationController: {fileID: 0}
 --- !u!114 &1570463253320427750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedSnowball: {fileID: 0}
-  target: {x: 0, y: 0, z: 0}
   bullet: {fileID: 5542907564401750229, guid: e56edb68fb902cf468e57228b4ba4e23, type: 3}
   minPower: {x: -3, y: -3}
   maxPower: {x: 3, y: 3}
