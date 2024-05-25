@@ -18,11 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public AudioClip walkOnSnowSound;
 
     private bool hasTarget;
-    private float horizontalValue;
     private SpriteRenderer rend;
     private AudioSource audSou;
-    private Vector2 startTouchPosition;
-    private Vector2 endTouchPosition;
 
     private void Start()
     {
