@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -195364206749563674}
   - component: {fileID: 1220868765126839974}
   - component: {fileID: -7301071183027583166}
+  - component: {fileID: 545138326786657194}
   m_Layer: 0
   m_Name: HeatSeekingSnowball
   m_TagString: Snowball
@@ -176,7 +177,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 7147c3aa6df92dc4dbdfae4eea7de903, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d68b51c5c40f85047b69f5893e46aa40, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -262,3 +263,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &545138326786657194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363327510554656297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4184ee33db529904ab30b19f8502562f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
