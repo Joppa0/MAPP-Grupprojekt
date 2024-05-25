@@ -28,20 +28,26 @@ public class VolumeController : MonoBehaviour
     // This method is called every time a scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 2)  //laddar den tredje scenen
+        if (scene.buildIndex == 2)  // Laddar den tredje scenen
         {
-            audioSource.clip = clips[1];  //Byt till andra låten i arrayen
-            audioSource.Play();  //Börja spela
+            if (clips.Length > 1)  // Kontrollera att det finns minst två element i arrayen för att undvika IndexOutOfBound
+            {
+                audioSource.clip = clips[1];  // Byt till andra låten i arrayen
+                audioSource.Play();  // Börja spela
+            }
         }
-        if (scene.buildIndex == 0)  //Vid laddning av mainmenu (scene 0)
+        if (scene.buildIndex == 0)  // Vid laddning av mainmenu (scene 0)
         {
-            audioSource.clip = clips[0];  //Byt till första i arrayen
-            audioSource.Play();  
-        }
-
+            if (clips.Length > 0)  // Kontrollera att det finns minst ett element i arrayen
+            {
+                audioSource.clip = clips[0];  // Byt till första i arrayen
+                audioSource.Play();
+            }
     }
 
-    void OnDestroy()
+}
+
+void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;  // Unsubscribe to avoid memory leaks
     }
