@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour
                     action.P1Move();
                     timer.timerIsRunning = false;
                     weaponMenu.HasChosenWeapon = false;
-                    currentState = BattleState.Player1ChooseWeapon; //Gå till nästa state
+                    currentState = BattleState.Player1ChooseWeapon; //Switchar till nästa state
                     break;
 
 
@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
                     timer.timerIsRunning = false;
                     weaponMenu.ToggleWeaponMenu();
                     action.P1ChooseWeapon();
-                    currentState = BattleState.Player1Throw;
+                    currentState = BattleState.Player1Throw; //Switchar till nästa state
                     break;
 
 
@@ -91,12 +91,12 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player1Shooting.StartShoot());
-                    yield return new WaitUntil(() => (player1Shooting.IsShootingComplete && player1Shooting.HasSnowballLanded) || timer.timeRemaining <= 0);
+                    yield return new WaitUntil(() => (player1Shooting.IsShootingComplete && player1Shooting.HasSnowballLanded) || timer.timeRemaining <= 0); //Säkerställer att State inte byts förens Spelaren har skjutit klart + snöbollen har landat, ELLER om tiden går ut.
                     //player1Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
                     action.P1Shoot();
 
-                    currentState = BattleState.Player2Move; //Går till nästa state
+                    currentState = BattleState.Player2Move; //Switchar till nästa state
                     break;
 
                 case BattleState.Player2Move:
@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
                     timer.timeRemaining = 11f;
                     timer.timerIsRunning = true;
                     StartCoroutine(player2Shooting.StartShoot());
-                    yield return new WaitUntil(() => (player2Shooting.IsShootingComplete && player2Shooting.HasSnowballLanded) || timer.timeRemaining <= 0);
+                    yield return new WaitUntil(() => (player2Shooting.IsShootingComplete && player2Shooting.HasSnowballLanded) || timer.timeRemaining <= 0); //Säkerställer att State inte byts förens Spelaren har skjutit klart + snöbollen har landat, ELLER om tiden går ut.
                     //player2Shooting.IsShootingComplete = true;
                     timer.timerIsRunning = false;
 
