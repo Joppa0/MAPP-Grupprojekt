@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6438953618481507301}
   - component: {fileID: 8492608189533902272}
   - component: {fileID: -2019526040735090629}
+  - component: {fileID: 1155069091544593495}
   m_Layer: 0
   m_Name: SnowShovelBall
   m_TagString: Snowball
@@ -288,7 +289,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 7147c3aa6df92dc4dbdfae4eea7de903, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 06377e4a3195e864e930d9bdf2160bd4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -374,3 +375,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1155069091544593495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542907564401750229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4184ee33db529904ab30b19f8502562f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
