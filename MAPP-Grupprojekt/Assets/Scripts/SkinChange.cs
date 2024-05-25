@@ -18,13 +18,17 @@ public class SkinChange : MonoBehaviour
     }
     private void UpdateSkin(int selectedOption)
     {
+        //Retrieving skin information from database
         Skin skin = skinDB.GetSkin(selectedOption);
+        //Updataing sprite 
         artworkSprite.sprite = skin.skinSprite;
     }
 
     private void Load()
     {
+        //Setting the value of selectedOption to the value that has been stored in the Key name
         string playerPrefKey = $"selectedOption_{gameObject.name}";
         selectedOption = PlayerPrefs.GetInt(playerPrefKey, 0);
+        //Set to 0 if there is not any stored data
     }
 }
