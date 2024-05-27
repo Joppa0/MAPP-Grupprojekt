@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
             pauseAnimator = animChild.GetComponent<Animator>();
             if (pauseAnimator != null)
             {
-                pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+                pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime; //Gör animationen oberörd av Time.timescale. 
             }
             else
             {

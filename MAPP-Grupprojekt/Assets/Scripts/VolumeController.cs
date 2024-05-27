@@ -1,23 +1,23 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;  // Required for detecting scene changes
+using UnityEngine.SceneManagement;  
 
 public class VolumeController : MonoBehaviour
 {
     private AudioSource audioSource;
-    public AudioClip[] clips;  // Array to hold multiple clips
+    public AudioClip[] clips;  //Array att hålla båda låtarna
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
-        SceneManager.sceneLoaded += OnSceneLoaded;  // Subscribe to the sceneLoaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;  //Körs när ny scene laddas
         UpdateVolume();
     }
 
     void Update()
     {
         UpdateVolume();
-    }
+    }  
 
     private void UpdateVolume()
     {
@@ -25,7 +25,7 @@ public class VolumeController : MonoBehaviour
             audioSource.volume = AudioSettingsManager.instance.volume;
     }
 
-    // This method is called every time a scene is loaded
+   
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == 2)  // Laddar den tredje scenen
