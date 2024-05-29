@@ -19,21 +19,21 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        mainCamera = Camera.main;
+        mainCamera = Camera.main; //Get the main camera component
     }
 
     void Start()
     {
-        originalPosition = transform.position;
-        originalOrthographicSize = mainCamera.orthographicSize;
-        CalculateCameraBounds();
+        originalPosition = transform.position; //Store original position of the camera
+        originalOrthographicSize = mainCamera.orthographicSize; //Store the original ortographic size of the camera
+        CalculateCameraBounds(); 
     }
 
     void FixedUpdate()
     {
         if (!isFollowingSnowball)
         {
-            FindAndFollowSnowball();
+            FindAndFollowSnowball(); 
         }
         else
         {
@@ -57,6 +57,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    //Calculate the bounds within which the camera can move
     private void CalculateCameraBounds()
     {
         var bounds = Globals.WorldBounds;
@@ -74,7 +75,7 @@ public class CameraController : MonoBehaviour
             new Vector3(maxX, maxY, 0.0f)
         );
     }
-
+    // Clamp the target position within the camera bounds
     private Vector3 GetClampedPosition(Vector3 targetPos)
     {
         return new Vector3(
@@ -84,6 +85,7 @@ public class CameraController : MonoBehaviour
         );
     }
 
+    // find the snwoball and follow it
     void FindAndFollowSnowball()
     {
         snowball = GameObject.FindGameObjectWithTag("Snowball");
@@ -93,6 +95,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Coroutine to return the camera to its original position and zoom level
     IEnumerator ReturnToOriginalPosition()
     {
         yield return new WaitForSeconds(0.5f);
